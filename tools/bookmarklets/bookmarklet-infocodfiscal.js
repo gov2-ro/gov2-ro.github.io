@@ -10,7 +10,7 @@ javascript: (function () {
     var centerDiv = document.querySelector('div[align="center"] > b');
 
     if (jumbotron && jumbotron.textContent.startsWith('AGENTUL ECONOMIC CU CODUL UNIC DE IDENTIFICARE')) {
-        // Extract unique code from the jumbotron
+        
         var uniqueCode = jumbotron.textContent.match(/\d+/g).pop();
         var containers = document.querySelectorAll('div.container');
         var targetContainer;
@@ -50,7 +50,7 @@ javascript: (function () {
         link.click();
     } else if (centerDiv && centerDiv.textContent.trim().startsWith('Indicatori din situaţiile financiare anuale')) {
         var yearMatch = centerDiv.textContent.match(/20\d{2}/);
-        var codMatch = centerDiv.textContent.match(/cod unic de identificare:\s*(\d+)/);
+        var codMatch = centerDiv.textContent.match(/cod unic\s*de identificare:\s*(\d+)/);
         var year = yearMatch ? yearMatch[0] : 'unknown';
         var cod = codMatch ? codMatch[1] : 'unknown';
 
