@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Validator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .drop-zone {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+        .drop-zone.dragover {
+            background: #e1e1e1;
+            border-color: #999;
+        }
+        .results {
+            margin-top: 20px;
+        }
+        .issue {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .critical { background: #ffe6e6; }
+        .warning { background: #fff3e6; }
+        .info { background: #e6f3ff; }
+        .column-issues {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Data Validator</h1>
+    <div id="dropZone" class="drop-zone">
+        Drop CSV/XLS/XLSX file here or click to upload
+        <input type="file" id="fileInput" style="display: none" accept=".csv,.xls,.xlsx">
+    </div>
+    <div id="results" class="results"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        class DataValidator {
+            constructor() {
+                this.results = {
+                    structure: [],
+                    columns: {},
+                    summary: { total: 0, critical: 0, warning: 0 }
+                };
+            }
+
+            validateData(data) {
+                if (!Array.isArray(data) || data.length === 0) {
+                    this.addIssue('structure', 'critical', 'File is empty or invalid');
+                    return this.results;
+                }
+
+                this.checkStructure(data);
+                this.checkColumns(data);
+                return this.results;
+            }
+
+            checkStructure(data) {
+                // Check for consistent column count
+                const columnCount = Object.keys(data[0]).length;
+                const inconsistentRows = data.find(row => 
+                    Object.keys(row).length !== columnCount
+                );
+                if (inconsistentRows) {
+                    this.addIssue('structure', 'critical', 'Inconsistent number of columns');
+                }
+
+                // Check for empty rows
+                const emptyRows = data.filter(row => 
+                    Object.values(row).every(cell => !cell && cell !== 0)
+                ).length;
+                if (emptyRows > 0) {
+                    this.addIssue('structure', 'warning', `${emptyRows} empty rows found`);
+                }
+            }
+
+            checkColumns(data) {
+                const columns = Object.keys(data[0]);
+                columns.forEach(column => {
+                    this.results.columns[column] = [];
+                    const values = data.map(row => row[column]);
+                    
+                    this.checkDataType(column, values);
+                    this.checkConsistency(column, values);
+                    this.checkSpelling(column, values);
+                });
+            }
+
+            checkDataType(column, values) {
+                const types = new Set(values.map(value => this.inferType(value)));
+                if (types.size > 1) {
+                    this.addColumnIssue(column, 'warning', 
+                        `Mixed data types found: ${Array.from(types).join(', ')}`);
+                }
+            }
+
+            checkConsistency(column, values) {
+                // Check date formats
+                if (this.inferType(values[0]) === 'date') {
+                    const formats = new Set(values.map(value => 
+                        this.getDateFormat(value)).filter(Boolean));
+                    if (formats.size > 1) {
+                        this.addColumnIssue(column, 'warning', 
+                            `Inconsistent date formats: ${Array.from(formats).join(', ')}`);
+                    }
+                }
+
+                // Check number formats
+                if (this.inferType(values[0]) === 'number') {
+                    const decimalSeparators = new Set(values
+                        .filter(v => v.toString().includes('.') || v.toString().includes(','))
+                        .map(v => v.toString().includes('.') ? '.' : ','));
+                    if (decimalSeparators.size > 1) {
+                        this.addColumnIssue(column, 'warning', 
+                            'Inconsistent decimal separators found');
+                    }
+                }
+            }
+
+            checkSpelling(column, values) {
+                const uniqueValues = [...new Set(values.filter(Boolean))];
+                const similar = [];
+                
+                for (let i = 0; i < uniqueValues.length; i++) {
+                    for (let j = i + 1; j < uniqueValues.length; j++) {
+                        if (this.areSimilar(uniqueValues[i], uniqueValues[j])) {
+                            similar.push([uniqueValues[i], uniqueValues[j]]);
+                        }
+                    }
+                }
+
+                if (similar.length > 0) {
+                    similar.forEach(([val1, val2]) => {
+                        this.addColumnIssue(column, 'warning', 
+                            `Possible spelling variation: "${val1}" vs "${val2}"`);
+                    });
+                }
+            }
+
+            inferType(value) {
+                if (!value) return 'empty';
+                if (!isNaN(Date.parse(value))) return 'date';
+                if (!isNaN(value) && value.toString().trim() !== '') return 'number';
+                return 'text';
+            }
+
+            getDateFormat(dateStr) {
+                const patterns = {
+                    'YYYY-MM-DD': /^\d{4}-\d{2}-\d{2}$/,
+                    'DD/MM/YYYY': /^\d{2}\/\d{2}\/\d{4}$/,
+                    'MM/DD/YYYY': /^\d{2}\/\d{2}\/\d{4}$/,
+                };
+                
+                for (const [format, pattern] of Object.entries(patterns)) {
+                    if (pattern.test(dateStr)) return format;
+                }
+                return null;
+            }
+
+            areSimilar(str1, str2) {
+                if (typeof str1 !== 'string' || typeof str2 !== 'string') return false;
+                const distance = this.levenshteinDistance(str1.toLowerCase(), str2.toLowerCase());
+                return distance > 0 && distance <= 2;
+            }
+
+            levenshteinDistance(s1, s2) {
+                if (s1.length < s2.length) return this.levenshteinDistance(s2, s1);
+                if (s2.length === 0) return s1.length;
+
+                let prevRow = Array.from({ length: s2.length + 1 }, (_, i) => i);
+                for (let i = 0; i < s1.length; i++) {
+                    const currentRow = [i + 1];
+                    for (let j = 0; j < s2.length; j++) {
+                        const insertions = prevRow[j + 1] + 1;
+                        const deletions = currentRow[j] + 1;
+                        const substitutions = prevRow[j] + (s1[i] !== s2[j]);
+                        currentRow.push(Math.min(insertions, deletions, substitutions));
+                    }
+                    prevRow = currentRow;
+                }
+                return prevRow[prevRow.length - 1];
+            }
+
+            addIssue(category, type, message) {
+                if (category === 'structure') {
+                    this.results.structure.push({ type, message });
+                }
+                this.results.summary.total++;
+                this.results.summary[type]++;
+            }
+
+            addColumnIssue(column, type, message) {
+                this.results.columns[column].push({ type, message });
+                this.results.summary.total++;
+                this.results.summary[type]++;
+            }
+        }
+
+        // UI Handler
+        class FileHandler {
+            constructor() {
+                this.dropZone = document.getElementById('dropZone');
+                this.fileInput = document.getElementById('fileInput');
+                this.resultsDiv = document.getElementById('results');
+                this.validator = new DataValidator();
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                this.dropZone.addEventListener('click', () => this.fileInput.click());
+                this.fileInput.addEventListener('change', (e) => this.handleFiles(e.target.files));
+                this.dropZone.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    this.dropZone.classList.add('dragover');
+                });
+                this.dropZone.addEventListener('dragleave', () => {
+                    this.dropZone.classList.remove('dragover');
+                });
+                this.dropZone.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    this.dropZone.classList.remove('dragover');
+                    this.handleFiles(e.dataTransfer.files);
+                });
+            }
+
+            async handleFiles(files) {
+                const file = files[0];
+                if (!file) return;
+
+                try {
+                    const data = await this.readFile(file);
+                    const results = this.validator.validateData(data);
+                    this.displayResults(results);
+                } catch (error) {
+                    this.displayError(error.message);
+                }
+            }
+
+            async readFile(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        try {
+                            if (file.name.endsWith('.csv')) {
+                                const csv = e.target.result;
+                                const results = Papa.parse(csv, {
+                                    header: true,
+                                    skipEmptyLines: true
+                                });
+                                resolve(results.data);
+                            } else {
+                                const data = new Uint8Array(e.target.result);
+                                const workbook = XLSX.read(data, { type: 'array' });
+                                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                                const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+                                resolve(jsonData);
+                            }
+                        } catch (error) {
+                            reject(new Error('Failed to parse file'));
+                        }
+                    };
+                    reader.onerror = () => reject(new Error('Failed to read file'));
+                    
+                    if (file.name.endsWith('.csv')) {
+                        reader.readAsText(file);
+                    } else {
+                        reader.readAsArrayBuffer(file);
+                    }
+                });
+            }
+
+            displayResults(results) {
+                let html = `
+                    <h2>Validation Results</h2>
+                    <div class="summary">
+                        Total issues: ${results.summary.total} 
+                        (Critical: ${results.summary.critical}, 
+                        Warnings: ${results.summary.warning})
+                    </div>
+                `;
+
+                if (results.structure.length > 0) {
+                    html += '<h3>Structure Issues</h3>';
+                    results.structure.forEach(issue => {
+                        html += `
+                            <div class="issue ${issue.type}">
+                                ${issue.message}
+                            </div>
+                        `;
+                    });
+                }
+
+                Object.entries(results.columns).forEach(([column, issues]) => {
+                    if (issues.length > 0) {
+                        html += `
+                            <div class="column-issues">
+                                <h3>Column: ${column}</h3>
+                                ${issues.map(issue => `
+                                    <div class="issue ${issue.type}">
+                                        ${issue.message}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        `;
+                    }
+                });
+
+                this.resultsDiv.innerHTML = html;
+            }
+
+            displayError(message) {
+                this.resultsDiv.innerHTML = `
+                    <div class="issue critical">
+                        Error: ${message}
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize the application
+        new FileHandler();
+    </script>
+</body>
+</html>
