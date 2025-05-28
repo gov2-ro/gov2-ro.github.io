@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>🧸 Hartă intervenții urs</title>
+  <title>🧸 Hartă intervenții urși ⚠️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta property="og:image" content="https://gov2-ro.github.io/misc/interventii-urs/stationery/harta.png" />
-  <meta property="og:title" content="Hartă intervenții urs" />  
+  <meta property="og:title" content="🧸 Hartă intervenții urși ⚠️" />  
   <meta property="og:url" content="https://gov2-ro.github.io/misc/interventii-urs/harta.html" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
@@ -25,7 +25,7 @@
       right: 10px;
       z-index: 1000;
       background: white;
-      padding: 15px;
+      padding: 8px;
       border-radius: 5px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
       font-family: Arial, sans-serif;
@@ -124,10 +124,10 @@
     
     .cluster-toggle {
       margin-bottom: 15px;
-      padding: 8px;
-      background: #f5f5f5;
-      border-radius: 3px;
-      border: 1px solid #ddd;
+      padding: 6px 0 0 0;
+      
+      
+      border-top: 1px solid #ddd;
     }
     
     .cluster-toggle label {
@@ -147,14 +147,9 @@
 <div id="map"></div>
 
 <div class="legend">
-  <h4>Tipuri Intervenție</h4>
   
-  <div class="cluster-toggle">
-    <label>
-      <input type="checkbox" id="cluster-toggle" onchange="toggleClustering()">
-      📍 Clustere
-    </label>
-  </div>
+  
+ 
   
   <div class="legend-item">
     <input type="checkbox" id="filter-alungare" checked onchange="toggleCategory('Alungare')">
@@ -186,7 +181,13 @@
     <span onclick="toggleCheckbox('filter-altele')">❓ Altele</span>
     <span class="event-count" id="count-altele">(0)</span>
   </div>
-  <small><a href="https://interventiiurs.mmap.ro/centralizator/">sursă date</a> / <a href="stats.html">stats</a></small>
+   <div class="cluster-toggle">
+    <label>
+      <input type="checkbox" id="cluster-toggle" onchange="toggleClustering()">
+      📍 Clustere
+    </label>
+  </div>
+  <div style="text-align: center;"><small><a href="https://interventiiurs.mmap.ro/centralizator/" target="_blank">sursă date</a> / <a href="stats.html">📊 <b>stats</b></a></small></div>
 </div>
 
 <div class="date-slider">
