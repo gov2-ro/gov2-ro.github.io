@@ -8,6 +8,8 @@
   <meta property="og:title" content="Hartă intervenții urs" />  
   <meta property="og:url" content="https://gov2-ro.github.io/misc/interventii-urs/harta.html" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
 
   <style>
     body {
@@ -119,6 +121,25 @@
     .show-all-btn:hover {
       background: #1e7e34 !important;
     }
+    
+    .cluster-toggle {
+      margin-bottom: 15px;
+      padding: 8px;
+      background: #f5f5f5;
+      border-radius: 3px;
+      border: 1px solid #ddd;
+    }
+    
+    .cluster-toggle label {
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+    .event-count {
+      color: #666;
+      font-size: 12px;
+      margin-left: 5px;
+    }
   </style>
 </head>
 <body>
@@ -127,30 +148,43 @@
 
 <div class="legend">
   <h4>Tipuri Intervenție</h4>
+  
+  <div class="cluster-toggle">
+    <label>
+      <input type="checkbox" id="cluster-toggle" onchange="toggleClustering()">
+      📍 Clustere
+    </label>
+  </div>
+  
   <div class="legend-item">
     <input type="checkbox" id="filter-alungare" checked onchange="toggleCategory('Alungare')">
     <div class="legend-color color-blue"></div>
     <span onclick="toggleCheckbox('filter-alungare')">🏃 Alungare</span>
+    <span class="event-count" id="count-alungare">(0)</span>
   </div>
   <div class="legend-item">
     <input type="checkbox" id="filter-relocare" checked onchange="toggleCategory('Relocare')">
     <div class="legend-color color-green"></div>
     <span onclick="toggleCheckbox('filter-relocare')">🚚 Relocare</span>
+    <span class="event-count" id="count-relocare">(0)</span>
   </div>
   <div class="legend-item">
     <input type="checkbox" id="filter-eutanasiere" checked onchange="toggleCategory('Eutanasiere')">
     <div class="legend-color color-red"></div>
     <span onclick="toggleCheckbox('filter-eutanasiere')">💉 Eutanasiere</span>
+    <span class="event-count" id="count-eutanasiere">(0)</span>
   </div>
   <div class="legend-item">
     <input type="checkbox" id="filter-impuscare" checked onchange="toggleCategory('Împușcare')">
     <div class="legend-color color-darkred"></div>
     <span onclick="toggleCheckbox('filter-impuscare')">🔫 Împușcare</span>
+    <span class="event-count" id="count-impuscare">(0)</span>
   </div>
   <div class="legend-item">
     <input type="checkbox" id="filter-altele" checked onchange="toggleCategory('Altele')">
     <div class="legend-color color-orange"></div>
     <span onclick="toggleCheckbox('filter-altele')">❓ Altele</span>
+    <span class="event-count" id="count-altele">(0)</span>
   </div>
   <small><a href="https://interventiiurs.mmap.ro/centralizator/">sursă date</a> / <a href="stats.html">stats</a></small>
 </div>
@@ -171,6 +205,8 @@
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!-- Leaflet Clustering -->
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 <!-- PapaParse for CSV parsing -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 
@@ -195,6 +231,8 @@
   let allMarkers = [];
   let dateRange = [];
   let animationInterval = null;
+  let clusterGroup = L.markerClusterGroup();
+  let isClusteringEnabled = false;
 
   // Toggle checkbox when clicking on text
   function toggleCheckbox(checkboxId) {
@@ -203,31 +241,134 @@
     checkbox.dispatchEvent(new Event('change'));
   }
 
-  // Toggle category visibility
-  function toggleCategory(category) {
-    const idMap = {
-      'Alungare': 'filter-alungare',
-      'Relocare': 'filter-relocare', 
-      'Eutanasiere': 'filter-eutanasiere',
-      'Împușcare': 'filter-impuscare',
-      'Altele': 'filter-altele'
-    };
+  // Toggle clustering
+  function toggleClustering() {
+    const clusterCheckbox = document.getElementById('cluster-toggle');
+    isClusteringEnabled = clusterCheckbox.checked;
     
-    const checkbox = document.getElementById(idMap[category]);
-    const isVisible = checkbox.checked;
+    if (isClusteringEnabled) {
+      // Remove individual markers and add cluster group
+      allMarkers.forEach(marker => {
+        map.removeLayer(marker);
+      });
+      map.addLayer(clusterGroup);
+      updateClusterMarkers();
+    } else {
+      // Remove cluster group and add individual markers back
+      map.removeLayer(clusterGroup);
+      updateIndividualMarkers();
+    }
+  }
+
+  // Update cluster markers based on filters
+  function updateClusterMarkers() {
+    clusterGroup.clearLayers();
     
-    markerCategories[category].forEach(marker => {
-      if (isVisible && marker.isInDateRange) {
-        map.addLayer(marker);
+    allMarkers.forEach(marker => {
+      if (marker.isInDateRange) {
+        const categoryCheckboxId = getCategoryCheckboxId(marker.category);
+        const checkbox = document.getElementById(categoryCheckboxId);
+        if (checkbox && checkbox.checked) {
+          clusterGroup.addLayer(marker);
+        }
+      }
+    });
+  }
+
+  // Update individual markers based on filters
+  function updateIndividualMarkers() {
+    allMarkers.forEach(marker => {
+      if (marker.isInDateRange) {
+        const categoryCheckboxId = getCategoryCheckboxId(marker.category);
+        const checkbox = document.getElementById(categoryCheckboxId);
+        if (checkbox && checkbox.checked) {
+          map.addLayer(marker);
+        } else {
+          map.removeLayer(marker);
+        }
       } else {
         map.removeLayer(marker);
       }
     });
   }
 
+  // Get checkbox ID for category
+  function getCategoryCheckboxId(category) {
+    if (category === 'Împușcare') return 'filter-impuscare';
+    if (category === 'Eutanasiere') return 'filter-eutanasiere';
+    if (category === 'Altele') return 'filter-altele';
+    return `filter-${category.toLowerCase()}`;
+  }
+
+  // Update event counters
+  function updateEventCounters() {
+    const visibleCounts = {
+      'Alungare': 0,
+      'Relocare': 0,
+      'Eutanasiere': 0,
+      'Împușcare': 0,
+      'Altele': 0
+    };
+
+    allMarkers.forEach(marker => {
+      if (marker.isInDateRange) {
+        visibleCounts[marker.category]++;
+      }
+    });
+
+    document.getElementById('count-alungare').textContent = `(${visibleCounts['Alungare']})`;
+    document.getElementById('count-relocare').textContent = `(${visibleCounts['Relocare']})`;
+    document.getElementById('count-eutanasiere').textContent = `(${visibleCounts['Eutanasiere']})`;
+    document.getElementById('count-impuscare').textContent = `(${visibleCounts['Împușcare']})`;
+    document.getElementById('count-altele').textContent = `(${visibleCounts['Altele']})`;
+  }
+
+  // Toggle category visibility
+  function toggleCategory(category) {
+    if (isClusteringEnabled) {
+      updateClusterMarkers();
+    } else {
+      const idMap = {
+        'Alungare': 'filter-alungare',
+        'Relocare': 'filter-relocare', 
+        'Eutanasiere': 'filter-eutanasiere',
+        'Împușcare': 'filter-impuscare',
+        'Altele': 'filter-altele'
+      };
+      
+      const checkbox = document.getElementById(idMap[category]);
+      const isVisible = checkbox.checked;
+      
+      markerCategories[category].forEach(marker => {
+        if (isVisible && marker.isInDateRange) {
+          map.addLayer(marker);
+        } else {
+          map.removeLayer(marker);
+        }
+      });
+    }
+  }
+
+  // Map intervention methods to display categories
+  function mapInterventionMethodToCategory(metodaDeInterventie) {
+    if (!metodaDeInterventie) return 'Altele';
+    
+    const method = metodaDeInterventie.toLowerCase().trim();
+    if (method === 'alungat') return 'Alungare';
+    if (method === 'relocat') return 'Relocare'; 
+    if (method === 'eutanasiat') return 'Eutanasiere';
+    if (method === 'împușcare' || method === 'impuscare') return 'Împușcare';
+    return 'Altele';
+  }
+
   // Parse date function
   function parseDate(str) {
     if (!str) return null;
+    // Handle ISO date format (YYYY-MM-DD) from normalized data
+    if (str.includes('-') && str.length === 10) {
+      return new Date(str);
+    }
+    // Handle original format (DD/MM/YYYY or DD-MM-YYYY)
     const parts = str.split(/[\/\-]/);
     if (parts.length === 3) {
       const [d, m, y] = parts.map(Number);
@@ -240,22 +381,15 @@
   function showAllData() {
     allMarkers.forEach(marker => {
       marker.isInDateRange = true;
-      // Fix the checkbox ID mapping for Romanian characters
-      let checkboxId = `filter-${marker.category.toLowerCase()}`;
-      if (marker.category === 'Împușcare') {
-        checkboxId = 'filter-impuscare';
-      } else if (marker.category === 'Eutanasiere') {
-        checkboxId = 'filter-eutanasiere';
-      } else if (marker.category === 'Altele') {
-        checkboxId = 'filter-altele';
-      }
-      
-      const checkbox = document.getElementById(checkboxId);
-      if (checkbox && checkbox.checked) {
-        map.addLayer(marker);
-      }
     });
     
+    if (isClusteringEnabled) {
+      updateClusterMarkers();
+    } else {
+      updateIndividualMarkers();
+    }
+    
+    updateEventCounters();
     document.getElementById('dateDisplay').textContent = 'Toate datele';
     document.getElementById('dateSlider').value = 100;
   }
@@ -279,31 +413,20 @@
     
     dateDisplay.textContent = targetDate.toLocaleDateString('ro-RO', { year: 'numeric', month: 'short' });
     
-    // Show only markers from the specific month
+    // Update marker date range
     allMarkers.forEach(marker => {
       const markerMonth = new Date(marker.date.getFullYear(), marker.date.getMonth(), 1);
-      
-      if (markerMonth.getTime() === targetDate.getTime()) {
-        marker.isInDateRange = true;
-        // Fix the checkbox ID mapping for Romanian characters
-        let checkboxId = `filter-${marker.category.toLowerCase()}`;
-        if (marker.category === 'Împușcare') {
-          checkboxId = 'filter-impuscare';
-        } else if (marker.category === 'Eutanasiere') {
-          checkboxId = 'filter-eutanasiere';
-        } else if (marker.category === 'Altele') {
-          checkboxId = 'filter-altele';
-        }
-        
-        const checkbox = document.getElementById(checkboxId);
-        if (checkbox && checkbox.checked) {
-          map.addLayer(marker);
-        }
-      } else {
-        marker.isInDateRange = false;
-        map.removeLayer(marker);
-      }
+      marker.isInDateRange = markerMonth.getTime() === targetDate.getTime();
     });
+
+    // Update display based on clustering mode
+    if (isClusteringEnabled) {
+      updateClusterMarkers();
+    } else {
+      updateIndividualMarkers();
+    }
+    
+    updateEventCounters();
   }
 
   // Animation controls
@@ -339,87 +462,24 @@
     updateDateFilter();
   }
 
-  // Load and parse CSV
-  fetch('data/Interventii Urs.csv')
+  // Load and parse normalized CSV
+  fetch('data/normalized_interventii_urs.csv')
     .then(response => response.text())
     .then(csv => {
       Papa.parse(csv, {
         header: true,
         skipEmptyLines: true,
         complete: function(results) {
-          console.log('Parsed data:', results.data);
+          console.log('Parsed normalized data:', results.data);
           
           const dates = [];
           
           results.data.forEach(row => {
-            // Try different coordinate columns based on intervention type
-            let lat, lng, interventionType, date, dateStr;
-            
-            // First check if there's an explicit "Altele" category in any field
-            if (row['Tip interventie'] === 'Altele' || 
-                row['Categoria'] === 'Altele' ||
-                Object.values(row).some(val => val === 'Altele')) {
-              interventionType = 'Altele';
-              // Try to find coordinates from any available column
-              if (row['Coordonate interventie alungare Y (WGS84, grade zecimale)'] && 
-                  row['Coordonate interventie alungare X (WGS84, grade zecimale)']) {
-                lat = parseFloat(row['Coordonate interventie alungare Y (WGS84, grade zecimale)']);
-                lng = parseFloat(row['Coordonate interventie alungare X (WGS84, grade zecimale)']);
-                dateStr = row['Data interventie alungare'];
-              } else if (row['Coordonate relocare Y (WGS84, grade zecimale)'] && 
-                         row['Coordonate relocare X (WGS84, grade zecimale)']) {
-                lat = parseFloat(row['Coordonate relocare Y (WGS84, grade zecimale)']);
-                lng = parseFloat(row['Coordonate relocare X (WGS84, grade zecimale)']);
-                dateStr = row['Data relocare'];
-              } else if (row['Coordonate eutanasiere Y (WGS84, grade zecimale)'] && 
-                         row['Coordonate eutanasiere X (WGS84, grade zecimale)']) {
-                lat = parseFloat(row['Coordonate eutanasiere Y (WGS84, grade zecimale)']);
-                lng = parseFloat(row['Coordonate eutanasiere X (WGS84, grade zecimale)']);
-                dateStr = row['Data interventie eutanasiere'];
-              } else if (row['Coordonate impuscare Y (WGS84, grade zecimale)'] && 
-                         row['Coordonate impuscare X (WGS84, grade zecimale)']) {
-                lat = parseFloat(row['Coordonate impuscare Y (WGS84, grade zecimale)']);
-                lng = parseFloat(row['Coordonate impuscare X (WGS84, grade zecimale)']);
-                dateStr = row['Data interventie impuscare'];
-              }
-              // If still no coordinates but has date, try to get any date available
-              if (!dateStr) {
-                dateStr = row['Data interventie alungare'] || row['Data relocare'] || 
-                         row['Data interventie eutanasiere'] || row['Data interventie impuscare'];
-              }
-            }
-            // Check for intervention coordinates (alungare)
-            else if (row['Coordonate interventie alungare Y (WGS84, grade zecimale)'] && 
-                row['Coordonate interventie alungare X (WGS84, grade zecimale)']) {
-              lat = parseFloat(row['Coordonate interventie alungare Y (WGS84, grade zecimale)']);
-              lng = parseFloat(row['Coordonate interventie alungare X (WGS84, grade zecimale)']);
-              interventionType = 'Alungare';
-              dateStr = row['Data interventie alungare'];
-            }
-            // Check for relocation coordinates
-            else if (row['Coordonate relocare Y (WGS84, grade zecimale)'] && 
-                     row['Coordonate relocare X (WGS84, grade zecimale)']) {
-              lat = parseFloat(row['Coordonate relocare Y (WGS84, grade zecimale)']);
-              lng = parseFloat(row['Coordonate relocare X (WGS84, grade zecimale)']);
-              interventionType = 'Relocare';
-              dateStr = row['Data relocare'];
-            }
-            // Check for euthanasia coordinates
-            else if (row['Coordonate eutanasiere Y (WGS84, grade zecimale)'] && 
-                     row['Coordonate eutanasiere X (WGS84, grade zecimale)']) {
-              lat = parseFloat(row['Coordonate eutanasiere Y (WGS84, grade zecimale)']);
-              lng = parseFloat(row['Coordonate eutanasiere X (WGS84, grade zecimale)']);
-              interventionType = 'Eutanasiere';
-              dateStr = row['Data interventie eutanasiere'];
-            }
-            // Check for shooting coordinates
-            else if (row['Coordonate impuscare Y (WGS84, grade zecimale)'] && 
-                     row['Coordonate impuscare X (WGS84, grade zecimale)']) {
-              lat = parseFloat(row['Coordonate impuscare Y (WGS84, grade zecimale)']);
-              lng = parseFloat(row['Coordonate impuscare X (WGS84, grade zecimale)']);
-              interventionType = 'Împușcare';
-              dateStr = row['Data interventie impuscare'];
-            }
+            // Get coordinates from normalized format
+            const lat = parseFloat(row['lat']);
+            const lng = parseFloat(row['long']);
+            const dateStr = row['Data'];
+            const metodaDeInterventie = row['Metoda de interventie'];
             
             // Debug: log first few rows to see the structure
             if (results.data.indexOf(row) < 5) {
@@ -428,17 +488,27 @@
             }
             
             if (!isNaN(lat) && !isNaN(lng) && lat !== 0 && lng !== 0 && dateStr) {
-              date = parseDate(dateStr);
+              const date = parseDate(dateStr);
               if (date) {
                 dates.push(date);
                 
+                // Use intervention method to determine category
+                const interventionType = mapInterventionMethodToCategory(metodaDeInterventie);
+                
+                // Build popup content with available data
                 const popupContent = `
                   <strong>${row['Judet'] || 'Fără județ'}</strong><br/>
                   UAT: ${row['UAT'] || 'N/A'}<br/>
                   Tip intervenție: ${interventionType}<br/>
+                  Metodă: ${metodaDeInterventie || 'N/A'}<br/>
                   Data: ${dateStr || 'N/A'}<br/>
+                  FC: ${row['FC'] || 'N/A'}<br/>
+                  Nr. raport: ${row['Nr_raport'] || 'N/A'}<br/>
                   Sex: ${row['Sex'] || 'N/A'}<br/>
-                  Detalii: ${row['Detalii referitoare la eveniment'] || 'N/A'}
+                  Detalii: ${row['Detalii referitoare la eveniment'] || 'N/A'}<br/>
+                  ${row['status_log'] && row['status_log'] !== 'OK' ? `<em>Status: ${row['status_log']}</em><br/>` : ''}
+                  ${row['Judet_relocare'] ? `Județ relocare: ${row['Judet_relocare']}<br/>` : ''}
+                  ${row['Nr_identificare'] ? `Nr. identificare: ${row['Nr_identificare']}<br/>` : ''}
                 `;
                 
                 // Different colors for different intervention types
@@ -484,6 +554,10 @@
           }
           
           console.log('Date range:', dateRange);
+          console.log(`Loaded ${allMarkers.length} markers`);
+          
+          // Update initial counters
+          updateEventCounters();
           
           // Initialize with all data showing (value 100)
           document.getElementById('dateSlider').value = 100;

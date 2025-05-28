@@ -46,8 +46,8 @@
 </div>
 
 <script>
-  // Load and parse CSV
-  fetch('data/Interventii Urs.csv')
+  // Load and parse normalized CSV
+  fetch('data/normalized_interventii_urs.csv')
     .then(response => response.text())
     .then(csv => {
       Papa.parse(csv, {
@@ -69,53 +69,24 @@
           data.forEach(row => {
             const county = row['Judet'];
             const locality = row['UAT'];
+            const dateStr = row['Data'];
+            const metodaDeInterventie = row['Metoda de interventie'];
             
-            // Determine intervention type based on available coordinates
-            let interventionType = null;
-            let dateStr = null;
-            
-            // Check for specific intervention types based on coordinates first
-            if (row['Coordonate interventie alungare Y (WGS84, grade zecimale)'] && 
-                row['Coordonate interventie alungare X (WGS84, grade zecimale)']) {
-              interventionType = 'Alungare';
-              dateStr = row['Data interventie alungare'];
-            } else if (row['Coordonate relocare Y (WGS84, grade zecimale)'] && 
-                       row['Coordonate relocare X (WGS84, grade zecimale)']) {
-              interventionType = 'Relocare';
-              dateStr = row['Data relocare'];
-            } else if (row['Coordonate eutanasiere Y (WGS84, grade zecimale)'] && 
-                       row['Coordonate eutanasiere X (WGS84, grade zecimale)']) {
-              interventionType = 'Eutanasiere';
-              dateStr = row['Data interventie eutanasiere'];
-            } else if (row['Coordonate impuscare Y (WGS84, grade zecimale)'] && 
-                       row['Coordonate impuscare X (WGS84, grade zecimale)']) {
-              interventionType = 'Împușcare';
-              dateStr = row['Data interventie impuscare'];
-            }
-            // Only check for "Altele" if no specific intervention type was found
-            else if (row['Tip interventie'] === 'Altele' || 
-                     (county && locality && !interventionType)) {
-              interventionType = 'Altele';
-              dateStr = row['Data interventie alungare'] || row['Data relocare'] || 
-                       row['Data interventie eutanasiere'] || row['Data interventie impuscare'];
-            }
+            // Map intervention method to category
+            const interventionType = mapInterventionMethodToCategory(metodaDeInterventie);
 
-            if (interventionType) {
+            if (interventionType && county && locality) {
               // Count by county and intervention type
-              if (county) {
-                if (!countyData[county]) {
-                  countyData[county] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0, 'Altele': 0 };
-                }
-                countyData[county][interventionType]++;
+              if (!countyData[county]) {
+                countyData[county] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0, 'Altele': 0 };
               }
+              countyData[county][interventionType]++;
 
               // Count by locality and intervention type
-              if (locality) {
-                if (!localityData[locality]) {
-                  localityData[locality] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0, 'Altele': 0 };
-                }
-                localityData[locality][interventionType]++;
+              if (!localityData[locality]) {
+                localityData[locality] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0, 'Altele': 0 };
               }
+              localityData[locality][interventionType]++;
 
               // Count total by intervention type
               interventionTypeCount[interventionType]++;
@@ -140,9 +111,25 @@
       });
     });
 
+  // Map intervention methods to display categories
+  function mapInterventionMethodToCategory(metodaDeInterventie) {
+    if (!metodaDeInterventie) return 'Altele';
+    
+    const method = metodaDeInterventie.toLowerCase().trim();
+    if (method === 'alungat') return 'Alungare';
+    if (method === 'relocat') return 'Relocare'; 
+    if (method === 'eutanasiat') return 'Eutanasiere';
+    if (method === 'împușcare' || method === 'impuscare') return 'Împușcare';
+    return 'Altele';
+  }
+
   function parseDate(str) {
-    // Romanian style DD/MM/YYYY or DD-MM-YYYY
     if (!str) return null;
+    // Handle ISO date format (YYYY-MM-DD) from normalized data
+    if (str.includes('-') && str.length === 10) {
+      return new Date(str);
+    }
+    // Handle original format (DD/MM/YYYY or DD-MM-YYYY)
     const parts = str.split(/[\/\-]/);
     if (parts.length === 3) {
       const [d, m, y] = parts.map(Number);
