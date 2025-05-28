@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Statistici Intervenții Urs</title>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    canvas { max-width: 800px; margin: 2em auto; display: block; }
+  </style>
+</head>
+<body>
+
+<h2>Statistici Intervenții Urs</h2>
+
+<canvas id="countyChart"></canvas>
+<canvas id="localityChart"></canvas>
+<canvas id="dateChart"></canvas>
+<a href="https://interventiiurs.mmap.ro/centralizator/">sursă date</a> / <a href="harta.html">hartă</a>
+<script>
+  // Load and parse CSV
+  fetch('data/Interventii Urs.csv')
+    .then(response => response.text())
+    .then(csv => {
+      Papa.parse(csv, {
+        header: true,
+        skipEmptyLines: true,
+        complete: function(results) {
+          const data = results.data;
+          const countyCount = {};
+          const localityCount = {};
+          const dateCount = {};
+
+          data.forEach(row => {
+            const county = row['Judet'];
+            const locality = row['UAT'];
+            const dateStr = row['Data interventie alungare'];
+            const parsedDate = parseDate(dateStr);
+
+            if (county) countyCount[county] = (countyCount[county] || 0) + 1;
+            if (locality) localityCount[locality] = (localityCount[locality] || 0) + 1;
+            if (parsedDate) {
+              const date = parsedDate.toISOString().split('T')[0];
+              dateCount[date] = (dateCount[date] || 0) + 1;
+            }
+          });
+
+          drawBarChart('countyChart', 'Intervenții per județ', countyCount);
+          drawBarChart('localityChart', 'Top localități', getTopN(localityCount, 10));
+          drawLineChart('dateChart', 'Evoluția în timp', dateCount);
+        }
+      });
+    });
+
+  function parseDate(str) {
+    // Romanian style DD/MM/YYYY or DD-MM-YYYY
+    if (!str) return null;
+    const parts = str.split(/[\/\-]/);
+    if (parts.length === 3) {
+      const [d, m, y] = parts.map(Number);
+      return new Date(y, m - 1, d);
+    }
+    return null;
+  }
+
+  function getTopN(obj, n) {
+    return Object.fromEntries(
+      Object.entries(obj).sort((a, b) => b[1] - a[1]).slice(0, n)
+    );
+  }
+
+  function drawBarChart(canvasId, label, dataObj) {
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(dataObj),
+        datasets: [{
+          label,
+          data: Object.values(dataObj),
+          backgroundColor: 'rgba(54, 162, 235, 0.6)'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: { ticks: { autoSkip: false, maxRotation: 45, minRotation: 45 } },
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  }
+
+  function drawLineChart(canvasId, label, dataObj) {
+    const sorted = Object.entries(dataObj).sort(([a], [b]) => new Date(a) - new Date(b));
+    const labels = sorted.map(([d]) => d);
+    const data = sorted.map(([_, v]) => v);
+
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label,
+          data,
+          fill: false,
+          borderColor: 'orange',
+          tension: 0.2
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
