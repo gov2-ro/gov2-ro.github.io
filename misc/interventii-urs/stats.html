@@ -91,21 +91,21 @@
               // Count total by intervention type
               interventionTypeCount[interventionType]++;
 
-              // Count by date
+              // Count by month instead of day
               const parsedDate = parseDate(dateStr);
               if (parsedDate) {
-                const date = parsedDate.toISOString().split('T')[0];
-                if (!dateData[date]) {
-                  dateData[date] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0, 'Altele': 0 };
+                const monthKey = parsedDate.getFullYear() + '-' + String(parsedDate.getMonth() + 1).padStart(2, '0');
+                if (!dateData[monthKey]) {
+                  dateData[monthKey] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0, 'Altele': 0 };
                 }
-                dateData[date][interventionType]++;
+                dateData[monthKey][interventionType]++;
               }
             }
           });
 
           drawStackedBarChart('countyChart', 'Intervenții per județ', countyData);
           drawStackedBarChart('localityChart', 'Top localități', getTopNStacked(localityData, 15));
-          drawStackedLineChart('dateChart', 'Evoluția în timp', dateData);
+          drawStackedBarChart('dateChart', 'Evoluția în timp (lunar)', dateData);
           drawPieChart('interventionTypeChart', 'Tipuri de intervenție', interventionTypeCount);
         }
       });
@@ -198,26 +198,26 @@
   }
 
   function drawStackedLineChart(canvasId, title, dataObj) {
-    const sorted = Object.entries(dataObj).sort(([a], [b]) => new Date(a) - new Date(b));
-    const labels = sorted.map(([d]) => d);
+    const sorted = Object.entries(dataObj).sort(([a], [b]) => new Date(a + '-01') - new Date(b + '-01'));
+    const labels = sorted.map(([monthKey]) => {
+      const [year, month] = monthKey.split('-');
+      const date = new Date(year, month - 1, 1);
+      return date.toLocaleDateString('ro-RO', { year: 'numeric', month: 'short' });
+    });
     const categories = ['Alungare', 'Relocare', 'Eutanasiere', 'Împușcare', 'Altele'];
     const colors = ['blue', 'green', 'red', 'darkred', 'orange'];
     
     const datasets = categories.map((category, index) => ({
       label: category,
-      data: labels.map(label => {
-        const found = sorted.find(([d]) => d === label);
-        return found ? found[1][category] || 0 : 0;
-      }),
+      data: sorted.map(([monthKey, data]) => data[category] || 0),
+      backgroundColor: colors[index],
       borderColor: colors[index],
-      backgroundColor: colors[index] + '40',
-      tension: 0.2,
-      fill: index === 0
+      borderWidth: 1
     }));
 
     const ctx = document.getElementById(canvasId).getContext('2d');
     new Chart(ctx, {
-      type: 'line',
+      type: 'bar',
       data: { labels, datasets },
       options: {
         responsive: true,
@@ -229,6 +229,10 @@
           }
         },
         scales: {
+          x: { 
+            stacked: true,
+            ticks: { autoSkip: false, maxRotation: 45, minRotation: 45 }
+          },
           y: { 
             stacked: true,
             beginAtZero: true 
