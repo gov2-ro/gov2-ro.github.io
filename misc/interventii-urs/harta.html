@@ -2,13 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Intervenții Urs Map</title>
+  <title>Hartă Intervenții Urs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
     #map { height: 100vh; }
     
     .legend {
@@ -64,24 +69,24 @@
   <div class="legend-item">
     <input type="checkbox" id="filter-alungare" checked onchange="toggleCategory('Alungare')">
     <div class="legend-color color-blue"></div>
-    <span onclick="toggleCheckbox('filter-alungare')">Alungare</span>
+    <span onclick="toggleCheckbox('filter-alungare')">🏃 Alungare</span>
   </div>
   <div class="legend-item">
     <input type="checkbox" id="filter-relocare" checked onchange="toggleCategory('Relocare')">
     <div class="legend-color color-green"></div>
-    <span onclick="toggleCheckbox('filter-relocare')">Relocare</span>
+    <span onclick="toggleCheckbox('filter-relocare')">🚚 Relocare</span>
   </div>
   <div class="legend-item">
     <input type="checkbox" id="filter-eutanasiere" checked onchange="toggleCategory('Eutanasiere')">
     <div class="legend-color color-red"></div>
-    <span onclick="toggleCheckbox('filter-eutanasiere')">Eutanasiere</span>
+    <span onclick="toggleCheckbox('filter-eutanasiere')">💉 Eutanasiere</span>
   </div>
   <div class="legend-item">
     <input type="checkbox" id="filter-impuscare" checked onchange="toggleCategory('Împușcare')">
     <div class="legend-color color-darkred"></div>
-    <span onclick="toggleCheckbox('filter-impuscare')">Împușcare</span>
+    <span onclick="toggleCheckbox('filter-impuscare')">🔫 Împușcare</span>
   </div>
-  <a href="https://interventiiurs.mmap.ro/centralizator/">sursă date</a> / <a href="stats.html">stats</a>
+  <small><a href="https://interventiiurs.mmap.ro/centralizator/">sursă date</a> / <a href="stats.html">stats</a></small>
 </div>
 
 <!-- Leaflet JS -->
@@ -201,7 +206,7 @@
                 color: color,
                 fillColor: color,
                 fillOpacity: 0.7,
-                radius: 6
+                radius: 5
               }).bindPopup(popupContent);
               
               // Add to map and store in category

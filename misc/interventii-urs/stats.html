@@ -6,16 +6,39 @@
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
-    canvas { max-width: 800px; margin: 2em auto; display: block; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    canvas { 
+      max-width: 1200px; 
+      width: 100%;
+      margin: 2em auto; 
+      display: block; 
+    }
+    .chart-container {
+      margin: 3em 0;
+      height: 400px;
+      position: relative;
+    }
   </style>
 </head>
 <body>
 
 <h2>Statistici Intervenții Urs</h2>
 
-<canvas id="countyChart"></canvas>
-<canvas id="localityChart"></canvas>
-<canvas id="dateChart"></canvas>
+<div class="chart-container">
+  <canvas id="countyChart"></canvas>
+</div>
+<div class="chart-container">
+  <canvas id="localityChart"></canvas>
+</div>
+<div class="chart-container">
+  <canvas id="dateChart"></canvas>
+</div>
+<div class="chart-container">
+  <canvas id="interventionTypeChart"></canvas>
+</div>
 <a href="https://interventiiurs.mmap.ro/centralizator/">sursă date</a> / <a href="harta.html">hartă</a>
 <script>
   // Load and parse CSV
@@ -27,27 +50,78 @@
         skipEmptyLines: true,
         complete: function(results) {
           const data = results.data;
-          const countyCount = {};
-          const localityCount = {};
-          const dateCount = {};
+          const countyData = {};
+          const localityData = {};
+          const dateData = {};
+          const interventionTypeCount = {
+            'Alungare': 0,
+            'Relocare': 0,
+            'Eutanasiere': 0,
+            'Împușcare': 0
+          };
 
           data.forEach(row => {
             const county = row['Judet'];
             const locality = row['UAT'];
-            const dateStr = row['Data interventie alungare'];
-            const parsedDate = parseDate(dateStr);
+            
+            // Determine intervention type based on available coordinates
+            let interventionType = null;
+            let dateStr = null;
+            
+            if (row['Coordonate interventie alungare Y (WGS84, grade zecimale)'] && 
+                row['Coordonate interventie alungare X (WGS84, grade zecimale)']) {
+              interventionType = 'Alungare';
+              dateStr = row['Data interventie alungare'];
+            } else if (row['Coordonate relocare Y (WGS84, grade zecimale)'] && 
+                       row['Coordonate relocare X (WGS84, grade zecimale)']) {
+              interventionType = 'Relocare';
+              dateStr = row['Data relocare'];
+            } else if (row['Coordonate eutanasiere Y (WGS84, grade zecimale)'] && 
+                       row['Coordonate eutanasiere X (WGS84, grade zecimale)']) {
+              interventionType = 'Eutanasiere';
+              dateStr = row['Data interventie eutanasiere'];
+            } else if (row['Coordonate impuscare Y (WGS84, grade zecimale)'] && 
+                       row['Coordonate impuscare X (WGS84, grade zecimale)']) {
+              interventionType = 'Împușcare';
+              dateStr = row['Data interventie impuscare'];
+            }
 
-            if (county) countyCount[county] = (countyCount[county] || 0) + 1;
-            if (locality) localityCount[locality] = (localityCount[locality] || 0) + 1;
-            if (parsedDate) {
-              const date = parsedDate.toISOString().split('T')[0];
-              dateCount[date] = (dateCount[date] || 0) + 1;
+            if (interventionType) {
+              // Count by county and intervention type
+              if (county) {
+                if (!countyData[county]) {
+                  countyData[county] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0 };
+                }
+                countyData[county][interventionType]++;
+              }
+
+              // Count by locality and intervention type
+              if (locality) {
+                if (!localityData[locality]) {
+                  localityData[locality] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0 };
+                }
+                localityData[locality][interventionType]++;
+              }
+
+              // Count total by intervention type
+              interventionTypeCount[interventionType]++;
+
+              // Count by date
+              const parsedDate = parseDate(dateStr);
+              if (parsedDate) {
+                const date = parsedDate.toISOString().split('T')[0];
+                if (!dateData[date]) {
+                  dateData[date] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0 };
+                }
+                dateData[date][interventionType]++;
+              }
             }
           });
 
-          drawBarChart('countyChart', 'Intervenții per județ', countyCount);
-          drawBarChart('localityChart', 'Top localități', getTopN(localityCount, 10));
-          drawLineChart('dateChart', 'Evoluția în timp', dateCount);
+          drawStackedBarChart('countyChart', 'Intervenții per județ', countyData);
+          drawStackedBarChart('localityChart', 'Top localități', getTopNStacked(localityData, 15));
+          drawStackedLineChart('dateChart', 'Evoluția în timp', dateData);
+          drawPieChart('interventionTypeChart', 'Tipuri de intervenție', interventionTypeCount);
         }
       });
     });
@@ -69,50 +143,123 @@
     );
   }
 
-  function drawBarChart(canvasId, label, dataObj) {
+  function getTopNStacked(obj, n) {
+    const sorted = Object.entries(obj)
+      .map(([key, types]) => [key, Object.values(types).reduce((a, b) => a + b, 0)])
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, n);
+    
+    const result = {};
+    sorted.forEach(([key]) => {
+      result[key] = obj[key];
+    });
+    return result;
+  }
+
+  function drawStackedBarChart(canvasId, title, dataObj) {
+    const labels = Object.keys(dataObj);
+    const categories = ['Alungare', 'Relocare', 'Eutanasiere', 'Împușcare'];
+    const colors = ['blue', 'green', 'red', 'darkred'];
+    
+    const datasets = categories.map((category, index) => ({
+      label: category,
+      data: labels.map(label => dataObj[label][category] || 0),
+      backgroundColor: colors[index],
+      borderColor: colors[index],
+      borderWidth: 1
+    }));
+
     const ctx = document.getElementById(canvasId).getContext('2d');
     new Chart(ctx, {
       type: 'bar',
-      data: {
-        labels: Object.keys(dataObj),
-        datasets: [{
-          label,
-          data: Object.values(dataObj),
-          backgroundColor: 'rgba(54, 162, 235, 0.6)'
-        }]
-      },
+      data: { labels, datasets },
       options: {
         responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: title,
+            font: { size: 16 }
+          }
+        },
         scales: {
-          x: { ticks: { autoSkip: false, maxRotation: 45, minRotation: 45 } },
-          y: { beginAtZero: true }
+          x: { 
+            stacked: true,
+            ticks: { autoSkip: false, maxRotation: 45, minRotation: 45 }
+          },
+          y: { 
+            stacked: true,
+            beginAtZero: true 
+          }
         }
       }
     });
   }
 
-  function drawLineChart(canvasId, label, dataObj) {
+  function drawStackedLineChart(canvasId, title, dataObj) {
     const sorted = Object.entries(dataObj).sort(([a], [b]) => new Date(a) - new Date(b));
     const labels = sorted.map(([d]) => d);
-    const data = sorted.map(([_, v]) => v);
+    const categories = ['Alungare', 'Relocare', 'Eutanasiere', 'Împușcare'];
+    const colors = ['blue', 'green', 'red', 'darkred'];
+    
+    const datasets = categories.map((category, index) => ({
+      label: category,
+      data: labels.map(label => {
+        const found = sorted.find(([d]) => d === label);
+        return found ? found[1][category] || 0 : 0;
+      }),
+      borderColor: colors[index],
+      backgroundColor: colors[index] + '40',
+      tension: 0.2,
+      fill: index === 0
+    }));
 
     const ctx = document.getElementById(canvasId).getContext('2d');
     new Chart(ctx, {
       type: 'line',
+      data: { labels, datasets },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: title,
+            font: { size: 16 }
+          }
+        },
+        scales: {
+          y: { 
+            stacked: true,
+            beginAtZero: true 
+          }
+        }
+      }
+    });
+  }
+
+  function drawPieChart(canvasId, title, dataObj) {
+    const labels = Object.keys(dataObj);
+    const data = Object.values(dataObj);
+    const colors = ['blue', 'green', 'red', 'darkred'];
+
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
       data: {
         labels,
         datasets: [{
-          label,
           data,
-          fill: false,
-          borderColor: 'orange',
-          tension: 0.2
+          backgroundColor: colors
         }]
       },
       options: {
         responsive: true,
-        scales: {
-          y: { beginAtZero: true }
+        plugins: {
+          title: {
+            display: true,
+            text: title,
+            font: { size: 16 }
+          }
         }
       }
     });
