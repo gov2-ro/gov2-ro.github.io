@@ -5,6 +5,8 @@
   <title>Statistici Intervenții Urs</title>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <og:image href="https://gov2-ro.github.io/misc/interventii-urs/stationery/stats.png" />
+  <og:description href="Statistici Intervenții Urs" />
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -25,8 +27,8 @@
 </head>
 <body>
 
-<h2>Statistici Intervenții Urs</h2>
-
+<h2 style="margin:0;">Statistici Intervenții Urs</h2>
+<small><a href="https://interventiiurs.mmap.ro/centralizator/">sursă date</a> / <a href="harta.html">hartă</a></small>
 <div class="chart-container">
   <canvas id="countyChart"></canvas>
 </div>
@@ -39,7 +41,7 @@
 <div class="chart-container">
   <canvas id="interventionTypeChart"></canvas>
 </div>
-<a href="https://interventiiurs.mmap.ro/centralizator/">sursă date</a> / <a href="harta.html">hartă</a>
+
 <script>
   // Load and parse CSV
   fetch('data/Interventii Urs.csv')
