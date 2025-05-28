@@ -59,6 +59,7 @@
     .color-green { background-color: green; }
     .color-red { background-color: red; }
     .color-darkred { background-color: darkred; }
+    .color-orange { background-color: orange; }
     
     .date-slider {
       position: absolute;
@@ -146,6 +147,11 @@
     <div class="legend-color color-darkred"></div>
     <span onclick="toggleCheckbox('filter-impuscare')">🔫 Împușcare</span>
   </div>
+  <div class="legend-item">
+    <input type="checkbox" id="filter-altele" checked onchange="toggleCategory('Altele')">
+    <div class="legend-color color-orange"></div>
+    <span onclick="toggleCheckbox('filter-altele')">❓ Altele</span>
+  </div>
   <small><a href="https://interventiiurs.mmap.ro/centralizator/">sursă date</a> / <a href="stats.html">stats</a></small>
 </div>
 
@@ -182,7 +188,8 @@
     'Alungare': [],
     'Relocare': [],
     'Eutanasiere': [],
-    'Împușcare': []
+    'Împușcare': [],
+    'Altele': []
   };
   
   let allMarkers = [];
@@ -202,7 +209,8 @@
       'Alungare': 'filter-alungare',
       'Relocare': 'filter-relocare', 
       'Eutanasiere': 'filter-eutanasiere',
-      'Împușcare': 'filter-impuscare'
+      'Împușcare': 'filter-impuscare',
+      'Altele': 'filter-altele'
     };
     
     const checkbox = document.getElementById(idMap[category]);
@@ -238,6 +246,8 @@
         checkboxId = 'filter-impuscare';
       } else if (marker.category === 'Eutanasiere') {
         checkboxId = 'filter-eutanasiere';
+      } else if (marker.category === 'Altele') {
+        checkboxId = 'filter-altele';
       }
       
       const checkbox = document.getElementById(checkboxId);
@@ -281,6 +291,8 @@
           checkboxId = 'filter-impuscare';
         } else if (marker.category === 'Eutanasiere') {
           checkboxId = 'filter-eutanasiere';
+        } else if (marker.category === 'Altele') {
+          checkboxId = 'filter-altele';
         }
         
         const checkbox = document.getElementById(checkboxId);
@@ -343,8 +355,41 @@
             // Try different coordinate columns based on intervention type
             let lat, lng, interventionType, date, dateStr;
             
+            // First check if there's an explicit "Altele" category in any field
+            if (row['Tip interventie'] === 'Altele' || 
+                row['Categoria'] === 'Altele' ||
+                Object.values(row).some(val => val === 'Altele')) {
+              interventionType = 'Altele';
+              // Try to find coordinates from any available column
+              if (row['Coordonate interventie alungare Y (WGS84, grade zecimale)'] && 
+                  row['Coordonate interventie alungare X (WGS84, grade zecimale)']) {
+                lat = parseFloat(row['Coordonate interventie alungare Y (WGS84, grade zecimale)']);
+                lng = parseFloat(row['Coordonate interventie alungare X (WGS84, grade zecimale)']);
+                dateStr = row['Data interventie alungare'];
+              } else if (row['Coordonate relocare Y (WGS84, grade zecimale)'] && 
+                         row['Coordonate relocare X (WGS84, grade zecimale)']) {
+                lat = parseFloat(row['Coordonate relocare Y (WGS84, grade zecimale)']);
+                lng = parseFloat(row['Coordonate relocare X (WGS84, grade zecimale)']);
+                dateStr = row['Data relocare'];
+              } else if (row['Coordonate eutanasiere Y (WGS84, grade zecimale)'] && 
+                         row['Coordonate eutanasiere X (WGS84, grade zecimale)']) {
+                lat = parseFloat(row['Coordonate eutanasiere Y (WGS84, grade zecimale)']);
+                lng = parseFloat(row['Coordonate eutanasiere X (WGS84, grade zecimale)']);
+                dateStr = row['Data interventie eutanasiere'];
+              } else if (row['Coordonate impuscare Y (WGS84, grade zecimale)'] && 
+                         row['Coordonate impuscare X (WGS84, grade zecimale)']) {
+                lat = parseFloat(row['Coordonate impuscare Y (WGS84, grade zecimale)']);
+                lng = parseFloat(row['Coordonate impuscare X (WGS84, grade zecimale)']);
+                dateStr = row['Data interventie impuscare'];
+              }
+              // If still no coordinates but has date, try to get any date available
+              if (!dateStr) {
+                dateStr = row['Data interventie alungare'] || row['Data relocare'] || 
+                         row['Data interventie eutanasiere'] || row['Data interventie impuscare'];
+              }
+            }
             // Check for intervention coordinates (alungare)
-            if (row['Coordonate interventie alungare Y (WGS84, grade zecimale)'] && 
+            else if (row['Coordonate interventie alungare Y (WGS84, grade zecimale)'] && 
                 row['Coordonate interventie alungare X (WGS84, grade zecimale)']) {
               lat = parseFloat(row['Coordonate interventie alungare Y (WGS84, grade zecimale)']);
               lng = parseFloat(row['Coordonate interventie alungare X (WGS84, grade zecimale)']);
@@ -376,6 +421,12 @@
               dateStr = row['Data interventie impuscare'];
             }
             
+            // Debug: log first few rows to see the structure
+            if (results.data.indexOf(row) < 5) {
+              console.log('Row data:', row);
+              console.log('Available columns:', Object.keys(row));
+            }
+            
             if (!isNaN(lat) && !isNaN(lng) && lat !== 0 && lng !== 0 && dateStr) {
               date = parseDate(dateStr);
               if (date) {
@@ -395,6 +446,7 @@
                 if (interventionType === 'Relocare') color = 'green';
                 else if (interventionType === 'Eutanasiere') color = 'red';
                 else if (interventionType === 'Împușcare') color = 'darkred';
+                else if (interventionType === 'Altele') color = 'orange';
                 
                 const marker = L.circleMarker([lat, lng], {
                   color: color,

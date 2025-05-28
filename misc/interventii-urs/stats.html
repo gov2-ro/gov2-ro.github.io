@@ -28,8 +28,10 @@
 </head>
 <body>
 
-<h2 style="margin:0;">Statistici Intervenții Urs</h2>
-<small><a href="https://interventiiurs.mmap.ro/centralizator/">sursă date</a> / <a href="harta.html">hartă</a></small>
+<div style="text-align: center;">
+  <h2 style="margin:0;">Statistici Intervenții Urs</h2>
+  <small><a href="https://interventiiurs.mmap.ro/centralizator/">sursă date</a> / <a href="harta.html">hartă</a></small>
+</div>
 <div class="chart-container">
   <canvas id="countyChart"></canvas>
 </div>
@@ -60,7 +62,8 @@
             'Alungare': 0,
             'Relocare': 0,
             'Eutanasiere': 0,
-            'Împușcare': 0
+            'Împușcare': 0,
+            'Altele': 0
           };
 
           data.forEach(row => {
@@ -71,6 +74,7 @@
             let interventionType = null;
             let dateStr = null;
             
+            // Check for specific intervention types based on coordinates first
             if (row['Coordonate interventie alungare Y (WGS84, grade zecimale)'] && 
                 row['Coordonate interventie alungare X (WGS84, grade zecimale)']) {
               interventionType = 'Alungare';
@@ -88,12 +92,19 @@
               interventionType = 'Împușcare';
               dateStr = row['Data interventie impuscare'];
             }
+            // Only check for "Altele" if no specific intervention type was found
+            else if (row['Tip interventie'] === 'Altele' || 
+                     (county && locality && !interventionType)) {
+              interventionType = 'Altele';
+              dateStr = row['Data interventie alungare'] || row['Data relocare'] || 
+                       row['Data interventie eutanasiere'] || row['Data interventie impuscare'];
+            }
 
             if (interventionType) {
               // Count by county and intervention type
               if (county) {
                 if (!countyData[county]) {
-                  countyData[county] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0 };
+                  countyData[county] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0, 'Altele': 0 };
                 }
                 countyData[county][interventionType]++;
               }
@@ -101,7 +112,7 @@
               // Count by locality and intervention type
               if (locality) {
                 if (!localityData[locality]) {
-                  localityData[locality] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0 };
+                  localityData[locality] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0, 'Altele': 0 };
                 }
                 localityData[locality][interventionType]++;
               }
@@ -114,7 +125,7 @@
               if (parsedDate) {
                 const date = parsedDate.toISOString().split('T')[0];
                 if (!dateData[date]) {
-                  dateData[date] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0 };
+                  dateData[date] = { 'Alungare': 0, 'Relocare': 0, 'Eutanasiere': 0, 'Împușcare': 0, 'Altele': 0 };
                 }
                 dateData[date][interventionType]++;
               }
@@ -161,8 +172,8 @@
 
   function drawStackedBarChart(canvasId, title, dataObj) {
     const labels = Object.keys(dataObj);
-    const categories = ['Alungare', 'Relocare', 'Eutanasiere', 'Împușcare'];
-    const colors = ['blue', 'green', 'red', 'darkred'];
+    const categories = ['Alungare', 'Relocare', 'Eutanasiere', 'Împușcare', 'Altele'];
+    const colors = ['blue', 'green', 'red', 'darkred', 'orange'];
     
     const datasets = categories.map((category, index) => ({
       label: category,
@@ -202,8 +213,8 @@
   function drawStackedLineChart(canvasId, title, dataObj) {
     const sorted = Object.entries(dataObj).sort(([a], [b]) => new Date(a) - new Date(b));
     const labels = sorted.map(([d]) => d);
-    const categories = ['Alungare', 'Relocare', 'Eutanasiere', 'Împușcare'];
-    const colors = ['blue', 'green', 'red', 'darkred'];
+    const categories = ['Alungare', 'Relocare', 'Eutanasiere', 'Împușcare', 'Altele'];
+    const colors = ['blue', 'green', 'red', 'darkred', 'orange'];
     
     const datasets = categories.map((category, index) => ({
       label: category,
@@ -243,7 +254,7 @@
   function drawPieChart(canvasId, title, dataObj) {
     const labels = Object.keys(dataObj);
     const data = Object.values(dataObj);
-    const colors = ['blue', 'green', 'red', 'darkred'];
+    const colors = ['blue', 'green', 'red', 'darkred', 'orange'];
 
     const ctx = document.getElementById(canvasId).getContext('2d');
     new Chart(ctx, {
