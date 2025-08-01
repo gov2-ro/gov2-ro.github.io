@@ -1,0 +1,341 @@
+<!doctype html>
+ 
+<head>
+	<title>Publicații Jurnalism independent România</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* trim longer links max width 20em */
+        body {font-family: 'Arial Narrow', sans-serif;  margin: 0; background-color: whitesmoke; color: #333;}
+     
+        .wrapper {max-width: 80em; margin: 1ex auto; padding: 1em;}
+        
+        table { border-collapse: collapse; width: 100%; margin-top: 1.5em; box-shadow: 0 2px 8px rgba(0,0,0,0.1); background-color: white;}
+        th, td { padding: 1em; text-align: left; border-bottom: 1px solid #EEE; }
+        th {background-color: #DDE; padding: .75ex 1em; border-bottom: 1.5ex solid whitesmoke; opacity: .8;}
+        
+        tr > td:first-child a {font-size: 1.15em; text-decoration: none; color: #123; max-width: 20em; display: inline-block; background-color: #EFE; padding: .4ex .6ex; border-radius: 3px; box-shadow: 0 1px 3px rgba(0,0,0,.2); }
+        td a {display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #007bff;}
+        td a:hover { color: #0056b3; }
+        tr > td:not(:first-child)  a {  max-width: 20em;         }
+        tr > td:not(:first-child) {font-size: .85rem; line-height: 1.2; opacity: .85;}
+        
+        /* Limit Donatii column links to 15em */
+        td:nth-child(4) a {
+            max-width: 9em !important;
+        
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .filter-container { margin-bottom: 1em; text-align: center; }
+        .filter-btn { background-color: #EFE; border: 1px solid #DDD; border-radius: 3px; padding: .5em 1em; cursor: pointer; margin: .2em; font-family: 'Arial Narrow', sans-serif; font-size: .9rem;}
+        .filter-btn:hover, .filter-btn.active { background-color: #DDE; box-shadow: 0 1px 3px rgba(0,0,0,.1);}
+
+        @media screen and (max-width: 760px) {
+            table, thead, tbody, th, td, tr { display: block; }
+            thead tr { position: absolute; top: -9999px; left: -9999px; }
+            tr { border: 1px solid #ccc; margin-bottom: .5em; }
+            td { border: none; border-bottom: 1px solid #eee; position: relative; padding-left: 50%; }
+            td:before { position: absolute; top: .5em; left: .5em; width: 45%; padding-right: 1em; white-space: nowrap; content: attr(data-label); font-weight: bold; }
+            tr > td:first-child a { font-size: 1.1em; }
+            tr > td:not(:first-child) { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <h1 style="text-align: center; font-weight: normal;">Publicații <b>Jurnalism independent</b> România</h1>
+    
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterTable('all')">Toate</button>
+        <button class="filter-btn" onclick="filterTable('investigație')">Investigație</button>
+        <button class="filter-btn" onclick="filterTable('local')">Local</button>
+        <button class="filter-btn" onclick="filterTable('generalist')">Generalist</button>
+        <button class="filter-btn" onclick="filterTable('tematic')">Tematic</button>
+        <button class="filter-btn" onclick="filterTable('opinie')">Opinie</button>
+        <button class="filter-btn" onclick="filterTable('video')">Video</button>
+        <button class="filter-btn" onclick="filterTable('alt-tip')">Alt tip</button>
+    </div>
+
+    <table cellpadding="0" cellspacing="0" id="publications-table">
+        <thead>
+            <tr>
+                <th>Publicație</th>
+                <th>Descriere</th>
+                <th>Tip</th>
+                <th>Donatii</th>
+                <th>Metode</th>
+            </tr>
+        <tbody>
+            <tr>
+                <td data-label="Publicație"><a href="https://pressone.ro/" target="_blank">PressOne</a></td>
+                <td data-label="Descriere">PressOne</td>
+                <td data-label="Tip">investigație</td>
+                <td data-label="Donatii"><a href="https://pressone.ro/sustine" target="_blank">pressone.ro/sustine</a></td>
+                <td data-label="Metode">Paypal</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://recorder.ro/" target="_blank">Recorder</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip">investigație, video</td>
+                <td data-label="Donatii"><a href="https://recorder.ro/sustine/" target="_blank">recorder.ro/sustine/</a></td>
+                <td data-label="Metode">Braintree, Patreon, bancar, SMS</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://dela0.ro/" target="_blank">DELA0.ro</a></td>
+                <td data-label="Descriere">Mergem &icirc;ntotdeauna la locul faptelor și &icirc;ncercăm să &icirc;nțelegem resorturile lor. Facem un singur fel de propagandă - jurnalismului.</td>
+                <td data-label="Tip">investigație</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.riseproject.ro/" target="_blank">Rise Project</a></td>
+                <td data-label="Descriere">Rise Project investighează grupările de crimă organizată și corupția de regiune. Rise este membru Organized Crime and Corruption Reporting Network (OCCRP)</td>
+                <td data-label="Tip">investigație</td>
+                <td data-label="Donatii"><a href="https://www.riseproject.ro/donatii/" target="_blank">riseproject.ro/donatii/</a></td>
+                <td data-label="Metode">Patreon, Paypal, bancar</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://context.ro/" target="_blank">Context</a></td>
+                <td data-label="Descriere">Platforma CONTEXT este un site independent de investigații din Rom&acirc;nia despre crima organizată și fraudele de orice natură prin publicarea de investigații jurnalistice.</td>
+                <td data-label="Tip">investigație</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://investigatoria.ro/" target="_blank">Investigatoria</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip">investigație</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://publicrecord.ro/" target="_blank">PublicRecord</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip">investigație</td>
+                <td data-label="Donatii"><a href="https://publicrecord.ro/doneaza/" target="_blank">publicrecord.ro/doneaza/</a></td>
+                <td data-label="Metode">web form</td>
+            </tr>
+            
+            <tr>
+                <td data-label="Publicație"><a href="https://www.investigatiimedia.ro/" target="_blank">Centrul de Investigatii Media</a></td>
+                <td data-label="Descriere">Centrul de Investigatii Media a aparut din nevoia de informatii reale, verificate si relevante, care sa contrasteze cu marea de fapt divers in care se zbate neputincioasa media romaneasca</td>
+                <td data-label="Tip">investigație</td>
+                <td data-label="Donatii"><a href="https://www.investigatiimedia.ro/donatii" target="_blank">investigatiimedia.ro/donatii</a></td>
+                <td data-label="Metode">web form, Paypal, bancar</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://captura.ro/" target="_blank">captura</a></td>
+                <td data-label="Descriere">Investigații jurnalistice &icirc;n sinteză. Explică circumstanțe, unghiuri de abordare și tehnici de documentare.</td>
+                <td data-label="Tip">investigație</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://panorama.ro/" target="_blank">Panorama</a></td>
+                <td data-label="Descriere">Panorama este un site de presă care analizează evenimentele demne de atenție. Subiecte cu impact &icirc;n viața de business, care te ajută să anticipezi schimbările.</td>
+                <td data-label="Tip">analize</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.info-sud-est.ro/" target="_blank">Info sud-est</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip">local</td>
+                <td data-label="Donatii"><a href="https://www.info-sud-est.ro/doneaza/" target="_blank">info-sud-est.ro/doneaza/</a></td>
+                <td data-label="Metode">web form</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.ebihoreanul.ro/" target="_blank">Bihoreanul</a></td>
+                <td data-label="Descriere">Știri din Oradea şi judeţul Bihor - eBihoreanul.ro</td>
+                <td data-label="Tip">local</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://buletin.de/bucuresti/" target="_blank">Buletin de București</a></td>
+                <td data-label="Descriere">Știri și investigații esențiale din capitală</td>
+                <td data-label="Tip">local</td>
+                <td data-label="Donatii"><a href="https://www.patreon.com/BuletinDeBucuresti" target="_blank">patreon.com/BuletinDeBucuresti</a></td>
+                <td data-label="Metode">Patreon</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://liberinteleorman.ro/" target="_blank">Liber in Teleorman</a></td>
+                <td data-label="Descriere">Libertate mai presus de toate</td>
+                <td data-label="Tip">local</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.turnulsfatului.ro/" target="_blank">Stiri Online Sibiu</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip">local</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://stiricraiova.ro/" target="_blank">stiricraiova.ro -</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip">local</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://safielumina.ro/" target="_blank">Să Fie Lumină</a></td>
+                <td data-label="Descriere">Investigații și reportaje despre cultele din Rom&acirc;nia</td>
+                <td data-label="Tip">tematic</td>
+                <td data-label="Donatii"><a href="https://safielumina.ro/cum-functioneaza/" target="_blank">safielumina.ro/cum-functioneaza/</a></td>
+                <td data-label="Metode">Paypal, bancar</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.factual.ro/" target="_blank">Factual.ro</a></td>
+                <td data-label="Descriere">Adevărul din politică</td>
+                <td data-label="Tip">tematic</td>
+                <td data-label="Donatii"><a href="https://www.patreon.com/factualRo" target="_blank">patreon.com/factualRo</a></td>
+                <td data-label="Metode">Patreon</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.g4media.ro/" target="_blank">G4Media.ro</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip">generalist</td>
+                <td data-label="Donatii"><a href="https://www.g4media.ro/doneaza" target="_blank">g4media.ro/doneaza</a></td>
+                <td data-label="Metode">Paypal, bancar</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.hotnews.ro/" target="_blank">HotNews.ro</a></td>
+                <td data-label="Descriere">Știri Non Stop. Citește doar ceea ce merită.</td>
+                <td data-label="Tip">generalist</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://spotmedia.ro/" target="_blank">Spot Media</a></td>
+                <td data-label="Descriere">Știri, analize, anchete, dezvăluiri, informații utile și soluții la probleme.</td>
+                <td data-label="Tip">generalist</td>
+                <td data-label="Donatii"><a href="https://spotmedia.ro/sustine-arca-jurnalistilor" target="_blank">spotmedia.ro/sustine-arca-jurnalistilor</a></td>
+                <td data-label="Metode">web form, bancar</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.dw.com/ro/rom%C3%A2nia/s-10582" target="_blank">Rom&acirc;nia &ndash; DW</a></td>
+                <td data-label="Descriere">Analize şi comentarii pe temele care marchează opinia publică rom&acirc;nească</td>
+                <td data-label="Tip">generalist</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://romania.europalibera.org/" target="_blank">Europa Liberă Rom&acirc;nia</a></td>
+                <td data-label="Descriere">Europa Liberă Rom&acirc;nia acoperă cele mai importante subiecte din țară și din străinătate și le pune &icirc;n context, pe &icirc;nțelesul tuturor.</td>
+                <td data-label="Tip">generalist</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://republica.ro/" target="_blank">Republica.ro</a></td>
+                <td data-label="Descriere">Republica. ro - Știri și analize - Cristian Tudor Popescu, Claudiu P&acirc;ndaru, Florin Negruțiu, Alex Livadaru - O platformă pe care găsești jurnalism de calitate.</td>
+                <td data-label="Tip">opinie</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://stirileprotv.ro/romania-te-iubesc/" target="_blank">Rom&acirc;nia, te iubesc!</a></td>
+                <td data-label="Descriere">Reportaje și dezvăluiri din țara noastră - Știrile ProTV</td>
+                <td data-label="Tip">video</td>
+                <td data-label="Donatii">-NA-</td>
+                <td data-label="Metode">-NA-</td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.facebook.com/watch/StareaNatiei/" target="_blank">Starea Nației</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip">video</td>
+                <td data-label="Donatii">&nbsp;</td>
+                <td data-label="Metode"></td>
+            </tr>
+
+<!-- 250522 -->
+            <tr>
+                <td data-label="Publicație"><a href="https://substack.com/@drepturisistrambe" target="_blank">Drepturi și strâmbe</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip">newsletter</td>
+                <td data-label="Donatii">&nbsp;</td>
+                <td data-label="Metode"></td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.misreport.ro/" target="_blank">Misreport</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip">disinfo</td>
+                <td data-label="Donatii">&nbsp;</td>
+                <td data-label="Metode"></td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.explicativ.com/" target="_blank">Explicativ</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip"></td>
+                <td data-label="Donatii">&nbsp;</td>
+                <td data-label="Metode"></td>
+            </tr>
+            <tr>
+                <td data-label="Publicație"><a href="https://www.facebook.com/judecatadeacum" target="_blank">Judecata de acum</a></td>
+                <td data-label="Descriere">---</td>
+                <td data-label="Tip">podcast</td>
+                <td data-label="Donatii">&nbsp;</td>
+                <td data-label="Metode"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <p style="text-align: center;""><br><small>&star; &star; &star;</small><br><br>Varianta posibil mai actualizată pe <a href="https://docs.google.com/spreadsheets/d/13IdNSDPvceaDNJiBERCKayipBTq3ax_T">Google Sheets</a></p>
+</div>
+<script>
+    function filterTable(filter) {
+        const table = document.getElementById("publications-table");
+        const tr = table.getElementsByTagName("tr");
+        const buttons = document.querySelectorAll('.filter-btn');
+        const otherFilters = ['newsletter', 'disinfo', '', 'podcast', 'analize'];
+
+        buttons.forEach(button => {
+            if (button.textContent.toLowerCase() === filter || (filter === 'toate' && button.textContent.toLowerCase() === 'toate')) {
+                button.classList.add('active');
+            } else if (filter === 'alt tip' && button.textContent.toLowerCase() === 'alt tip') {
+                 button.classList.add('active');
+            }
+            else {
+                button.classList.remove('active');
+            }
+        });
+        
+        // Loop through all table rows, and hide those who don't match the search query
+        for (let i = 1; i < tr.length; i++) { // Start from 1 to skip header row
+            const td = tr[i].getElementsByTagName("td")[2]; // Column "Tip"
+            if (td) {
+                const txtValue = td.textContent || td.innerText;
+                if (filter === 'all') {
+                    tr[i].style.display = "";
+                } else if (filter === 'alt tip') {
+                    if (otherFilters.some(f => txtValue.includes(f))) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+                else {
+                    if (txtValue.indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // Update active button
+        const current = document.getElementsByClassName("active");
+        if (current.length > 0) {
+            current[0].className = current[0].className.replace(" active", "");
+        }
+        event.target.className += " active";
+    }
+</script>
+</body>
+</html>
