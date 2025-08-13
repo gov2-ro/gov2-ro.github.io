@@ -190,7 +190,7 @@
             height: 20px;
             margin-right: 8px;
             vertical-align: middle;
-            border-radius: 3px;
+            transform: scale(1.25);
             object-fit: cover;
         }
 
@@ -201,8 +201,10 @@
 
         .type-badge {
             display: inline-block;
-            padding: 0.1rem 0.25rem;
-            border-radius: 4px;
+            padding: 0.25rem 0.25rem;
+            border-radius: 4px; line-height: 1;
+            text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.916);
+            margin: 0 0 1px 1px;
             font-size: 0.85rem;
             font-weight: 500;
             background: var(--hover-bg);
@@ -339,7 +341,7 @@
 
             .type-badge {
                 font-size: 0.75rem;
-                padding: 0.2rem 0.5rem;
+                padding: 0.15rem 0.25rem; border: 1px solid white;
             }
 
             .description {
@@ -441,7 +443,7 @@
         <div id="noResults" class="no-results" style="display: none;">
             Nu au fost găsite publicații pentru filtrul selectat.
         </div>
-            <p style="text-align: center; margin:  3em 0; line-height: 1.2; opacity: .85;">varianta posibil mai actualizată pe <a href="https://docs.google.com/spreadsheets/d/13IdNSDPvceaDNJiBERCKayipBTq3ax_T">Google Sheets</a> <br/>(unde puteți și adăuga comentarii cu sugestii)</p>
+            <p style="text-align: center; margin:  3em 0;   opacity: .85;">Varianta posibil mai actualizată pe <a href="https://docs.google.com/spreadsheets/d/13IdNSDPvceaDNJiBERCKayipBTq3ax_T">Google Sheets</a> (unde puteți și adăuga comentarii cu sugestii).<br/>Vezi și: <A href="https://presspay.ro/" target="_blank"><img src="icons/presspay.svg" style="height: 1rem;"> PressPay.ro</a></A></p>
 
         <div class="stats" id="stats">
             <!-- Stats will be populated by JavaScript -->
@@ -451,23 +453,23 @@
     <script>
         // Data
         const publications = [
-            { name: "PressOne", url: "https://pressone.ro/", description: "PressOne", type: "investigație", donationUrl: "https://pressone.ro/sustine", donationMethod: "Paypal", icon: "pressone.ro.ico"  },
+        
             { name: "Recorder", url: "https://recorder.ro/", description: "Jurnalism onest, făcut cu pasiune și pus în serviciul public.", type: "investigație, video", donationUrl: "https://recorder.ro/sustine/", donationMethod: "Braintree, Patreon, bancar, SMS", icon: "recorder.ro.ico"  },
-            { name: "DELA0.ro", url: "https://dela0.ro/", description: "Mergem întotdeauna la locul faptelor și încercăm să înțelegem resorturile lor. Facem un singur fel de propagandă - jurnalismului.", type: "investigație", donationUrl: "-NA-", donationMethod: "-NA-", icon: "dela0.png" },
-            { name: "PublicRecord", url: "https://publicrecord.ro/", description: "Redacție independentă dedicată jurnalismului de interes public.", type: "investigație", donationUrl: "https://publicrecord.ro/doneaza/", donationMethod: "web form", icon: "publicrecord.webp"  },
             { name: "Rise Project", url: "https://www.riseproject.ro/", description: "Rise Project investighează grupările de crimă organizată și corupția de regiune. Rise este membru Organized Crime and Corruption Reporting Network (OCCRP)", type: "investigație", donationUrl: "https://www.riseproject.ro/donatii/", donationMethod: "Patreon, Paypal, bancar", icon: "riseproject.svg"  },
+            { name: "PressOne", url: "https://pressone.ro/", description: "PressOne", type: "investigație", donationUrl: "https://pressone.ro/sustine", donationMethod: "Paypal", icon: "pressone.ro.ico"  },
             { name: "Context", url: "https://context.ro/", description: "Platforma CONTEXT este un site independent de investigații din România despre crima organizată și fraudele de orice natură prin publicarea de investigații jurnalistice.", type: "investigație", donationUrl: "-NA-", donationMethod: "-NA-", icon: "context.ro.ico" },
-            { name: "Drepturi și strâmbe", url: "https://substack.com/@drepturisistrambe", description: "Scriem despre drepturile noastre și strâmbele lor, facem fact-checking, documentăm ura și vă povestim ce vedem și ce auzim (Luiza Vasiliu și Victor Ilie)", type: "newsletter", donationUrl: "", donationMethod: "", icon: "drepturi-si-strambe.jpg" },
+            { name: "PublicRecord", url: "https://publicrecord.ro/", description: "Redacție independentă dedicată jurnalismului de interes public.", type: "investigație", donationUrl: "https://publicrecord.ro/doneaza/", donationMethod: "web form", icon: "publicrecord.webp"  },
+            { name: "DELA0.ro", url: "https://dela0.ro/", description: "Mergem întotdeauna la locul faptelor și încercăm să înțelegem resorturile lor. Facem un singur fel de propagandă - jurnalismului.", type: "investigație", donationUrl: "-NA-", donationMethod: "-NA-", icon: "dela0.png" },
             { name: "Centrul de Investigatii Media", url: "https://www.investigatiimedia.ro/", description: "Centrul de Investigatii Media a aparut din nevoia de informatii reale, verificate si relevante, care sa contrasteze cu marea de fapt divers in care se zbate neputincioasa media romaneasca", type: "investigație", donationUrl: "https://www.investigatiimedia.ro/donatii", donationMethod: "web form, Paypal, bancar", icon: "investigatiimedia.ico"  },
-            { name: "Europa Liberă", url: "https://romania.europalibera.org/", description: "Europa Liberă România acoperă cele mai importante subiecte din țară și din străinătate și le pune în context, pe înțelesul tuturor.", type: "generalist", donationUrl: "-NA-", donationMethod: "-NA-", icon: "europalibera.ico" },
             { name: "Explicativ", url: "https://www.explicativ.com/", description: "O platformă dedicată jurnalismului explicativ, creată pentru a aduce claritate într-o lume inundată de informații trunchiate, false sau complicate. (Marco Badea)", type: "", donationUrl: "", donationMethod: "", icon: "explicativ.jpg" },
+            { name: "Drepturi și strâmbe", url: "https://substack.com/@drepturisistrambe", description: "Scriem despre drepturile noastre și strâmbele lor, facem fact-checking, documentăm ura și vă povestim ce vedem și ce auzim (Luiza Vasiliu și Victor Ilie)", type: "disinfo, newsletter", donationUrl: "", donationMethod: "", icon: "drepturi-si-strambe.jpg" },
+            
             { name: "Factual.ro", url: "https://www.factual.ro/", description: "Adevărul din politică", type: "tematic", donationUrl: "https://www.patreon.com/factualRo", donationMethod: "Patreon", icon: "factual.jpg"  },
             { name: "Captura", url: "https://captura.ro/", description: "Investigații jurnalistice în sinteză. Explică circumstanțe, unghiuri de abordare și tehnici de documentare.", type: "investigație", donationUrl: "-NA-", donationMethod: "-NA-", icon: "captura.jpg" },
             { name: "Să Fie Lumină", url: "https://safielumina.ro/", description: "Investigații și reportaje despre cultele din România", type: "tematic", donationUrl: "https://safielumina.ro/cum-functioneaza/", donationMethod: "Paypal, bancar", icon: "sa-fie-lumina.png"  },
-            { name: "HotNews.ro", url: "https://www.hotnews.ro/", description: "Știri Non Stop. Citește doar ceea ce merită.", type: "generalist", donationUrl: "-NA-", donationMethod: "-NA-", icon: "hotnews.ro.ico"},
             { name: "Investigatoria", url: "https://investigatoria.ro/", description: "investigație, reportaje și știri cu acoperire națională, care își propune să aducă în România conceptul de \"jurnalism constructiv\"", type: "investigație", donationUrl: "-NA-", donationMethod: "-NA-", icon: "investigatoria.png" },
-            { name: "Misreport", url: "https://www.misreport.ro/", description: "Știri despre știrile false.", type: "disinfo", donationUrl: "", donationMethod: "", icon: "misreport.png" },
-            { name: "România – DW", url: "https://www.dw.com/ro/rom%C3%A2nia/s-10582", description: "Analize şi comentarii pe temele care marchează opinia publică românească", type: "generalist", donationUrl: "-NA-", donationMethod: "-NA-", icon: "dw.ico" },
+            { name: "Misreport", url: "https://www.misreport.ro/", description: "Știri despre știrile false.", type: "disinfo, newsletter", donationUrl: "", donationMethod: "", icon: "misreport.png" },
+            
             { name: "România, te iubesc!", url: "https://stirileprotv.ro/romania-te-iubesc/", description: "Reportaje și dezvăluiri din țara noastră - Știrile ProTV", type: "video", donationUrl: "-NA-", donationMethod: "-NA-", icon: "" },
             { name: "Spot Media", url: "https://spotmedia.ro/", description: "Știri, analize, anchete, dezvăluiri, informații utile și soluții la probleme.", type: "generalist", donationUrl: "https://spotmedia.ro/sustine-arca-jurnalistilor", donationMethod: "web form, bancar", icon: "spotmedia.ro.ico"  },
             { name: "Starea Nației", url: "https://stareanatiei.ro/", description: "---", type: "video", donationUrl: "", donationMethod: "", icon: "stareanatiei.ro.ico" },
@@ -477,6 +479,9 @@
             { name: "Bihoreanul", url: "https://www.ebihoreanul.ro/", description: "Știri din Oradea şi judeţul Bihor - eBihoreanul.ro", type: "local", donationUrl: "-NA-", donationMethod: "-NA-", icon: "bihoreanul.ico" },
             { name: "stiricraiova.ro", url: "https://stiricraiova.ro/", description: "---", type: "local", donationUrl: "-NA-", donationMethod: "-NA-", icon: "stiricraiova.ro.ico" },
             { name: "Turnul Sfatului", url: "https://www.turnulsfatului.ro/", description: "---", type: "local", donationUrl: "-NA-", donationMethod: "-NA-", icon: "turnulsfatului.ico" },
+            { name: "Europa Liberă", url: "https://romania.europalibera.org/", description: "Europa Liberă România acoperă cele mai importante subiecte din țară și din străinătate și le pune în context, pe înțelesul tuturor.", type: "generalist", donationUrl: "-NA-", donationMethod: "-NA-", icon: "europalibera.ico" },
+            { name: "România – DW", url: "https://www.dw.com/ro/rom%C3%A2nia/s-10582", description: "Analize şi comentarii pe temele care marchează opinia publică românească", type: "generalist", donationUrl: "-NA-", donationMethod: "-NA-", icon: "dw.ico" },
+            
             { name: "Judecata de acum", url: "https://www.facebook.com/judecatadeacum", description: "---", type: "podcast", donationUrl: "", donationMethod: "", icon: "judecata-de-acum.png" }
         ];
 
