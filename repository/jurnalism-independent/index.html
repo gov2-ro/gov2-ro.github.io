@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicații jurnalism independent România</title>
+    <meta property="og:image"  content="https://gov2-ro.github.io/repository/jurnalism-independent/jurnalism-independent.png" />
+    <meta property="og:title" content="Listă publicații jurnalism independent România" />  
+    <meta property="og:url" content="https://gov2-ro.github.io/repository/jurnalism-independent/" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --border-color: #dee2e6;
+            --hover-bg: #e9ecef;
+            /* --shadow: 0 2px 8px rgba(0,0,0,0.1); */
+            --shadow: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: .25rem 0;
+            margin-bottom: .5rem;
+            box-shadow: var(--shadow);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            padding: 0; margin: 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            display: none;
+            text-align: center;
+            /* margin-top: 0.5rem; */
+            opacity: 0.85;
+            /* font-size: 1.1rem; */
+        }
+
+        .filter-container {
+            background: white;
+            padding: .5rem;
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.25rem .5rem;
+            border: 2px solid var(--border-color);
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+            transform: translateY(-1px);
+        }
+
+        .filter-btn.active {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        th {
+            padding: .3rem;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: .3rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background-color: var(--hover-bg);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        a {
+            /* color: var(--secondary-color); */
+            text-decoration: none;
+            color: royalblue; display: inline-block;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        .publication-name {
+            font-size: 1.1em;
+            /* font-weight: 600; */
+            background-color: rgba(255, 255, 224, 0.25); 
+            padding: 0.1rem 0.05rem 0.1rem 0.25rem;
+            
+            /* color: var(--primary-color); */
+        }
+
+        .publication-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+            border-radius: 3px;
+            object-fit: cover;
+        }
+
+        .publication-link {
+            display: flex;
+            align-items: center;
+        }
+
+        .type-badge {
+            display: inline-block;
+            padding: 0.1rem 0.25rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: var(--hover-bg);
+            color: var(--text-color);
+        }
+
+        .type-investigație {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .type-local {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .type-tematic {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .type-generalist {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .type-opinie {
+            background: #e9d5ff;
+            color: #7c3aed;
+        }
+
+        .type-video {
+            background: #fce7f3;
+            color: #ec4899;
+        }
+
+        .type-newsletter {
+            background: #e0e7ff;
+            color: #4f46e5;
+        }
+
+        .type-disinfo {
+            background: #fee4e2;
+            color: #ef4444;
+        }
+
+        .type-podcast {
+            background: #f3e8ff;
+            color: #9333ea;
+        }
+
+        .donation-link {
+            display: inline-block;
+            max-width: 11em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            vertical-align: bottom;
+            font-size: .9em; color: #3498db;
+            opacity: 0.9;
+        }
+        .donation-link:hover {
+            color: #2980b9;
+            opacity: 1;
+        }
+
+        .na {
+            color: #999;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+.description-col{line-height: 1.1;}
+        .description {
+            font-size: 0.9rem;
+            color: #666;
+            
+        }
+
+        .stats {
+            opacity: 0.33;
+            background: white;
+            padding: .5rem;
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            /* font-size: 2rem; */
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 3px;
+            }
+
+            .filter-container {
+                padding: .25rem 0;
+            }
+
+            .filter-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .type-badge {
+                font-size: 0.75rem;
+                padding: 0.2rem 0.5rem;
+            }
+
+            .description {
+                font-size: 0.85rem;
+            }
+
+            .stats {
+                gap: 1rem;
+            }
+
+            .stat-number {
+                font-size: 1.5rem;
+            }
+
+            /* Hide description column on mobile */
+            .description-col {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .table-wrapper {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.5rem 0.25rem;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        /* No results message */
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container" style="padding: .5ex;">
+            <h1>Publicații jurnalism independent România</h1>
+            <p class="subtitle">O colecție de surse de presă independentă din România</p>
+        </div>
+    </header> 
+
+    <div class="container">
+        
+
+        <div class="filter-container">
+            <div class="filter-group">
+                
+                <div class="filter-buttons" id="filterButtons">
+                    <button class="filter-btn active" data-filter="all">Toate</button>
+                    <button class="filter-btn" data-filter="investigație">Investigație</button>
+                    <button class="filter-btn" data-filter="local">Local</button>
+                    <button class="filter-btn" data-filter="tematic">Tematic</button>
+                    <button class="filter-btn" data-filter="generalist">Generalist</button>
+                    <button class="filter-btn" data-filter="opinie">Opinie</button>
+                    <button class="filter-btn" data-filter="video">Video</button>
+                    <button class="filter-btn" data-filter="newsletter">Newsletter</button>
+                    <button class="filter-btn" data-filter="disinfo">Disinfo</button>
+                    <button class="filter-btn" data-filter="podcast">Podcast</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-wrapper">
+                <table id="publicationsTable">
+                    <thead>
+                        <tr>
+                            <th>Publicație</th>
+                            <th class="description-col">Descriere</th>
+                            <th>Tip</th>
+                            <th>Donații</th>
+                            <th>Metodă</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Table content will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none;">
+            Nu au fost găsite publicații pentru filtrul selectat.
+        </div>
+            <p style="text-align: center; margin:  3em 0; line-height: 1.2; opacity: .85;">varianta posibil mai actualizată pe <a href="https://docs.google.com/spreadsheets/d/13IdNSDPvceaDNJiBERCKayipBTq3ax_T">Google Sheets</a> <br/>(unde puteți și adăuga comentarii cu sugestii)</p>
+
+        <div class="stats" id="stats">
+            <!-- Stats will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Data
+        const publications = [
+            { name: "PressOne", url: "https://pressone.ro/", description: "PressOne", type: "investigație", donationUrl: "https://pressone.ro/sustine", donationMethod: "Paypal", icon: "pressone.ro.ico"  },
+            { name: "Recorder", url: "https://recorder.ro/", description: "Jurnalism onest, făcut cu pasiune și pus în serviciul public.", type: "investigație, video", donationUrl: "https://recorder.ro/sustine/", donationMethod: "Braintree, Patreon, bancar, SMS", icon: "recorder.ro.ico"  },
+            { name: "DELA0.ro", url: "https://dela0.ro/", description: "Mergem întotdeauna la locul faptelor și încercăm să înțelegem resorturile lor. Facem un singur fel de propagandă - jurnalismului.", type: "investigație", donationUrl: "-NA-", donationMethod: "-NA-", icon: "dela0.png" },
+            { name: "PublicRecord", url: "https://publicrecord.ro/", description: "Redacție independentă dedicată jurnalismului de interes public.", type: "investigație", donationUrl: "https://publicrecord.ro/doneaza/", donationMethod: "web form", icon: "publicrecord.webp"  },
+            { name: "Rise Project", url: "https://www.riseproject.ro/", description: "Rise Project investighează grupările de crimă organizată și corupția de regiune. Rise este membru Organized Crime and Corruption Reporting Network (OCCRP)", type: "investigație", donationUrl: "https://www.riseproject.ro/donatii/", donationMethod: "Patreon, Paypal, bancar", icon: "riseproject.svg"  },
+            { name: "Context", url: "https://context.ro/", description: "Platforma CONTEXT este un site independent de investigații din România despre crima organizată și fraudele de orice natură prin publicarea de investigații jurnalistice.", type: "investigație", donationUrl: "-NA-", donationMethod: "-NA-", icon: "context.ro.ico" },
+            { name: "Drepturi și strâmbe", url: "https://substack.com/@drepturisistrambe", description: "Scriem despre drepturile noastre și strâmbele lor, facem fact-checking, documentăm ura și vă povestim ce vedem și ce auzim (Luiza Vasiliu și Victor Ilie)", type: "newsletter", donationUrl: "", donationMethod: "", icon: "drepturi-si-strambe.jpg" },
+            { name: "Centrul de Investigatii Media", url: "https://www.investigatiimedia.ro/", description: "Centrul de Investigatii Media a aparut din nevoia de informatii reale, verificate si relevante, care sa contrasteze cu marea de fapt divers in care se zbate neputincioasa media romaneasca", type: "investigație", donationUrl: "https://www.investigatiimedia.ro/donatii", donationMethod: "web form, Paypal, bancar", icon: "investigatiimedia.ico"  },
+            { name: "Europa Liberă", url: "https://romania.europalibera.org/", description: "Europa Liberă România acoperă cele mai importante subiecte din țară și din străinătate și le pune în context, pe înțelesul tuturor.", type: "generalist", donationUrl: "-NA-", donationMethod: "-NA-", icon: "europalibera.ico" },
+            { name: "Explicativ", url: "https://www.explicativ.com/", description: "O platformă dedicată jurnalismului explicativ, creată pentru a aduce claritate într-o lume inundată de informații trunchiate, false sau complicate. (Marco Badea)", type: "", donationUrl: "", donationMethod: "", icon: "explicativ.jpg" },
+            { name: "Factual.ro", url: "https://www.factual.ro/", description: "Adevărul din politică", type: "tematic", donationUrl: "https://www.patreon.com/factualRo", donationMethod: "Patreon", icon: "factual.jpg"  },
+            { name: "Captura", url: "https://captura.ro/", description: "Investigații jurnalistice în sinteză. Explică circumstanțe, unghiuri de abordare și tehnici de documentare.", type: "investigație", donationUrl: "-NA-", donationMethod: "-NA-", icon: "captura.jpg" },
+            { name: "Să Fie Lumină", url: "https://safielumina.ro/", description: "Investigații și reportaje despre cultele din România", type: "tematic", donationUrl: "https://safielumina.ro/cum-functioneaza/", donationMethod: "Paypal, bancar", icon: "sa-fie-lumina.png"  },
+            { name: "HotNews.ro", url: "https://www.hotnews.ro/", description: "Știri Non Stop. Citește doar ceea ce merită.", type: "generalist", donationUrl: "-NA-", donationMethod: "-NA-", icon: "hotnews.ro.ico"},
+            { name: "Investigatoria", url: "https://investigatoria.ro/", description: "investigație, reportaje și știri cu acoperire națională, care își propune să aducă în România conceptul de \"jurnalism constructiv\"", type: "investigație", donationUrl: "-NA-", donationMethod: "-NA-", icon: "investigatoria.png" },
+            { name: "Misreport", url: "https://www.misreport.ro/", description: "Știri despre știrile false.", type: "disinfo", donationUrl: "", donationMethod: "", icon: "misreport.png" },
+            { name: "România – DW", url: "https://www.dw.com/ro/rom%C3%A2nia/s-10582", description: "Analize şi comentarii pe temele care marchează opinia publică românească", type: "generalist", donationUrl: "-NA-", donationMethod: "-NA-", icon: "dw.ico" },
+            { name: "România, te iubesc!", url: "https://stirileprotv.ro/romania-te-iubesc/", description: "Reportaje și dezvăluiri din țara noastră - Știrile ProTV", type: "video", donationUrl: "-NA-", donationMethod: "-NA-", icon: "" },
+            { name: "Spot Media", url: "https://spotmedia.ro/", description: "Știri, analize, anchete, dezvăluiri, informații utile și soluții la probleme.", type: "generalist", donationUrl: "https://spotmedia.ro/sustine-arca-jurnalistilor", donationMethod: "web form, bancar", icon: "spotmedia.ro.ico"  },
+            { name: "Starea Nației", url: "https://stareanatiei.ro/", description: "---", type: "video", donationUrl: "", donationMethod: "", icon: "stareanatiei.ro.ico" },
+            { name: "Buletin de București", url: "https://buletin.de/bucuresti/", description: "Știri și investigații esențiale din capitală", type: "local", donationUrl: "https://www.patreon.com/BuletinDeBucuresti", donationMethod: "Patreon", icon: "buletin.de.ico"  },
+            { name: "Info sud-est", url: "https://www.info-sud-est.ro/", description: "Ziar de informare în judeţele Constanţa și Tulcea", type: "local", donationUrl: "https://www.info-sud-est.ro/doneaza/", donationMethod: "web form", icon: "infosudest.ico"  },
+            { name: "Liber in Teleorman", url: "https://liberinteleorman.ro/", description: "Libertate mai presus de toate", type: "local", donationUrl: "-NA-", donationMethod: "-NA-", icon: "liberinteleorman.ro.ico" },
+            { name: "Bihoreanul", url: "https://www.ebihoreanul.ro/", description: "Știri din Oradea şi judeţul Bihor - eBihoreanul.ro", type: "local", donationUrl: "-NA-", donationMethod: "-NA-", icon: "bihoreanul.ico" },
+            { name: "stiricraiova.ro", url: "https://stiricraiova.ro/", description: "---", type: "local", donationUrl: "-NA-", donationMethod: "-NA-", icon: "stiricraiova.ro.ico" },
+            { name: "Turnul Sfatului", url: "https://www.turnulsfatului.ro/", description: "---", type: "local", donationUrl: "-NA-", donationMethod: "-NA-", icon: "turnulsfatului.ico" },
+            { name: "Judecata de acum", url: "https://www.facebook.com/judecatadeacum", description: "---", type: "podcast", donationUrl: "", donationMethod: "", icon: "judecata-de-acum.png" }
+        ];
+
+        // Initialize
+        let currentFilter = 'all';
+        
+        // Render table
+        function renderTable(filter = 'all') {
+            const tbody = document.getElementById('tableBody');
+            const noResults = document.getElementById('noResults');
+            tbody.innerHTML = '';
+            
+            let filteredPublications = publications;
+            
+            if (filter !== 'all') {
+                filteredPublications = publications.filter(pub => 
+                    pub.type.toLowerCase().includes(filter.toLowerCase())
+                );
+            }
+            
+            if (filteredPublications.length === 0) {
+                noResults.style.display = 'block';
+                document.querySelector('.table-container').style.display = 'none';
+            } else {
+                noResults.style.display = 'none';
+                document.querySelector('.table-container').style.display = 'block';
+                
+                filteredPublications.forEach(pub => {
+                    const row = document.createElement('tr');
+                    
+                    // Format type as badges
+                    const types = pub.type.split(',').map(t => t.trim()).filter(t => t);
+                    const typeBadges = types.map(type => 
+                        `<span class="type-badge type-${type}">${type}</span>`
+                    ).join(' ');
+                    
+                    // Format donation URL
+                    const donationLink = pub.donationUrl && pub.donationUrl !== '-NA-' && pub.donationUrl !== '' 
+                        ? `<a href="${pub.donationUrl}" target="_blank" rel="noopener noreferrer" class="donation-link" title="${pub.donationUrl}">${pub.donationUrl.replace(/^(https?:\/\/)?(www\.)?/, '')}</a>`
+                        : '<span class="na">-NA-</span>';
+                    
+                    // Format donation method
+                    const donationMethod = pub.donationMethod && pub.donationMethod !== '-NA-' && pub.donationMethod !== ''
+                        ? pub.donationMethod
+                        : '<span class="na">-</span>';
+                    
+                    // Format description
+                    const description = pub.description === '---' || pub.description === '' 
+                        ? '<span class="na">-</span>' 
+                        : `<span class="description">${pub.description}</span>`;
+                    
+                    // Format publication name with icon
+                    const iconElement = pub.icon 
+                        ? `<img src="icons/${pub.icon}" alt="${pub.name} icon" class="publication-icon" onerror="this.style.display='none'">`
+                        : '';
+                    
+                    row.innerHTML = `
+                        <td>
+                            <a href="${pub.url}" target="_blank" rel="noopener noreferrer" class="publication-name publication-link">
+                                ${iconElement}${pub.name}
+                            </a>
+                        </td>
+                        <td class="description-col">${description}</td>
+                        <td>${typeBadges || '<span class="na">-</span>'}</td>
+                        <td>${donationLink}</td>
+                        <td>${donationMethod}</td>
+                    `;
+                    
+                    tbody.appendChild(row);
+                });
+            }
+        }
+        
+        // Update stats
+        function updateStats() {
+            const statsContainer = document.getElementById('stats');
+            const totalPublications = publications.length;
+            const withDonations = publications.filter(p => p.donationUrl && p.donationUrl !== '-NA-' && p.donationUrl !== '').length;
+            
+            statsContainer.innerHTML = `
+                <div class="stat-item">
+                    <div class="stat-number">${totalPublications}</div>
+                    <div class="stat-label">Total publicații</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">${withDonations}</div>
+                    <div class="stat-label">Acceptă donații</div>
+                </div>
+            `;
+        }
+        
+        // Filter buttons event listeners
+        document.getElementById('filterButtons').addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-btn')) {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                e.target.classList.add('active');
+                
+                // Get filter value and render table
+                currentFilter = e.target.dataset.filter;
+                renderTable(currentFilter);
+            }
+        });
+        
+        // Initial render
+        updateStats();
+        renderTable();
+    </script>
+</body>
+</html>
