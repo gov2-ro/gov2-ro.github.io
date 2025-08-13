@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publicații jurnalism independent România</title>
     <meta property="og:image"  content="https://gov2-ro.github.io/repository/jurnalism-independent/jurnalism-independent.png" />
-    <meta property="og:title" content="Listă publicații jurnalism independent din România" />  
+    <meta property="og:title" content="Listă publicații jurnalism independent România" />  
     <meta property="og:url" content="https://gov2-ro.github.io/repository/jurnalism-independent/" />
     <style>
         * {
@@ -84,11 +84,10 @@
             font-weight: 600;
             color: var(--primary-color);
         }
-        td.zipub{min-width: 10em; line-height: 1.2;}
         td.tip-col,
         td.donationLink,
         td.donationMethod {font-size: .85rem; font-stretch: condensed;}
-    td.donationMethod {color: #666;}
+
         .filter-buttons {
             display: flex;
             flex-wrap: wrap;
@@ -317,9 +316,7 @@
             h1 {
                 font-size: 1.8rem;
             }
-             .donation-link {
-            
-            max-width: 9em;}
+
             .subtitle {
                 font-size: 1rem;
             }
@@ -360,7 +357,6 @@
             }
 
             /* Hide description column on mobile */
-            .donationMethod,
             .description-col {
                 display: none;
             }
@@ -399,7 +395,7 @@
 <body>
     <header>
         <div class="container" style="padding: .5ex;">
-            <h1>publicații <b style="color: #FFD;"><u>jurnalism independent</u></b></h1>
+            <h1>Publicații jurnalism independent România</h1>
             <p class="subtitle">O colecție de surse de presă independentă din România</p>
         </div>
     </header> 
@@ -434,7 +430,7 @@
                             <th class="description-col">Descriere</th>
                             <th>Tip</th>
                             <th>Donații</th>
-                            <th class="donationMethod">Metodă</th>
+                            <th>Metodă</th>
                         </tr>
                     </thead>
                     <tbody id="tableBody">
@@ -483,6 +479,8 @@
             { name: "Bihoreanul", url: "https://www.ebihoreanul.ro/", description: "Știri din Oradea şi judeţul Bihor - eBihoreanul.ro", type: "local", donationUrl: "-NA-", donationMethod: "-NA-", icon: "bihoreanul.ico" },
             { name: "stiricraiova.ro", url: "https://stiricraiova.ro/", description: "Craiova", type: "local", donationUrl: "-NA-", donationMethod: "-NA-", icon: "stiricraiova.ro.ico" },
             { name: "Turnul Sfatului", url: "https://www.turnulsfatului.ro/", description: "Știri din Sibiu", type: "local", donationUrl: "-NA-", donationMethod: "-NA-", icon: "turnulsfatului.ico" },
+            { name: "Europa Liberă", url: "https://romania.europalibera.org/", description: "Europa Liberă România acoperă cele mai importante subiecte din țară și din străinătate și le pune în context, pe înțelesul tuturor.", type: "generalist", donationUrl: "-NA-", donationMethod: "-NA-", icon: "europalibera.ico" },
+            { name: "România – DW", url: "https://www.dw.com/ro/rom%C3%A2nia/s-10582", description: "Analize şi comentarii pe temele care marchează opinia publică românească", type: "generalist", donationUrl: "-NA-", donationMethod: "-NA-", icon: "dw.ico" },
             { name: "Judecata de acum", url: "https://www.facebook.com/judecatadeacum", description: "Doi jurnaliști. O săptămână de întâmplări. Un ceas pentru a le descifra. Încercăm să înțelegem. În parteneriat de Centrul de Investigații Media (CIM) și Dela0.ro.", type: "podcast", donationUrl: "https://www.patreon.com/judecatadeacum", donationMethod: "Patreon", icon: "judecata-de-acum.png" }
         ];
 
@@ -540,7 +538,7 @@
                         : '';
                     
                     row.innerHTML = `
-                        <td class="zipub">
+                        <td>
                             <a href="${pub.url}" target="_blank" rel="noopener noreferrer" class="publication-name publication-link">
                                 ${iconElement}${pub.name}
                             </a>
