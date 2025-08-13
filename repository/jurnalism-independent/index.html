@@ -84,6 +84,9 @@
             font-weight: 600;
             color: var(--primary-color);
         }
+        td.tip-col,
+        td.donationLink,
+        td.donationMethod {font-size: .85rem; font-stretch: condensed;}
 
         .filter-buttons {
             display: flex;
@@ -537,9 +540,9 @@
                             </a>
                         </td>
                         <td class="description-col">${description}</td>
-                        <td>${typeBadges || '<span class="na">-</span>'}</td>
-                        <td>${donationLink}</td>
-                        <td>${donationMethod}</td>
+                        <td class="tip-col">${typeBadges || '<span class="na">-</span>'}</td>
+                        <td class="donationLink">${donationLink}</td>
+                        <td class="donationMethod">${donationMethod}</td>
                     `;
                     
                     tbody.appendChild(row);
