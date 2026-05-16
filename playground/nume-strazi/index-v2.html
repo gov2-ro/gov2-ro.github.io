@@ -4,10 +4,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cum ne numim străzile</title>
+  <title>Cum ne numim străzile · variantă densă</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400;1,8..60,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
   <script>
@@ -20,14 +20,38 @@ const DATA_S8 = {"animal_names": [{"label": "Cerbului", "n": 113, "name_normaliz
   </script>
   <style>
 :root {
-  --bg: #FAF8F3;
-  --ink: #15171A;
-  --muted: #6E6E70;
-  --rule: #DDDCD7;
-  --wash: #EEEAE0;
+  /* Surfaces */
+  --bg: #FFFFFF;
+  --surface-1: #F7F9FC;
+  --surface-2: #ECF1F8;
+  --surface-blue: #DEE8F4;
+  --warn-1: #FFF7CC;
+  --warn-2: #FBE486;
+  --ink-band: #0B1118;
+
+  /* Ink + rules */
+  --ink: #0B1118;
+  --ink-2: #2A313B;
+  --muted: #5A6573;
+  --muted-2: #8B95A2;
+  --rule: #E2E6EC;
+  --rule-strong: #BFC7D2;
+  --hairline: #EEF1F5;
+
+  /* Accents */
+  --plaque: #0E4D92;
+  --plaque-deep: #08366D;
   --accent: #C04F35;
-  --serif: 'Source Serif 4', Georgia, serif;
-  --sans: 'Inter', system-ui, sans-serif;
+  --accent-dark: #8E3320;
+  --gold: #E8AE00;
+  --gold-soft: #F7D777;
+  --olive: #5F7A4E;
+  --teal: #2F6B6B;
+
+  /* Fonts */
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --street: 'Barlow Semi Condensed', 'IBM Plex Sans', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,15 +60,55 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--sans);
+  font-size: 13px;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-ligatures: common-ligatures contextual;
 }
+
+/* ──────── ICONS ──────── */
+.icon { width: 14px; height: 14px; flex-shrink: 0; vertical-align: middle; stroke: currentColor; stroke-width: 1.75; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.icon.sm { width: 11px; height: 11px; stroke-width: 1.9; }
+.icon.lg { width: 18px; height: 18px; }
+.icon.xl { width: 22px; height: 22px; stroke-width: 1.6; }
+
+/* Portrait — placeholder slot for future personality portraits */
+.portrait {
+  width: 26px; height: 26px;
+  border-radius: 999px;
+  background: var(--surface-2) linear-gradient(135deg, var(--surface-2), var(--surface-blue));
+  border: 1px solid var(--rule-strong);
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--muted-2);
+  font-family: var(--sans); font-size: 10px; font-weight: 700;
+  letter-spacing: .02em;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.portrait.lg { width: 36px; height: 36px; font-size: 12px; }
+.portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Emoji helper: keep size aligned with surrounding body text */
+.emo {
+  font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji', sans-serif;
+  font-style: normal; font-weight: 400;
+  display: inline-block;
+  line-height: 1;
+  font-variant-emoji: emoji;
+}
+.emo.sm  { font-size: 10px; }
+.emo.md  { font-size: 12px; }
+.emo.lg  { font-size: 14px; }
+.emo.xl  { font-size: 18px; }
+.emo.xxl { font-size: 22px; }
 
 /* Nav */
 .site-nav {
   position: sticky; top: 0; z-index: 100;
   background: var(--bg);
-  border-bottom: 1px solid var(--rule);
-  padding: 14px 36px;
+  border-bottom: 1px solid var(--ink);
+  padding: 10px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,145 +117,541 @@ body {
   letter-spacing: .06em;
 }
 .site-nav .brand {
-  font-weight: 600;
+  font-weight: 700;
   color: var(--ink);
-  letter-spacing: .12em;
+  letter-spacing: .14em;
   text-transform: uppercase;
   text-decoration: none;
+  font-size: 12.5px;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.site-nav .brand::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 10px;
+  line-height: 1;
 }
 .site-nav nav { display: flex; gap: 22px; }
-.site-nav nav a { color: var(--muted); text-decoration: none; }
-.site-nav nav a:hover { color: var(--ink); }
-
-/* Stats bar */
-.stats-bar {
-  background: var(--ink); color: #FAF8F3; padding: 10px 36px;
-  display: flex; gap: 28px; flex-wrap: wrap;
-  font-family: var(--sans); font-size: 12px; align-items: center;
+.site-nav nav a {
+  color: var(--muted); text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: 10.5px;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color .12s ease, border-color .12s ease;
 }
-.stats-bar .stat-val { font-weight: 600; margin-right: 3px; }
-.stats-bar .stat-sep { color: #444; }
+.site-nav nav a:hover { color: var(--ink); border-bottom-color: var(--gold); }
 
-/* Panel grid */
+/* Stats widget — dark ink band with reverse-out type. Acts as the
+   dashboard's masthead "ticker": dense, high-contrast, Bloomberg-feel.
+   4-col on desktop → 2-col at ≤1024 → 1-col at ≤640. */
+.statbar {
+  background: var(--ink-band);
+  color: #FFFFFF;
+  border-bottom: 3px solid var(--gold);
+  padding: 22px 28px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.45fr;
+  gap: 0;
+  align-items: stretch;
+  position: relative;
+}
+.statbar::before {
+  content: ''; position: absolute; left: 0; right: 0; top: 0;
+  height: 1px; background: rgba(255,255,255,.12);
+}
+.statbar .group {
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 0 26px 0 0;
+  min-width: 0;
+  border-right: 1px solid rgba(255,255,255,.10);
+}
+.statbar .group + .group { padding-left: 26px; }
+.statbar .group:last-child { border-right: none; padding-right: 0; }
+
+.statbar .group-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+  color: var(--gold);
+  font-weight: 700;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.statbar .v {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 34px;
+  color: #FFFFFF;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.025em;
+}
+.statbar .v .u {
+  font-size: 14px;
+  color: rgba(255,255,255,.55);
+  margin-left: 4px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.statbar .l {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: rgba(255,255,255,.55);
+  margin-top: 4px;
+  font-weight: 500;
+}
+.statbar .accent { color: var(--gold); }
+
+.statbar .scale-stack { display: flex; flex-direction: column; gap: 12px; }
+.statbar .scale-stack .item { display: flex; align-items: baseline; gap: 12px; }
+.statbar .scale-stack .item .v { font-size: 28px; }
+.statbar .scale-stack .item .l { margin-top: 0; }
+
+.statbar .tema-row, .statbar .gen-row { display: flex; align-items: baseline; gap: 8px; }
+.statbar .gen-row .frac {
+  font-family: var(--sans);
+  font-size: 15px;
+  color: rgba(255,255,255,.7);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.statbar .minibar {
+  display: flex; height: 8px; border-radius: 0; overflow: hidden;
+  background: rgba(255,255,255,.10); margin-top: 4px;
+}
+
+.statbar .top-pair { display: flex; flex-direction: column; gap: 9px; }
+.statbar .top-pair .row {
+  display: flex; align-items: baseline; gap: 10px;
+  font-family: var(--sans);
+}
+.statbar .top-pair .prefix {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  color: var(--gold);
+  font-weight: 700;
+  min-width: 28px;
+}
+.statbar .top-pair .name {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: -.005em;
+}
+.statbar .top-pair .cnt {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 15px;
+  color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
+  margin-left: auto;
+  letter-spacing: -.01em;
+}
+.statbar .top-pair .cnt .u {
+  font-size: 10.5px;
+  color: rgba(255,255,255,.55);
+  margin-left: 3px;
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  .statbar {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 24px;
+    padding: 20px 22px 22px;
+  }
+  .statbar .group:nth-child(2) { border-right: none; padding-right: 0; }
+  .statbar .group:nth-child(3) { padding-left: 0; }
+}
+@media (max-width: 640px) {
+  .statbar {
+    grid-template-columns: 1fr;
+    row-gap: 22px;
+    padding: 18px 18px 20px;
+  }
+  .statbar .group {
+    border-right: none !important;
+    padding: 0 0 18px 0 !important;
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+  .statbar .group:last-child {
+    border-bottom: none;
+    padding-bottom: 0 !important;
+  }
+}
+
+/* 12-col panel grid — hairline 1px grid lines between panels */
 .dash-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; background: var(--rule);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1px;
+  background: var(--rule-strong);
+  max-width: 1640px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--rule-strong);
 }
-.panel { background: var(--bg); padding: 20px 22px 16px; }
-.panel.wide { grid-column: span 2; }
+.panel {
+  background: var(--bg);
+  padding: 14px 16px 12px;
+  grid-column: span 6;
+  min-width: 0;
+}
+.panel.s4  { grid-column: span 4; }
+.panel.s6  { grid-column: span 6; }
+.panel.s8  { grid-column: span 8; }
+.panel.s12 { grid-column: span 12; }
 
-/* Panel header */
+/* Panel header — heavy 2px rule below, ink-black label, gold-on-hover lift */
 .panel-header {
   display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--rule);
+  margin: 0 0 12px;
+  padding: 0 0 8px;
+  border-bottom: 2px solid var(--ink);
+  gap: 12px; flex-wrap: wrap;
+  position: relative;
 }
 .panel-label {
-  font-family: var(--sans); font-size: 10px; letter-spacing: .14em;
-  text-transform: uppercase; font-weight: 600; color: var(--muted);
+  font-family: var(--sans);
+  font-size: 11.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink);
+  display: inline-flex; align-items: center; gap: 7px;
 }
-
-/* Caption */
-.panel-caption {
-  font-family: var(--sans); font-size: 11px; color: var(--muted);
-  margin-top: 12px; line-height: 1.5;
-}
-
-/* Kicker */
-.kicker {
+.panel-meta {
   font-family: var(--sans);
   font-size: 11px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
   color: var(--muted);
+  font-variant-numeric: tabular-nums;
   font-weight: 500;
-  margin-bottom: 22px;
+  letter-spacing: .04em;
 }
 
-/* Chip toggles */
+.panel-caption {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.kicker {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.kicker.muted { color: var(--muted); font-weight: 600; }
+
+/* Chip toggles — sharp squared pills */
 .chip-row {
-  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-  margin-bottom: 24px; padding-bottom: 18px;
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  margin-bottom: 10px; padding-bottom: 8px;
   border-bottom: 1px solid var(--rule);
-  font-family: var(--sans); font-size: 11px;
+  font-family: var(--sans); font-size: 11.5px;
 }
 .chip-row .label {
-  letter-spacing: .12em; text-transform: uppercase;
-  font-weight: 500; color: var(--muted);
+  letter-spacing: .14em; text-transform: uppercase;
+  font-weight: 700; color: var(--muted);
+  font-size: 10.5px; margin-right: 4px;
 }
 .chip {
-  font-family: var(--sans); font-size: 12px;
-  color: var(--muted);
-  padding: 5px 13px;
-  border: 1px solid var(--rule); border-radius: 999px;
-  background: transparent; cursor: pointer;
-  transition: background .15s, color .15s;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+  padding: 4.5px 11px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  background: var(--bg);
+  cursor: pointer;
+  letter-spacing: .02em;
+  transition: background .12s ease, color .12s ease, border-color .12s ease;
 }
-.chip:hover, .chip.active {
-  color: var(--bg); background: var(--ink); border-color: var(--ink);
+.chip:hover { background: var(--surface-2); border-color: var(--ink); }
+.chip.active {
+  color: #FFFFFF;
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
-/* Tag pills */
+/* Județ picker — hard outline, bold weight */
+.s2-judet-pick {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--sans); font-size: 11.5px;
+}
+.s2-judet-pick label {
+  letter-spacing: .14em; text-transform: uppercase;
+  font-weight: 700; color: var(--muted);
+  font-size: 10.5px;
+}
+.s2-judet-pick select {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  padding: 5px 28px 5px 11px;
+  -webkit-appearance: none; -moz-appearance: none; appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+    linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+  background-position: calc(100% - 12px) 55%, calc(100% - 8px) 55%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer; outline: none;
+  min-width: 220px;
+}
+.s2-judet-pick select:focus { box-shadow: 0 0 0 3px var(--warn-2); }
+
+/* Tag pills — square, denser, bolder */
 .tag {
-  font-family: var(--sans); font-size: 10px;
-  color: var(--muted); background: var(--wash);
-  padding: 2px 7px; border-radius: 999px;
-  margin-left: 8px; vertical-align: middle;
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--ink-2);
+  background: var(--surface-2);
+  padding: 2px 7px;
+  border-radius: 2px;
+  margin-left: 6px;
+  vertical-align: middle;
+  letter-spacing: .04em;
+  font-weight: 600;
+  text-transform: lowercase;
 }
-.tag.person { background: #F4E8E5; color: #B8432F; }
+.tag.person { background: #F8DAD0; color: var(--accent-dark); }
+.tag.ideo   { background: #FFF1C6; color: #7A5400; }
+.tag.nature { background: #E1ECDA; color: #3D5A2A; }
 
-/* Rank list */
+/* Rank list — generic. Hairline rows + a faint yellow flag on rank #1
+   (a gold-leader cue used across all leaderboards). */
 .rank-list { display: flex; flex-direction: column; }
-.rank-header {
-  display: grid;
-  grid-template-columns: 36px 1fr 220px 56px;
-  gap: 14px; align-items: center;
-  padding-bottom: 10px;
-  border-bottom: 1.5px solid var(--ink);
-  font-family: var(--sans); font-size: 10px;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--muted); font-weight: 500;
-}
 .rank-row {
   display: grid;
-  grid-template-columns: 36px 1fr 220px 56px;
-  align-items: center; gap: 14px;
-  padding: 9px 0;
-  border-bottom: 1px solid var(--wash);
+  align-items: center;
+  gap: 10px;
+  padding: 5px 4px;
+  border-bottom: 1px solid var(--hairline);
+  break-inside: avoid;
+  transition: background .1s ease;
+  position: relative;
 }
+.rank-row:hover { background: var(--surface-1); }
 .rank-row:last-child { border-bottom: none; }
+
+/* Gold inset on the leader row of every list */
+.rank-list > .rank-row:first-child {
+  background: linear-gradient(to right, var(--warn-1) 0%, rgba(255,247,204,.35) 60%, transparent 100%);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 7px;
+}
+
 .rank-num {
-  font-family: var(--sans); font-size: 11px;
-  color: var(--muted); text-align: right;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: right;
   font-variant-numeric: tabular-nums;
 }
-.rank-name { font-family: var(--serif); font-size: 16px; }
+.rank-list > .rank-row:first-child .rank-num {
+  color: var(--ink); font-weight: 700;
+}
+
+/* Street names rendered as RO street-sign plaques (white-on-blue).
+   Slightly upsized for the denser layout. */
+.rank-name, .street-tag {
+  font-family: var(--street);
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: .045em;
+  display: inline-block;
+  padding: 2.5px 10px;
+  background: var(--plaque);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  text-shadow:
+    0 -0.5px 0 rgba(0, 0, 0, .30),
+    0 1px 1.5px rgba(0, 0, 0, .50);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .14),
+    0 2px 3px rgba(0, 0, 0, .26);
+  line-height: 1.25;
+  vertical-align: middle;
+  width: max-content;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  justify-self: start;
+}
+.street-tag.small {
+  font-size: 12px;
+  padding: 1.5px 8px;
+}
+/* Person names: clean, bold sans, no plaque */
+.rank-name.person {
+  display: inline;
+  padding: 0; border: none; background: transparent; border-radius: 0;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -.005em;
+  color: var(--ink);
+  text-shadow: none;
+  box-shadow: none;
+  max-width: none; overflow: visible;
+  width: auto;
+  justify-self: auto;
+}
 .rank-count {
-  font-family: var(--sans); font-size: 12px;
-  color: var(--muted); text-align: right;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.005em;
+}
+
+/* 2-column rank list (column-count multicol) */
+.rank-2col {
+  display: block;
+  column-count: 2;
+  column-gap: 36px;
+  column-rule: 1px solid var(--rule);
+}
+.rank-2col .rank-row { break-inside: avoid; }
+
+/* Per-section row templates */
+.s2-list .rank-row     { grid-template-columns: 26px minmax(0, 1fr) 110px 52px; gap: 10px; }
+.s3-tower .rank-row    { grid-template-columns: minmax(0, 1fr) minmax(60px, 1fr) 40px; }
+.s4-list .rank-row     { grid-template-columns: minmax(0, 1fr) minmax(60px, 1fr) 60px 60px; }
+
+/* Row cell containing the plaque + optional tag */
+.name-cell {
+  display: flex; align-items: center; gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+}
+.name-cell .rank-name { flex: 0 1 auto; min-width: 0; }
+.name-cell .tag { flex: 0 0 auto; }
+
+/* Contest row */
+.contest-row {
+  display: grid;
+  grid-template-columns: 14px 140px minmax(50px, 1fr) 36px;
+  gap: 8px;
+  align-items: center;
+  padding: 4px 0;
+}
+.contest-row + .contest-row { border-top: 1px solid var(--hairline); }
+.contest-row .rank-num-mini {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.contest-row:first-child .rank-num-mini { color: var(--ink); font-weight: 700; }
+.contest-row .rank-count-mini {
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink);
+  text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-/* Bar */
+/* Internal 3-col grids inside wide panels */
+.subgrid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+/* Bars — taller, more opaque for visual punch */
 .bar-wrap {
-  height: 6px; background: var(--wash);
-  border-radius: 1px; position: relative;
+  height: 5px;
+  background: var(--surface-2);
+  border-radius: 0;
+  position: relative;
 }
 .bar {
   position: absolute; left: 0; top: 0;
-  height: 100%; border-radius: 1px;
-  background: var(--ink); opacity: .4;
+  height: 100%;
+  border-radius: 0;
+  background: var(--ink);
+  opacity: .82;
 }
-.bar.accent { background: var(--accent); opacity: .65; }
-.bar.female { background: var(--accent); opacity: .5; }
+.bar.accent { background: var(--accent); opacity: 1; }
+.bar.female { background: var(--accent); opacity: .72; }
+.bar.gold   { background: var(--gold);   opacity: .95; }
+.bar.olive  { background: var(--olive);  opacity: .9;  }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .dash-grid { grid-template-columns: 1fr; }
-  .panel.wide { grid-column: span 1; }
-  .stats-bar { padding: 10px 20px; gap: 16px; }
-  .site-nav { padding: 12px 20px; }
-  .site-nav nav { display: none; }
+/* Display numbers */
+.display-num {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.025em;
+  line-height: 1;
 }
+
+/* Map + right-rail fingerprint */
+.map-grid {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  gap: 28px;
+}
+.map-grid .fingerprint {
+  border-left: 1px solid var(--rule);
+  padding-left: 22px;
+}
+
+/* Tablet: collapse aggressive 3-up to 2-up, stack map, soften subgrids */
+@media (max-width: 1024px) {
+  .panel.s4, .panel.s6, .panel.s8 { grid-column: span 6; }
+  .panel.s12 { grid-column: span 12; }
+  .map-grid { grid-template-columns: 1fr; }
+  .map-grid .fingerprint {
+    border-left: none;
+    border-top: 1px solid var(--rule);
+    padding-left: 0;
+    padding-top: 16px;
+    margin-top: 4px;
+  }
+  .subgrid-3 { grid-template-columns: 1fr 1fr; }
+}
+
+/* Mobile: single column, single-col rank lists, fully collapsed subgrids */
+@media (max-width: 640px) {
+  .panel { grid-column: span 12 !important; padding: 12px 14px 10px; }
+  .dash-grid { gap: 0; max-width: 100%; }
+  .rank-2col { column-count: 1; column-rule: none; }
+  .site-nav nav { display: none; }
+  .subgrid-3 { grid-template-columns: 1fr; }
+}
+
+/* ──────── Footer (dark band, mirrors statbar) ──────── */
+footer.site-footer { background: var(--ink-band); color: #FFFFFF; padding: 22px 28px; }
   </style>
 </head>
 <body>
@@ -214,136 +674,217 @@ body {
 
 
 
-<div class="stats-bar">
-  <span><span class="stat-val">105.104</span> adrese</span>
-  <span class="stat-sep">·</span>
-  <span><span class="stat-val">42</span> județe</span>
-  <span class="stat-sep">·</span>
-  <span><span class="stat-val">327</span> persoane</span>
-  <span class="stat-sep">·</span>
-  <span><span class="stat-val">95%</span> bărbați</span>
-  <span class="stat-sep">·</span>
-  <span>#1 bărbat: <span class="stat-val">Mihai Eminescu</span> · 297 str.</span>
-  <span class="stat-sep">·</span>
-  <span>#1 femeie: <span class="stat-val">Ana Ipătescu</span> · 91 str.</span>
-  <span class="stat-sep">·</span>
-  <span><span class="stat-val">206</span> cu Wikidata</span>
+
+
+
+
+
+
+
+
+
+
+<div class="statbar">
+
+  <div class="group">
+    <div class="group-label"><span class="emo md">📊</span> Scară</div>
+    <div class="scale-stack">
+      <div class="item">
+        <div class="v">105.104</div>
+        <div class="l">Adrese</div>
+      </div>
+      <div class="item">
+        <div class="v">327</div>
+        <div class="l">Persoane onorate</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-label"><span class="emo md">🏷️</span> Tematică</div>
+    <div class="tema-row">
+      <div class="v">55<span class="u">% natură</span></div>
+    </div>
+    <div class="minibar">
+      
+        
+        <div style="width:54.814458188282345%;background:#C04F35;"></div>
+      
+        
+        <div style="width:23.09458558625287%;background:#A0826A;"></div>
+      
+        
+        <div style="width:14.810014073031628%;background:#8BA888;"></div>
+      
+        
+        <div style="width:5.214428560847344%;background:#6E6E70;"></div>
+      
+      
+        
+        <div style="width:2.0665135915858084%;background:#B8A090;"></div>
+      
+    </div>
+    <div class="l">
+      
+        
+        persoane <strong style="color:var(--ink);">23%</strong> · 
+      
+        
+        abstract <strong style="color:var(--ink);">15%</strong> · 
+      
+        
+        ideologic <strong style="color:var(--ink);">5%</strong>
+      
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-label"><span class="emo md">⚥</span> Repartiție pe gen</div>
+    <div class="gen-row">
+      <div class="v">95<span class="u">% B</span></div>
+      <div class="frac">/ <span class="accent" style="font-weight:600;">5% F</span></div>
+    </div>
+    <div class="minibar">
+      <div style="width:95%;background:rgba(0,0,0,.42);"></div>
+      <div style="width:5%;background:var(--accent);"></div>
+    </div>
+    <div class="l">Persoane onorate, M vs F</div>
+  </div>
+
+  <div class="group">
+    <div class="group-label"><span class="emo md">🏆</span> Cei mai des onorați</div>
+    <div class="top-pair">
+      
+      <div class="row">
+        <span class="prefix">#1 B</span>
+        <span class="name">Mihai Eminescu</span>
+        <span class="cnt">297<span class="u">str.</span></span>
+      </div>
+      
+      
+      <div class="row">
+        <span class="prefix">#1 F</span>
+        <span class="name">Ana Ipătescu</span>
+        <span class="cnt">91<span class="u">str.</span></span>
+      </div>
+      
+    </div>
+  </div>
+
 </div>
 
 <div class="dash-grid">
 
 
-<div class="panel wide" id="cele-mai-intalnite">
+<div class="panel s12" id="cele-mai-intalnite">
   <div class="panel-header">
-    <span class="panel-label">Cele mai frecvente</span>
-    <div style="position:relative;">
-      <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none;">⌕</span>
-      <input id="s2-search" type="text" placeholder="Căutați un nume de stradă…"
-        style="border:1.5px solid var(--rule);border-radius:3px;padding:7px 14px 7px 34px;font-family:var(--sans);font-size:13px;color:var(--ink);background:var(--bg);outline:none;width:280px;">
+    <span class="panel-label"><span class="emo md">🔝</span> Cele mai frecvente · Top 30</span>
+    <div class="s2-judet-pick">
+      <label for="s2-judet-select">Județ</label>
+      <select id="s2-judet-select">
+        <option value="all">Toate județele</option>
+        
+      </select>
     </div>
   </div>
-  <div class="chip-row" id="s2-judet-row">
-    <span class="label">Județ</span>
-    <button class="chip active" data-judet="all">Toate</button>
+  <div class="rank-list rank-2col s2-list" id="s2-list">
     
   </div>
-  <div style="font-family:var(--sans);font-size:12px;color:var(--muted);margin-bottom:12px;">
-    <strong style="color:var(--ink);">Strada Principală</strong> · <strong id="s2-principal-count">—</strong> apariții · exclusă din scară
-  </div>
-  <div class="rank-list" id="s2-list">
-    <div class="rank-header">
-      <span></span><span>Nume</span><span>Frecvență relativă</span><span style="text-align:right">Apariții</span>
-    </div>
-    
-  </div>
-  <div style="font-family:var(--sans);font-size:11px;color:var(--muted);padding:10px 0 0;" id="s2-footer"></div>
+  <div style="font-family:var(--sans);font-size:10.5px;color:var(--muted);padding:8px 0 0;" id="s2-footer"></div>
 </div>
 
 
 
 
 
-<div class="panel" id="tematica">
+
+<div class="panel s4" id="tematica">
   <div class="panel-header">
-    <span class="panel-label">Repartiție tematică</span>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);">54.004 clasificate</span>
+    <span class="panel-label"><span class="emo md">🧭</span> Repartiție tematică</span>
+    <span class="panel-meta">54.004 clasif.</span>
   </div>
-  <div style="display:flex;gap:32px;align-items:start;">
-    <div style="position:relative;width:140px;height:140px;flex-shrink:0;">
-      <div style="width:140px;height:140px;border-radius:50%;background:conic-gradient(
+  <div style="display:flex;gap:18px;align-items:center;">
+    <div style="position:relative;width:96px;height:96px;flex-shrink:0;">
+      <div style="width:96px;height:96px;border-radius:50%;background:conic-gradient(
         
         
-        #C04F35 0% 54.8%,
-        
-        
-        
-        #A0826A 54.8% 77.9%,
+        #5F7A4E 0% 54.8%,
         
         
         
-        #8BA888 77.9% 92.7%,
+        #0E4D92 54.8% 77.9%,
         
         
         
-        #6E6E70 92.7% 97.9%,
+        #5A6573 77.9% 92.7%,
         
         
         
-        #B8A090 97.9% 99.30000000000001%,
+        #C04F35 92.7% 97.9%,
         
         
         
-        #3A3A3D 99.30000000000001% 99.9%
+        #E8AE00 97.9% 99.30000000000001%,
+        
+        
+        
+        #7A4A33 99.30000000000001% 99.9%
         
         
       );"></div>
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78px;height:78px;background:var(--bg);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
-        <div style="font-family:var(--serif);font-weight:500;font-size:18px;line-height:1;">54.004</div>
-        <div style="font-family:var(--sans);font-size:9px;color:var(--muted);">total</div>
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;background:var(--bg);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+        <div class="display-num" style="font-size:15px;">54.004</div>
+        <div style="font-family:var(--sans);font-size:8.5px;color:var(--muted);letter-spacing:.06em;">total</div>
       </div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:10px;padding-top:4px;flex:1;">
+    <div style="display:flex;flex-direction:column;gap:5px;flex:1;min-width:0;">
       
       
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div style="width:10px;height:10px;border-radius:1px;background:#C04F35;flex-shrink:0;"></div>
-        <span style="font-family:var(--sans);font-size:13px;flex:1;">natură</span>
-        <span style="font-family:var(--sans);font-size:13px;font-weight:600;">54.8%</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:10px;height:10px;border-radius:2px;background:#5F7A4E;flex-shrink:0;"></div>
+        <span class="emo md">🌿</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">natură</span>
+        <span style="font-family:var(--sans);font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">54.8%</span>
       </div>
       
       
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div style="width:10px;height:10px;border-radius:1px;background:#A0826A;flex-shrink:0;"></div>
-        <span style="font-family:var(--sans);font-size:13px;flex:1;">persoană</span>
-        <span style="font-family:var(--sans);font-size:13px;font-weight:600;">23.1%</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:10px;height:10px;border-radius:2px;background:#0E4D92;flex-shrink:0;"></div>
+        <span class="emo md">👤</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">persoană</span>
+        <span style="font-family:var(--sans);font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">23.1%</span>
       </div>
       
       
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div style="width:10px;height:10px;border-radius:1px;background:#8BA888;flex-shrink:0;"></div>
-        <span style="font-family:var(--sans);font-size:13px;flex:1;">concept / abstract</span>
-        <span style="font-family:var(--sans);font-size:13px;font-weight:600;">14.8%</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:10px;height:10px;border-radius:2px;background:#5A6573;flex-shrink:0;"></div>
+        <span class="emo md">💭</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">concept / abstract</span>
+        <span style="font-family:var(--sans);font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">14.8%</span>
       </div>
       
       
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div style="width:10px;height:10px;border-radius:1px;background:#6E6E70;flex-shrink:0;"></div>
-        <span style="font-family:var(--sans);font-size:13px;flex:1;">ideologic</span>
-        <span style="font-family:var(--sans);font-size:13px;font-weight:600;">5.2%</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:10px;height:10px;border-radius:2px;background:#C04F35;flex-shrink:0;"></div>
+        <span class="emo md">🚩</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">ideologic</span>
+        <span style="font-family:var(--sans);font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">5.2%</span>
       </div>
       
       
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div style="width:10px;height:10px;border-radius:1px;background:#B8A090;flex-shrink:0;"></div>
-        <span style="font-family:var(--sans);font-size:13px;flex:1;">dată / sărbătoare</span>
-        <span style="font-family:var(--sans);font-size:13px;font-weight:600;">1.4%</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:10px;height:10px;border-radius:2px;background:#E8AE00;flex-shrink:0;"></div>
+        <span class="emo md">📅</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">dată / sărbătoare</span>
+        <span style="font-family:var(--sans);font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">1.4%</span>
       </div>
       
       
-      <div style="display:flex;align-items:center;gap:10px;">
-        <div style="width:10px;height:10px;border-radius:1px;background:#3A3A3D;flex-shrink:0;"></div>
-        <span style="font-family:var(--sans);font-size:13px;flex:1;">religios</span>
-        <span style="font-family:var(--sans);font-size:13px;font-weight:600;">0.6%</span>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="width:10px;height:10px;border-radius:2px;background:#7A4A33;flex-shrink:0;"></div>
+        <span class="emo md">⛪</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">religios</span>
+        <span style="font-family:var(--sans);font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em;">0.6%</span>
       </div>
       
     </div>
@@ -352,104 +893,111 @@ body {
 
 
 
-<div class="panel">
+
+<div class="panel s4">
   <div class="panel-header">
-    <span class="panel-label">Subtipuri · Natură</span>
+    <span class="panel-label"><span class="emo md">🌿</span> Subtipuri · Natură</span>
   </div>
   
   
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">flori</span>
-    <div class="bar-wrap" style="width:120px;height:5px;"><div class="bar" style="width:100%;background:#A0826A;opacity:.7;"></div></div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:28px;text-align:right;">8493</span>
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;">
+    <span class="emo md" style="width:14px;text-align:center;">🌸</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">flori</span>
+    <div class="bar-wrap" style="width:90px;"><div class="bar olive" style="width:100%;"></div></div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:30px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">8493</span>
   </div>
   
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">copaci</span>
-    <div class="bar-wrap" style="width:120px;height:5px;"><div class="bar" style="width:97%;background:#A0826A;opacity:.7;"></div></div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:28px;text-align:right;">8298</span>
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🌳</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">copaci</span>
+    <div class="bar-wrap" style="width:90px;"><div class="bar olive" style="width:97%;"></div></div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:30px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">8298</span>
   </div>
   
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">apă</span>
-    <div class="bar-wrap" style="width:120px;height:5px;"><div class="bar" style="width:20%;background:#A0826A;opacity:.7;"></div></div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:28px;text-align:right;">1742</span>
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">💧</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">apă</span>
+    <div class="bar-wrap" style="width:90px;"><div class="bar olive" style="width:20%;"></div></div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:30px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">1742</span>
   </div>
   
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">plante</span>
-    <div class="bar-wrap" style="width:120px;height:5px;"><div class="bar" style="width:19%;background:#A0826A;opacity:.7;"></div></div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:28px;text-align:right;">1624</span>
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🌱</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">plante</span>
+    <div class="bar-wrap" style="width:90px;"><div class="bar olive" style="width:19%;"></div></div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:30px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">1624</span>
   </div>
   
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">păsări</span>
-    <div class="bar-wrap" style="width:120px;height:5px;"><div class="bar" style="width:17%;background:#A0826A;opacity:.7;"></div></div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:28px;text-align:right;">1527</span>
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🐦</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">păsări</span>
+    <div class="bar-wrap" style="width:90px;"><div class="bar olive" style="width:17%;"></div></div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:30px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">1527</span>
   </div>
   
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">cer</span>
-    <div class="bar-wrap" style="width:120px;height:5px;"><div class="bar" style="width:14%;background:#A0826A;opacity:.7;"></div></div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:28px;text-align:right;">1237</span>
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">☁️</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">cer</span>
+    <div class="bar-wrap" style="width:90px;"><div class="bar olive" style="width:14%;"></div></div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:30px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">1237</span>
   </div>
   
 </div>
 
 
 
-<div class="panel">
+<div class="panel s4">
   <div class="panel-header">
-    <span class="panel-label">Tokeni ideologici</span>
+    <span class="panel-label"><span class="emo md">🚩</span> Tokeni ideologici</span>
   </div>
-  <div style="display:flex;flex-wrap:wrap;gap:8px;">
+  <div style="display:flex;flex-wrap:wrap;gap:6px;">
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      libertate <span style="color:var(--muted);font-size:10px;margin-left:4px;">346</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      libertate <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">346</span>
     </span>
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      unire <span style="color:var(--muted);font-size:10px;margin-left:4px;">326</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      unire <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">326</span>
     </span>
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      tinerețe <span style="color:var(--muted);font-size:10px;margin-left:4px;">321</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      tinerețe <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">321</span>
     </span>
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      victorie <span style="color:var(--muted);font-size:10px;margin-left:4px;">280</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      victorie <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">280</span>
     </span>
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      pace <span style="color:var(--muted);font-size:10px;margin-left:4px;">240</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      pace <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">240</span>
     </span>
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      independență <span style="color:var(--muted);font-size:10px;margin-left:4px;">207</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      independență <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">207</span>
     </span>
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      republică <span style="color:var(--muted);font-size:10px;margin-left:4px;">159</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      republică <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">159</span>
     </span>
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      zi națională <span style="color:var(--muted);font-size:10px;margin-left:4px;">153</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      zi națională <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">153</span>
     </span>
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      muncă <span style="color:var(--muted);font-size:10px;margin-left:4px;">144</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      muncă <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">144</span>
     </span>
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      progres <span style="color:var(--muted);font-size:10px;margin-left:4px;">120</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      progres <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">120</span>
     </span>
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      frăție <span style="color:var(--muted);font-size:10px;margin-left:4px;">104</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      frăție <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">104</span>
     </span>
     
-    <span style="font-family:var(--sans);font-size:12px;padding:4px 11px;border:1px solid var(--accent);border-radius:3px;color:#B8432F;background:#FDF4F2;">
-      revoluție <span style="color:var(--muted);font-size:10px;margin-left:4px;">79</span>
+    <span style="font-family:var(--sans);font-size:11.5px;font-weight:600;padding:3px 9px;border:1.5px solid var(--accent);border-radius:2px;color:var(--accent-dark);background:#FFF1ED;">
+      revoluție <span style="color:var(--muted);font-size:10px;margin-left:3px;font-variant-numeric:tabular-nums;font-weight:500;">79</span>
     </span>
     
     
@@ -457,45 +1005,194 @@ body {
 </div>
 
 
-<div class="panel" id="pe-cine-onoram">
+<div class="panel s4" id="pe-cine-onoram">
   <div class="panel-header">
-    <span class="panel-label">Ecart de gen</span>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);">327 persoane clasificate</span>
+    <span class="panel-label"><span class="emo md">⚥</span> Ecart de gen</span>
+    <span class="panel-meta">327 pers.</span>
   </div>
-  <div style="display:flex;gap:28px;align-items:start;">
+  <div style="display:flex;gap:16px;align-items:start;">
     <div>
-      <div style="font-family:var(--sans);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Fiecare pătrat = 1 persoană</div>
-      <div id="s3-gap-grid" style="display:grid;grid-template-columns:repeat(10,16px);gap:3px;width:196px;"></div>
-      <div style="display:flex;gap:14px;margin-top:10px;font-family:var(--sans);font-size:11px;">
-        <div style="display:flex;align-items:center;gap:6px;">
-          <div style="width:10px;height:10px;border-radius:1px;background:var(--ink)"></div><span style="color:var(--muted)">Bărbat</span>
+      <div style="font-family:var(--sans);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Fiecare pătrat = 1 persoană</div>
+      <div id="s3-gap-grid" style="display:grid;grid-template-columns:repeat(10,11px);gap:2px;width:130px;"></div>
+      <div style="display:flex;gap:10px;margin-top:8px;font-family:var(--sans);font-size:10px;">
+        <div style="display:flex;align-items:center;gap:5px;">
+          <div style="width:8px;height:8px;border-radius:1px;background:var(--ink)"></div><span style="color:var(--muted)">Bărbat</span>
         </div>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <div style="width:10px;height:10px;border-radius:1px;background:var(--accent)"></div><span style="color:var(--muted)">Femeie</span>
+        <div style="display:flex;align-items:center;gap:5px;">
+          <div style="width:8px;height:8px;border-radius:1px;background:var(--accent)"></div><span style="color:var(--muted)">Femeie</span>
         </div>
       </div>
     </div>
     <div>
-      <div style="font-family:var(--serif);font-weight:500;font-size:48px;line-height:1;letter-spacing:-.02em;margin-bottom:4px;">
-        312<span style="font-size:26px;color:var(--muted);">/327</span>
+      <div class="display-num" style="font-size:36px;margin-bottom:2px;">
+        312<span style="font-size:20px;color:var(--muted);font-weight:500;">/327</span>
       </div>
-      <div style="font-family:var(--sans);font-size:12px;color:var(--muted);">bărbați din total</div>
+      <div style="font-family:var(--sans);font-size:10.5px;color:var(--muted);">bărbați din total</div>
     </div>
   </div>
 </div>
 
 
-<div class="panel wide">
+
+
+<div class="panel s4">
   <div class="panel-header">
-    <span class="panel-label">Top persoane onorate · număr de străzi</span>
+    <span class="panel-label"><span class="emo md">🎓</span> Profesia persoanei onorate</span>
   </div>
-  <div class="rank-list" id="s3-tower">
+  
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;">
+    <span class="emo md" style="width:14px;text-align:center;">✍️</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">scriitor</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:100%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">61</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🪶</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">poet</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:54%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">33</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🏛️</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">politician</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:44%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">27</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🗡️</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">voievod</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:34%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">21</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">✊</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">revoluționar</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:29%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">18</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🎖️</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">militar</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:19%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">12</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">👑</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">rege / regină</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:16%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">10</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🔬</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">om de știință</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:14%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">9</span>
+  </div>
+  
+</div>
+
+
+
+
+<div class="panel s4">
+  <div class="panel-header">
+    <span class="panel-label"><span class="emo md">⏳</span> Epoca în care a trăit</span>
+  </div>
+  
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;">
+    <span class="emo md" style="width:14px;text-align:center;">🕯️</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">premodern (1700–1900)</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:100%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">121</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🎩</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">interbelic (1900–1947)</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:74%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">90</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🏰</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">medieval</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:47%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">57</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">⭐</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">comunism (1947–1989)</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:23%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">29</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🗽</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">generația de la 1848</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:23%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">28</span>
+  </div>
+  
+  <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-top:1px solid var(--hairline);">
+    <span class="emo md" style="width:14px;text-align:center;">🏺</span>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:500;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">antichitate</span>
+    <div class="bar-wrap" style="width:90px;">
+      <div class="bar" style="width:4%"></div>
+    </div>
+    <span style="font-family:var(--sans);font-size:12px;font-weight:700;color:var(--ink);width:26px;text-align:right;font-variant-numeric:tabular-nums;letter-spacing:-.005em;">5</span>
+  </div>
+  
+</div>
+
+
+<div class="panel s12">
+  <div class="panel-header">
+    <span class="panel-label"><span class="emo md">👥</span> Top persoane onorate · număr de străzi</span>
+    <span class="panel-meta">20 pers. · <span style="color:var(--accent);font-weight:700;">●</span> feminin</span>
+  </div>
+  <div class="rank-list rank-2col s3-tower">
     
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">ME</span>
         Mihai Eminescu
-        
       </span>
       <div class="bar-wrap">
         <div class="bar accent"
@@ -504,10 +1201,10 @@ body {
       <span class="rank-count">297</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">TV</span>
         Tudor Vladimirescu
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -516,10 +1213,10 @@ body {
       <span class="rank-count">292</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">IC</span>
         Ion Creangă
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -528,10 +1225,10 @@ body {
       <span class="rank-count">287</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">NB</span>
         Nicolae Bălcescu
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -540,10 +1237,10 @@ body {
       <span class="rank-count">272</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">GC</span>
         George Coșbuc
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -552,10 +1249,10 @@ body {
       <span class="rank-count">259</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">AI</span>
         Avram Iancu
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -564,10 +1261,10 @@ body {
       <span class="rank-count">249</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">ȘM</span>
         Ștefan cel Mare
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -576,10 +1273,10 @@ body {
       <span class="rank-count">247</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">VA</span>
         Vasile Alecsandri
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -588,10 +1285,10 @@ body {
       <span class="rank-count">223</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">D</span>
         Decebal
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -600,10 +1297,10 @@ body {
       <span class="rank-count">203</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">C</span>
         Crișan
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -612,10 +1309,10 @@ body {
       <span class="rank-count">176</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">ÎT</span>
         Împăratul Traian
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -624,10 +1321,10 @@ body {
       <span class="rank-count">173</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">AV</span>
         Aurel Vlaicu
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -636,10 +1333,10 @@ body {
       <span class="rank-count">173</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">MV</span>
         Mihai Viteazul
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -648,10 +1345,10 @@ body {
       <span class="rank-count">169</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">MK</span>
         Mihail Kogălniceanu
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -660,10 +1357,10 @@ body {
       <span class="rank-count">167</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">GD</span>
         Gheorghe Doja
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -672,10 +1369,10 @@ body {
       <span class="rank-count">161</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">C</span>
         Cloșca
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -684,10 +1381,10 @@ body {
       <span class="rank-count">161</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">NI</span>
         Nicolae Iorga
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -696,10 +1393,10 @@ body {
       <span class="rank-count">158</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">MS</span>
         Mihail Sadoveanu
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -708,10 +1405,10 @@ body {
       <span class="rank-count">152</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">GE</span>
         George Enescu
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -720,10 +1417,10 @@ body {
       <span class="rank-count">148</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 54px;">
-      <span class="rank-name">
+    <div class="rank-row">
+      <span class="rank-name person">
+        <span class="portrait" aria-hidden="true">AC</span>
         Alexandru Ioan Cuza
-        
       </span>
       <div class="bar-wrap">
         <div class="bar"
@@ -736,180 +1433,51 @@ body {
 </div>
 
 
-
-<div class="panel">
+<div class="panel s6" id="recunoastere">
   <div class="panel-header">
-    <span class="panel-label">Profesia persoanei onorate</span>
+    <span class="panel-label"><span class="emo md">🌍</span> Recunoaștere globală · Wikidata</span>
+    <span class="panel-meta"> persoane</span>
   </div>
-  
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">scriitor</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:100%"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule-strong);border:1px solid var(--rule-strong);">
+    <div style="background:var(--ink-band);color:#FFFFFF;padding:14px 14px;position:relative;">
+      <div style="position:absolute;top:10px;right:12px;font-size:18px;line-height:1;opacity:.85;">🌍</div>
+      <div style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:8px;">Universal</div>
+      <div class="display-num" style="font-size:38px;margin-bottom:4px;">19</div>
+      <div style="font-family:var(--sans);font-size:10.5px;color:rgba(255,255,255,.65);font-weight:500;">≥ 50 limbi Wikipedia</div>
     </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">61</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">poet</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:54%"></div>
+    <div style="background:var(--surface-1);padding:14px 14px;position:relative;">
+      <div style="position:absolute;top:10px;right:12px;font-size:18px;line-height:1;">🇷🇴</div>
+      <div style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ink);margin-bottom:8px;">Național</div>
+      <div class="display-num" style="font-size:38px;margin-bottom:4px;">168</div>
+      <div style="font-family:var(--sans);font-size:10.5px;color:var(--muted);font-weight:500;">5–49 limbi</div>
     </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">33</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">politician</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:44%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">27</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">voievod</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:34%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">21</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">revoluționar</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:29%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">18</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">militar</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:19%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">12</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">rege / regină</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:16%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">10</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">om de știință</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:14%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">9</span>
-  </div>
-  
-</div>
-
-
-
-<div class="panel">
-  <div class="panel-header">
-    <span class="panel-label">Epoca în care a trăit</span>
-  </div>
-  
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">premodern (1700–1900)</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:100%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">121</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">interbelic (1900–1947)</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:74%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">90</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">medieval</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:47%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">57</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">comunism (1947–1989)</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:23%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">29</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">generația de la 1848</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:23%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">28</span>
-  </div>
-  
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-    <span style="font-family:var(--sans);font-size:13px;flex:1;">antichitate</span>
-    <div class="bar-wrap" style="width:120px;height:5px;">
-      <div class="bar" style="width:4%"></div>
-    </div>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:24px;text-align:right;">5</span>
-  </div>
-  
-</div>
-
-
-<div class="panel" id="recunoastere">
-  <div class="panel-header">
-    <span class="panel-label">Recunoaștere globală · Wikidata</span>
-    <span style="font-family:var(--sans);font-size:11px;color:var(--muted);">206 persoane</span>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);">
-    <div style="background:var(--ink);color:#FAF8F3;padding:20px 16px;">
-      <div style="font-family:var(--sans);font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--accent);margin-bottom:10px;">Universal</div>
-      <div style="font-family:var(--serif);font-weight:500;font-size:40px;line-height:1;letter-spacing:-.02em;margin-bottom:4px;">19</div>
-      <div style="font-family:var(--sans);font-size:10px;color:#C9C9CB;">≥ 50 limbi Wikipedia</div>
-    </div>
-    <div style="background:var(--bg);padding:20px 16px;">
-      <div style="font-family:var(--sans);font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:10px;">Național</div>
-      <div style="font-family:var(--serif);font-weight:500;font-size:40px;line-height:1;letter-spacing:-.02em;margin-bottom:4px;">168</div>
-      <div style="font-family:var(--sans);font-size:10px;color:var(--muted);">5–49 limbi</div>
-    </div>
-    <div style="background:var(--bg);padding:20px 16px;">
-      <div style="font-family:var(--sans);font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:10px;">Local</div>
-      <div style="font-family:var(--serif);font-weight:500;font-size:40px;line-height:1;letter-spacing:-.02em;margin-bottom:4px;">19</div>
-      <div style="font-family:var(--sans);font-size:10px;color:var(--muted);">sub 5 limbi</div>
+    <div style="background:var(--bg);padding:14px 14px;position:relative;">
+      <div style="position:absolute;top:10px;right:12px;font-size:18px;line-height:1;">📍</div>
+      <div style="font-family:var(--sans);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--ink);margin-bottom:8px;">Local</div>
+      <div class="display-num" style="font-size:38px;margin-bottom:4px;">19</div>
+      <div style="font-family:var(--sans);font-size:10.5px;color:var(--muted);font-weight:500;">sub 5 limbi</div>
     </div>
   </div>
 </div>
 
 
-<div class="panel" id="renumiri">
+<div class="panel s6" id="renumiri">
   <div class="panel-header">
-    <span class="panel-label">Renumiri</span>
+    <span class="panel-label"><span class="emo md">📝</span> Renumiri</span>
   </div>
   <div class="panel-caption">Secțiune în construcție — date indisponibile.</div>
 </div>
 
 
-<div class="panel wide">
+<div class="panel s12">
   <div class="panel-header">
-    <span class="panel-label">Notorietate Wikipedia · vizualizări lunare medii · ro.wikipedia.org · 12 luni</span>
+    <span class="panel-label"><span class="emo md">📈</span> Notorietate Wikipedia · vizualizări lunare medii · ro.wikipedia.org · 12 luni</span>
   </div>
-  <div class="rank-list">
+  <div class="rank-list rank-2col s4-list">
     
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 80px 90px;">
-      <span class="rank-name">Mihai Eminescu</span>
+    <div class="rank-row">
+      <span class="rank-name person">Mihai Eminescu</span>
       <div class="bar-wrap">
         <div class="bar accent"
              style="width:100%"></div>
@@ -918,8 +1486,8 @@ body {
       <span class="tag person">universal</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 80px 90px;">
-      <span class="rank-name">Vlad Țepeș</span>
+    <div class="rank-row">
+      <span class="rank-name person">Vlad Țepeș</span>
       <div class="bar-wrap">
         <div class="bar accent"
              style="width:51%"></div>
@@ -928,8 +1496,8 @@ body {
       <span class="tag person">universal</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 80px 90px;">
-      <span class="rank-name">Mihai Viteazul</span>
+    <div class="rank-row">
+      <span class="rank-name person">Mihai Viteazul</span>
       <div class="bar-wrap">
         <div class="bar"
              style="width:37%"></div>
@@ -938,8 +1506,8 @@ body {
       <span class="tag">national</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 80px 90px;">
-      <span class="rank-name">Alexandru Ioan Cuza</span>
+    <div class="rank-row">
+      <span class="rank-name person">Alexandru Ioan Cuza</span>
       <div class="bar-wrap">
         <div class="bar accent"
              style="width:36%"></div>
@@ -948,8 +1516,8 @@ body {
       <span class="tag person">universal</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 80px 90px;">
-      <span class="rank-name">Regele Ferdinand I</span>
+    <div class="rank-row">
+      <span class="rank-name person">Regele Ferdinand I</span>
       <div class="bar-wrap">
         <div class="bar accent"
              style="width:20%"></div>
@@ -958,8 +1526,8 @@ body {
       <span class="tag person">universal</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 80px 90px;">
-      <span class="rank-name">Iancu de Hunedoara</span>
+    <div class="rank-row">
+      <span class="rank-name person">Iancu de Hunedoara</span>
       <div class="bar-wrap">
         <div class="bar"
              style="width:19%"></div>
@@ -968,8 +1536,8 @@ body {
       <span class="tag">national</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 80px 90px;">
-      <span class="rank-name">Dimitrie Cantemir</span>
+    <div class="rank-row">
+      <span class="rank-name person">Dimitrie Cantemir</span>
       <div class="bar-wrap">
         <div class="bar"
              style="width:16%"></div>
@@ -978,8 +1546,8 @@ body {
       <span class="tag">national</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 80px 90px;">
-      <span class="rank-name">Ioan Slavici</span>
+    <div class="rank-row">
+      <span class="rank-name person">Ioan Slavici</span>
       <div class="bar-wrap">
         <div class="bar"
              style="width:14%"></div>
@@ -988,8 +1556,8 @@ body {
       <span class="tag">national</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 80px 90px;">
-      <span class="rank-name">Aurel Vlaicu</span>
+    <div class="rank-row">
+      <span class="rank-name person">Aurel Vlaicu</span>
       <div class="bar-wrap">
         <div class="bar"
              style="width:13%"></div>
@@ -998,8 +1566,8 @@ body {
       <span class="tag">national</span>
     </div>
     
-    <div class="rank-row" style="grid-template-columns:200px 1fr 80px 90px;">
-      <span class="rank-name">Alexandru Lăpușneanu</span>
+    <div class="rank-row">
+      <span class="rank-name person">Alexandru Lăpușneanu</span>
       <div class="bar-wrap">
         <div class="bar"
              style="width:13%"></div>
@@ -1012,29 +1580,29 @@ body {
 </div>
 
 
-<div class="panel wide" id="harta">
+<div class="panel s12" id="harta">
   <div class="panel-header">
-    <span class="panel-label">Harta · statistici pe județ</span>
+    <span class="panel-label"><span class="emo md">🗺️</span> Harta · statistici pe județ</span>
+    <div class="chip-row" id="s6-metric-row" style="margin:0;padding:0;border:none;">
+      <span class="label">Vedeți după</span>
+      <button class="chip active" data-metric="saint_pct">% sfinți</button>
+      <button class="chip" data-metric="numeric_pct">% numere</button>
+      <button class="chip" data-metric="female_pct">% femei</button>
+    </div>
   </div>
-  <div class="chip-row" id="s6-metric-row">
-    <span class="label">Vedeți după</span>
-    <button class="chip active" data-metric="saint_pct">% sfinți</button>
-    <button class="chip" data-metric="numeric_pct">% numere</button>
-    <button class="chip" data-metric="female_pct">% femei</button>
-  </div>
-  <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:40px;" id="s6-grid">
+  <div class="map-grid" id="s6-grid">
     <div style="position:relative;">
       <svg id="s6-map" style="width:100%;height:auto;display:block;"></svg>
-      <div style="margin-top:16px;display:flex;align-items:center;gap:14px;font-family:var(--sans);font-size:11px;color:var(--muted);">
+      <div style="margin-top:10px;display:flex;align-items:center;gap:12px;font-family:var(--sans);font-size:10.5px;color:var(--muted);">
         <span id="s6-scale-min">0%</span>
-        <div style="flex:1;height:6px;background:linear-gradient(to right,#F4EFE6 0%,#E8B299 35%,#D27A5C 65%,#A53A22 100%);border-radius:1px;"></div>
-        <span id="s6-scale-max">12%</span>
-        <span style="margin-left:14px;" id="s6-scale-label">% străzi cu prefix „Sf."</span>
+        <div style="flex:1;height:5px;background:linear-gradient(to right,#F4EFE6 0%,#E8B299 35%,#D27A5C 65%,#A53A22 100%);border-radius:1px;"></div>
+        <span id="s6-scale-max" style="font-variant-numeric:tabular-nums;">12%</span>
+        <span style="margin-left:10px;" id="s6-scale-label">% străzi cu prefix „Sf."</span>
       </div>
     </div>
-    <div style="border-left:1px solid var(--rule);padding-left:24px;" id="s6-fingerprint">
-      <div class="kicker">Amprenta județului</div>
-      <p style="font-family:var(--sans);font-size:13px;color:var(--muted);padding-top:40px;">
+    <div class="fingerprint" id="s6-fingerprint">
+      <div class="kicker"><span class="emo md">🧬</span> Amprenta județului</div>
+      <p style="font-family:var(--sans);font-size:12.5px;color:var(--muted);padding-top:20px;line-height:1.55;">
         Selectați un județ pe hartă.
       </p>
     </div>
@@ -1042,208 +1610,845 @@ body {
 </div>
 
 
-<div class="panel wide" id="curiozitati">
+<div class="panel s12">
   <div class="panel-header">
-    <span class="panel-label">Curiozități</span>
+    <span class="panel-label"><span class="emo md">🧬</span> Amprente județene · trei caractere</span>
   </div>
-  <div style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;border-bottom:1px solid var(--rule);padding-bottom:20px;margin-bottom:20px;">
-    <div>
-      <div style="font-family:var(--sans);font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--accent);margin-bottom:10px;">Comuna care a renunțat la nume</div>
-      <div style="font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.12;margin:0 0 10px;">Cioranii de Jos, Prahova</div>
-      <p style="font-family:var(--sans);font-size:13px;line-height:1.6;color:var(--muted);max-width:500px;">
-        Din 218 de străzi,
-        <strong style="color:var(--ink);">218 se cheamă printr-un număr</strong>.
-        Strada 1. Strada 2. Strada 218.
-        
-      </p>
-    </div>
-    <div style="text-align:right;">
-      <span style="font-family:var(--serif);font-weight:500;font-size:64px;line-height:1;letter-spacing:-.03em;color:var(--accent);display:block;">218</span>
-      <span style="font-family:var(--serif);font-size:24px;color:var(--muted);display:block;">din 218</span>
-    </div>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);">
+  <div class="subgrid-3">
 
     
-    <div style="background:var(--bg);padding:20px 18px;">
-      <div class="panel-label" style="margin-bottom:12px;">Cea mai poetică</div>
+    <div style="background:var(--bg);padding:14px 16px;">
+      <div class="panel-label" style="margin-bottom:6px;"><span class="emo md">💎</span> Cele mai exclusiviste</div>
+      <div class="panel-caption" style="margin:0 0 8px;">Județe cu cele mai multe nume găsite doar acolo · ≥3 străzi local</div>
       
-      <div style="font-family:var(--serif);font-size:18px;line-height:1.3;margin-bottom:10px;">
-        Florin Popescu - Campion Olimpic Sydnei 2000
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">1</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">SV</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:100%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:30px;text-align:right;font-variant-numeric:tabular-nums;">13</span>
       </div>
       
-      <div style="font-family:var(--sans);font-size:10px;color:var(--muted);margin-bottom:8px;">44 caractere</div>
-      
-      
-      <div style="font-family:var(--serif);font-size:15px;line-height:1.3;margin-bottom:10px;">
-        DN65A de la km 100+900 până la km 102+495
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">2</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">PH</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:76%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:30px;text-align:right;font-variant-numeric:tabular-nums;">10</span>
       </div>
       
-      <div style="font-family:var(--sans);font-size:10px;color:var(--muted);margin-bottom:8px;">41 caractere</div>
-      
-      
-      <div style="font-family:var(--serif);font-size:14px;line-height:1.3;margin-bottom:10px;">
-        Bisericii Sf.Împărați Constantin și Elena
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">3</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">TM</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:61%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:30px;text-align:right;font-variant-numeric:tabular-nums;">8</span>
       </div>
       
-      <div style="font-family:var(--sans);font-size:10px;color:var(--muted);margin-bottom:8px;">41 caractere</div>
-      
-      
-      <div style="font-family:var(--serif);font-size:13px;line-height:1.3;margin-bottom:0px;">
-        Sergent major erou Victor Constantinescu
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">4</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">OT</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:38%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:30px;text-align:right;font-variant-numeric:tabular-nums;">5</span>
       </div>
       
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">5</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">SB</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:30%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:30px;text-align:right;font-variant-numeric:tabular-nums;">4</span>
+      </div>
       
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">6</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">VL</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:23%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:30px;text-align:right;font-variant-numeric:tabular-nums;">3</span>
+      </div>
       
-    </div>
-
-    
-    <div style="background:var(--bg);padding:20px 18px;">
-      <div class="panel-label" style="margin-bottom:12px;">Concursul animalelor</div>
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">7</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">IS</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:23%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:30px;text-align:right;font-variant-numeric:tabular-nums;">3</span>
+      </div>
       
-        
-        
-        <div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--wash);">
-          <span style="font-family:var(--sans);font-size:10px;color:var(--muted);width:16px;text-align:right;">1</span>
-          <span style="font-family:var(--sans);font-size:13px;flex:1;">cerbului</span>
-          <div class="bar-wrap" style="width:60px;height:4px;"><div class="bar" style="width:100%;"></div></div>
-          <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:22px;text-align:right;">113</span>
-        </div>
-        
-        <div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--wash);">
-          <span style="font-family:var(--sans);font-size:10px;color:var(--muted);width:16px;text-align:right;">2</span>
-          <span style="font-family:var(--sans);font-size:13px;flex:1;">caprioarei</span>
-          <div class="bar-wrap" style="width:60px;height:4px;"><div class="bar" style="width:91%;"></div></div>
-          <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:22px;text-align:right;">103</span>
-        </div>
-        
-        <div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--wash);">
-          <span style="font-family:var(--sans);font-size:10px;color:var(--muted);width:16px;text-align:right;">3</span>
-          <span style="font-family:var(--sans);font-size:13px;flex:1;">zimbrului</span>
-          <div class="bar-wrap" style="width:60px;height:4px;"><div class="bar" style="width:61%;"></div></div>
-          <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:22px;text-align:right;">70</span>
-        </div>
-        
-        <div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--wash);">
-          <span style="font-family:var(--sans);font-size:10px;color:var(--muted);width:16px;text-align:right;">4</span>
-          <span style="font-family:var(--sans);font-size:13px;flex:1;">albinelor</span>
-          <div class="bar-wrap" style="width:60px;height:4px;"><div class="bar" style="width:61%;"></div></div>
-          <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:22px;text-align:right;">70</span>
-        </div>
-        
-        <div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--wash);">
-          <span style="font-family:var(--sans);font-size:10px;color:var(--muted);width:16px;text-align:right;">5</span>
-          <span style="font-family:var(--sans);font-size:13px;flex:1;">albinei</span>
-          <div class="bar-wrap" style="width:60px;height:4px;"><div class="bar" style="width:41%;"></div></div>
-          <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:22px;text-align:right;">47</span>
-        </div>
-        
-        <div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--wash);">
-          <span style="font-family:var(--sans);font-size:10px;color:var(--muted);width:16px;text-align:right;">6</span>
-          <span style="font-family:var(--sans);font-size:13px;flex:1;">ursului</span>
-          <div class="bar-wrap" style="width:60px;height:4px;"><div class="bar" style="width:28%;"></div></div>
-          <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:22px;text-align:right;">32</span>
-        </div>
-        
-        <div style="display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:none;">
-          <span style="font-family:var(--sans);font-size:10px;color:var(--muted);width:16px;text-align:right;">7</span>
-          <span style="font-family:var(--sans);font-size:13px;flex:1;">stupilor</span>
-          <div class="bar-wrap" style="width:60px;height:4px;"><div class="bar" style="width:25%;"></div></div>
-          <span style="font-family:var(--sans);font-size:11px;color:var(--muted);width:22px;text-align:right;">29</span>
-        </div>
-        
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:none;">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">8</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">GJ</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:23%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:30px;text-align:right;font-variant-numeric:tabular-nums;">3</span>
+      </div>
       
     </div>
 
     
-    <div style="background:var(--bg);padding:20px 18px;">
-      <div class="panel-label" style="margin-bottom:12px;">Onorat doar aici</div>
+    <div style="background:var(--bg);padding:14px 16px;">
+      <div class="panel-label" style="margin-bottom:6px;"><span class="emo md">🌾</span> Cele mai «rurale-poetice»</div>
+      <div class="panel-caption" style="margin:0 0 8px;">Cota de străzi cu nume din natură (flori, copaci, ape, animale…)</div>
       
-      <div style="padding:8px 0;border-bottom:1px solid var(--wash);">
-        <div style="font-family:var(--sans);font-size:13px;margin-bottom:2px;">
-          <span style="display:inline-block;width:5px;height:5px;background:var(--accent);border-radius:50%;margin-right:5px;vertical-align:middle;"></span>
-          C.I. Parhon
-        </div>
-        
-        <div style="font-family:var(--sans);font-size:10.5px;color:var(--muted);">scientist</div>
-        
-        <div style="font-family:var(--sans);font-size:10px;color:var(--muted);margin-top:2px;">PĂULEŞTI · PH</div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">1</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">OT</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar" style="width:100%;background:#8BA888;opacity:.75;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">38.9%</span>
       </div>
       
-      <div style="padding:8px 0;border-bottom:none;">
-        <div style="font-family:var(--sans);font-size:13px;margin-bottom:2px;">
-          <span style="display:inline-block;width:5px;height:5px;background:var(--accent);border-radius:50%;margin-right:5px;vertical-align:middle;"></span>
-          N.D. Paulescu
-        </div>
-        
-        <div style="font-family:var(--sans);font-size:10.5px;color:var(--muted);">scientist</div>
-        
-        <div style="font-family:var(--sans);font-size:10px;color:var(--muted);margin-top:2px;">PĂULEŞTI · PH</div>
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">2</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">GJ</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar" style="width:99%;background:#8BA888;opacity:.75;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">38.7%</span>
       </div>
       
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">3</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">IF</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar" style="width:98%;background:#8BA888;opacity:.75;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">38.2%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">4</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">GR</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar" style="width:97%;background:#8BA888;opacity:.75;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">38.1%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">5</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">CL</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar" style="width:95%;background:#8BA888;opacity:.75;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">37.2%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">6</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">NT</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar" style="width:94%;background:#8BA888;opacity:.75;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">36.8%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">7</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">BN</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar" style="width:94%;background:#8BA888;opacity:.75;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">36.7%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:none;">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">8</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">IL</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar" style="width:93%;background:#8BA888;opacity:.75;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">36.4%</span>
+      </div>
+      
+    </div>
+
+    
+    <div style="background:var(--bg);padding:14px 16px;">
+      <div class="panel-label" style="margin-bottom:6px;"><span class="emo md">🚩</span> Cele mai «ideologice»</div>
+      <div class="panel-caption" style="margin:0 0 8px;">Cota de străzi cu nume ideologic (libertate, victorie, unire…)</div>
+      
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">1</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">HD</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:100%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">6.1%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">2</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">BZ</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:95%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">5.8%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">3</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">VN</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:88%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">5.4%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">4</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">CS</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:78%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">4.8%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">5</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">TL</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:77%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">4.7%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">6</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">TR</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:73%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">4.5%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:1px solid var(--wash);">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">7</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">MS</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:67%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">4.1%</span>
+      </div>
+      
+      <div style="display:flex;align-items:center;gap:8px;padding:3px 0;border-bottom:none;">
+        <span style="font-family:var(--sans);font-size:9.5px;color:var(--muted);width:14px;text-align:right;font-variant-numeric:tabular-nums;">8</span>
+        <span style="font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.04em;width:30px;">MH</span>
+        <div class="bar-wrap" style="flex:1;"><div class="bar accent" style="width:67%;"></div></div>
+        <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);width:46px;text-align:right;font-variant-numeric:tabular-nums;">4.1%</span>
+      </div>
       
     </div>
 
   </div>
 </div>
 
+
+<div class="panel s6">
+  <div class="panel-header">
+    <span class="panel-label"><span class="emo md">📜</span> Semnături regionale · ≥80% concentrare într-un județ</span>
+    <span class="panel-meta">18 nume</span>
+  </div>
+  <div class="rank-list">
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Tolocii</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">SV</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">8/8 · 100.0%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Meduzei</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">CT</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">7/8 · 87.5%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Bisericii Ortodoxe</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">CJ</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">7/7 · 100.0%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Bisericii Romane</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">BV</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">7/7 · 100.0%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Brumărelelor</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">PH</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">7/7 · 100.0%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Șoseaua de Centură</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">IF</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">6/7 · 85.7%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Humorului</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">SV</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">6/6 · 100.0%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Căzăniei</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">DJ</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">5/6 · 83.3%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Eudoxiu Hurmuzachi</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">SV</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">5/6 · 83.3%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Gerului</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">GL</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">5/6 · 83.3%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Marii</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">CT</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">5/6 · 83.3%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Piatra Arsă</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">PH</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">5/6 · 83.3%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Ștefan Cicio Pop</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">AR</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">5/6 · 83.3%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">28 Noiembrie</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">SV</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">5/5 · 100.0%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Fortului</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">IF</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">5/5 · 100.0%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Hărmanului</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">BV</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">5/5 · 100.0%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Ioan Suciu</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">AR</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">5/5 · 100.0%</span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) 30px 70px; gap: 10px;">
+      <span class="rank-name">Suru</span>
+      <span style="font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.04em;color:var(--ink);text-align:right;">SB</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums;">5/5 · 100.0%</span>
+    </div>
+    
+  </div>
+</div>
+
+<div class="panel s6" id="curiozitati">
+  <div class="panel-header">
+    <span class="panel-label"><span class="emo md">🔎</span> Curiozități unice naționale · doar într-un singur UAT</span>
+    <span class="panel-meta">selecție · geografice</span>
+  </div>
+  <div class="rank-list">
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Bradului Argintiu</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Căpâlniţa · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">HR</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Cetatea Arcina</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Polovragi · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">GJ</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Cheile Doftanei</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Brebu · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">PH</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Coasta Beniei</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Starchiojd · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">PH</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Crucea Mare</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Oraş Ardud · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">SM</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Câmpul Aeroport</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Municipiul Cluj-Napoca · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">CJ</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Dealul Aluniș</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Oraş Berbeşti · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">VL</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Dosul Bălții</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Municipiul Craiova · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">DJ</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Fântâna Adam</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Micleşti · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">VS</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Gura Arieșului</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Bucureşti Sectorul 3 · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">B</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Izvorul Arpad</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Oraş Covasna · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">CV</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Lacul Amara</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Bucureşti Sectorul 2 · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">B</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Lunca Bahlueț</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Oraş Târgu Frumos · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">IS</strong></span>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: minmax(0, 1fr) auto; gap: 10px;">
+      <span class="rank-name">Moara Aurel</span>
+      <span style="font-family:var(--sans);font-size:10.5px;color:var(--muted);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:180px;">Raciu · <strong style="color:var(--ink);font-weight:600;letter-spacing:.04em;">DB</strong></span>
+    </div>
+    
+  </div>
 </div>
 
 
-<footer style="background:var(--ink);color:#FAF8F3;padding:36px 80px;">
-  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;">
+
+
+
+<div class="panel s12">
+  <div class="panel-header">
+    <span class="panel-label"><span class="emo md">🏟️</span> Conteste tematice · top 7 din fiecare familie</span>
+  </div>
+  <div class="subgrid-3">
+    
+    
+    <div style="background:var(--bg);padding:14px 16px;">
+      <div class="panel-label" style="margin-bottom:8px;"><span class="emo md">🌸</span> Flori</div>
+      
+        
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">1</span>
+          <span class="street-tag small">Florilor</span>
+          <div class="bar-wrap"><div class="bar" style="width:100%;"></div></div>
+          <span class="rank-count-mini">519</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">2</span>
+          <span class="street-tag small">Trandafirilor</span>
+          <div class="bar-wrap"><div class="bar" style="width:94%;"></div></div>
+          <span class="rank-count-mini">493</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">3</span>
+          <span class="street-tag small">Liliacului</span>
+          <div class="bar-wrap"><div class="bar" style="width:88%;"></div></div>
+          <span class="rank-count-mini">457</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">4</span>
+          <span class="street-tag small">Lalelelor</span>
+          <div class="bar-wrap"><div class="bar" style="width:71%;"></div></div>
+          <span class="rank-count-mini">372</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">5</span>
+          <span class="street-tag small">Crinului</span>
+          <div class="bar-wrap"><div class="bar" style="width:70%;"></div></div>
+          <span class="rank-count-mini">364</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">6</span>
+          <span class="street-tag small">Rozelor</span>
+          <div class="bar-wrap"><div class="bar" style="width:60%;"></div></div>
+          <span class="rank-count-mini">312</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">7</span>
+          <span class="street-tag small">Narciselor</span>
+          <div class="bar-wrap"><div class="bar" style="width:56%;"></div></div>
+          <span class="rank-count-mini">295</span>
+        </div>
+        
+      
+    </div>
+    
+    
+    <div style="background:var(--bg);padding:14px 16px;">
+      <div class="panel-label" style="margin-bottom:8px;"><span class="emo md">🌳</span> Copaci</div>
+      
+        
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">1</span>
+          <span class="street-tag small">Salcâmilor</span>
+          <div class="bar-wrap"><div class="bar" style="width:100%;"></div></div>
+          <span class="rank-count-mini">379</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">2</span>
+          <span class="street-tag small">Teilor</span>
+          <div class="bar-wrap"><div class="bar" style="width:86%;"></div></div>
+          <span class="rank-count-mini">328</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">3</span>
+          <span class="street-tag small">Stejarului</span>
+          <div class="bar-wrap"><div class="bar" style="width:84%;"></div></div>
+          <span class="rank-count-mini">319</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">4</span>
+          <span class="street-tag small">Plopilor</span>
+          <div class="bar-wrap"><div class="bar" style="width:83%;"></div></div>
+          <span class="rank-count-mini">315</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">5</span>
+          <span class="street-tag small">Teiului</span>
+          <div class="bar-wrap"><div class="bar" style="width:75%;"></div></div>
+          <span class="rank-count-mini">288</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">6</span>
+          <span class="street-tag small">Bradului</span>
+          <div class="bar-wrap"><div class="bar" style="width:72%;"></div></div>
+          <span class="rank-count-mini">276</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">7</span>
+          <span class="street-tag small">Salcâmului</span>
+          <div class="bar-wrap"><div class="bar" style="width:67%;"></div></div>
+          <span class="rank-count-mini">256</span>
+        </div>
+        
+      
+    </div>
+    
+    
+    <div style="background:var(--bg);padding:14px 16px;">
+      <div class="panel-label" style="margin-bottom:8px;"><span class="emo md">🐦</span> Păsări</div>
+      
+        
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">1</span>
+          <span class="street-tag small">Ciocârliei</span>
+          <div class="bar-wrap"><div class="bar" style="width:100%;"></div></div>
+          <span class="rank-count-mini">178</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">2</span>
+          <span class="street-tag small">Berzei</span>
+          <div class="bar-wrap"><div class="bar" style="width:68%;"></div></div>
+          <span class="rank-count-mini">122</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">3</span>
+          <span class="street-tag small">Privighetorii</span>
+          <div class="bar-wrap"><div class="bar" style="width:52%;"></div></div>
+          <span class="rank-count-mini">93</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">4</span>
+          <span class="street-tag small">Rândunelelor</span>
+          <div class="bar-wrap"><div class="bar" style="width:44%;"></div></div>
+          <span class="rank-count-mini">79</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">5</span>
+          <span class="street-tag small">Mierlei</span>
+          <div class="bar-wrap"><div class="bar" style="width:43%;"></div></div>
+          <span class="rank-count-mini">78</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">6</span>
+          <span class="street-tag small">Cucului</span>
+          <div class="bar-wrap"><div class="bar" style="width:43%;"></div></div>
+          <span class="rank-count-mini">77</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">7</span>
+          <span class="street-tag small">Șoimului</span>
+          <div class="bar-wrap"><div class="bar" style="width:42%;"></div></div>
+          <span class="rank-count-mini">75</span>
+        </div>
+        
+      
+    </div>
+    
+    
+    <div style="background:var(--bg);padding:14px 16px;">
+      <div class="panel-label" style="margin-bottom:8px;"><span class="emo md">🦌</span> Animale</div>
+      
+        
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">1</span>
+          <span class="street-tag small">Cerbului</span>
+          <div class="bar-wrap"><div class="bar" style="width:100%;"></div></div>
+          <span class="rank-count-mini">113</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">2</span>
+          <span class="street-tag small">Căprioarei</span>
+          <div class="bar-wrap"><div class="bar" style="width:91%;"></div></div>
+          <span class="rank-count-mini">103</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">3</span>
+          <span class="street-tag small">Zimbrului</span>
+          <div class="bar-wrap"><div class="bar" style="width:61%;"></div></div>
+          <span class="rank-count-mini">70</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">4</span>
+          <span class="street-tag small">Albinelor</span>
+          <div class="bar-wrap"><div class="bar" style="width:61%;"></div></div>
+          <span class="rank-count-mini">70</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">5</span>
+          <span class="street-tag small">Albinei</span>
+          <div class="bar-wrap"><div class="bar" style="width:41%;"></div></div>
+          <span class="rank-count-mini">47</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">6</span>
+          <span class="street-tag small">Ursului</span>
+          <div class="bar-wrap"><div class="bar" style="width:28%;"></div></div>
+          <span class="rank-count-mini">32</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">7</span>
+          <span class="street-tag small">Stupilor</span>
+          <div class="bar-wrap"><div class="bar" style="width:25%;"></div></div>
+          <span class="rank-count-mini">29</span>
+        </div>
+        
+      
+    </div>
+    
+    
+    <div style="background:var(--bg);padding:14px 16px;">
+      <div class="panel-label" style="margin-bottom:8px;"><span class="emo md">☀️</span> Cer · lumină</div>
+      
+        
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">1</span>
+          <span class="street-tag small">Zorilor</span>
+          <div class="bar-wrap"><div class="bar" style="width:100%;"></div></div>
+          <span class="rank-count-mini">386</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">2</span>
+          <span class="street-tag small">Răsăritului</span>
+          <div class="bar-wrap"><div class="bar" style="width:47%;"></div></div>
+          <span class="rank-count-mini">184</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">3</span>
+          <span class="street-tag small">Amurgului</span>
+          <div class="bar-wrap"><div class="bar" style="width:33%;"></div></div>
+          <span class="rank-count-mini">128</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">4</span>
+          <span class="street-tag small">Apusului</span>
+          <div class="bar-wrap"><div class="bar" style="width:30%;"></div></div>
+          <span class="rank-count-mini">117</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">5</span>
+          <span class="street-tag small">Luceafărului</span>
+          <div class="bar-wrap"><div class="bar" style="width:29%;"></div></div>
+          <span class="rank-count-mini">115</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">6</span>
+          <span class="street-tag small">Aurora</span>
+          <div class="bar-wrap"><div class="bar" style="width:9%;"></div></div>
+          <span class="rank-count-mini">35</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">7</span>
+          <span class="street-tag small">Lunii</span>
+          <div class="bar-wrap"><div class="bar" style="width:7%;"></div></div>
+          <span class="rank-count-mini">29</span>
+        </div>
+        
+      
+    </div>
+    
+    
+    <div style="background:var(--bg);padding:14px 16px;">
+      <div class="panel-label" style="margin-bottom:8px;"><span class="emo md">🔨</span> Meserii</div>
+      
+        
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">1</span>
+          <span class="street-tag small">morii</span>
+          <div class="bar-wrap"><div class="bar" style="width:100%;"></div></div>
+          <span class="rank-count-mini">485</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">2</span>
+          <span class="street-tag small">targului</span>
+          <div class="bar-wrap"><div class="bar" style="width:26%;"></div></div>
+          <span class="rank-count-mini">130</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">3</span>
+          <span class="street-tag small">fermei</span>
+          <div class="bar-wrap"><div class="bar" style="width:19%;"></div></div>
+          <span class="rank-count-mini">96</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">4</span>
+          <span class="street-tag small">fabricii</span>
+          <div class="bar-wrap"><div class="bar" style="width:18%;"></div></div>
+          <span class="rank-count-mini">89</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">5</span>
+          <span class="street-tag small">pescarilor</span>
+          <div class="bar-wrap"><div class="bar" style="width:18%;"></div></div>
+          <span class="rank-count-mini">88</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">6</span>
+          <span class="street-tag small">vanatorilor</span>
+          <div class="bar-wrap"><div class="bar" style="width:17%;"></div></div>
+          <span class="rank-count-mini">85</span>
+        </div>
+        
+        <div class="contest-row">
+          <span class="rank-num-mini">7</span>
+          <span class="street-tag small">uzinei</span>
+          <div class="bar-wrap"><div class="bar" style="width:15%;"></div></div>
+          <span class="rank-count-mini">75</span>
+        </div>
+        
+      
+    </div>
+    
+  </div>
+</div>
+
+
+</div>
+
+
+<footer class="site-footer" style="background:var(--ink-band);color:#FFFFFF;padding:24px 28px;">
+  <div style="max-width:1640px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:36px;">
     <div>
-      <div style="font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--accent);margin-bottom:12px;">Despre date</div>
-      <p style="font-family:var(--sans);font-size:13px;line-height:1.6;color:#C9C9CB;">
+      <div style="font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:8px;display:inline-flex;align-items:center;gap:7px;"><span class="emo md">📄</span> Despre date</div>
+      <p style="font-family:var(--sans);font-size:12.5px;line-height:1.6;color:rgba(255,255,255,.72);">
         Registrul Secțiilor de Vot, Autoritatea Electorală Permanentă, 14.05.2025.
         Descriere adrese cu alegători înregistrați.
       </p>
     </div>
     <div>
-      <a href="metodologie.html" style="font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--accent);margin-bottom:12px;text-decoration:none;display:block;">Metodologie</a>
-      <p style="font-family:var(--sans);font-size:13px;line-height:1.6;color:#C9C9CB;">
+      <a href="metodologie.html" style="text-decoration:none;color:inherit;display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:8px;"><span class="emo md">⚗️</span> Metodologie</a>
+      <p style="font-family:var(--sans);font-size:12.5px;line-height:1.6;color:rgba(255,255,255,.72);">
         Clasificare: curation manual + LLM batch (Claude Haiku + Gemini).
         Recunoaștere: Wikidata + Wikipedia pageviews.
         Harta: GeoJSON județe, surse publice.
-        <a href="metodologie.html" style="color:#E8AE00;text-decoration:underline;text-underline-offset:2px;">Citește metodologia completă →</a>
+        <a href="metodologie.html" style="color:#F7D777;text-decoration:underline;text-underline-offset:2px;">Citește metodologia completă →</a>
       </p>
     </div>
     <div>
-      <div style="font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--accent);margin-bottom:12px;">Cod sursă</div>
-      <p style="font-family:var(--sans);font-size:13px;line-height:1.6;color:#C9C9CB;">
+      <div style="font-family:var(--sans);font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:8px;display:inline-flex;align-items:center;gap:7px;"><span class="emo md">⌨️</span> Cod sursă</div>
+      <p style="font-family:var(--sans);font-size:12.5px;line-height:1.6;color:rgba(255,255,255,.72);">
         Proiect personal · pax@mioritics.ro
       </p>
     </div>
   </div>
-  <div style="max-width:1200px;margin:28px auto 0;border-top:1px solid #2A2C30;padding-top:16px;font-family:var(--sans);font-size:11px;color:var(--muted);">
-    Cum ne numim străzile · 105104 adrese · ultima actualizare 14.05.2025
+  <div style="max-width:1640px;margin:18px auto 0;border-top:1px solid rgba(255,255,255,.10);padding-top:12px;font-family:var(--sans);font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.04em;">
+    Cum ne numim străzile · variantă densă · 105104 adrese · ultima actualizare 14.05.2025
   </div>
 </footer>
 
 
 <script>
 (function() {
-  const names = DATA_S2.top_names;
-  const principal = names[0];  // Principală is rank 1
-  const rest = names.slice(1);
-  const maxCount = rest[0]?.street_count || 1;
+  const LIMIT = 30;
 
-  document.getElementById('s2-principal-count').textContent =
-    principal.street_count.toLocaleString('ro-RO');
+  const JUDET_NAMES = {
+    AB:'Alba', AG:'Argeș', AR:'Arad', B:'București', BC:'Bacău',
+    BH:'Bihor', BN:'Bistrița-Năsăud', BR:'Brăila', BT:'Botoșani',
+    BV:'Brașov', BZ:'Buzău', CJ:'Cluj', CL:'Călărași',
+    CS:'Caraș-Severin', CT:'Constanța', CV:'Covasna', DB:'Dâmbovița',
+    DJ:'Dolj', GJ:'Gorj', GL:'Galați', GR:'Giurgiu', HD:'Hunedoara',
+    HR:'Harghita', IF:'Ilfov', IL:'Ialomița', IS:'Iași', MH:'Mehedinți',
+    MM:'Maramureș', MS:'Mureș', NT:'Neamț', OT:'Olt', PH:'Prahova',
+    SB:'Sibiu', SJ:'Sălaj', SM:'Satu Mare', SV:'Suceava', TL:'Tulcea',
+    TM:'Timiș', TR:'Teleorman', VL:'Vâlcea', VN:'Vrancea', VS:'Vaslui',
+  };
 
-  function renderList(filtered) {
+  const CAT_RO = {
+    'persoană':'persoană','natură':'natură','religios':'religios','dată':'dată',
+    'religious':'religios','ideological':'ideologic','abstract':'abstract',
+    'institutional':'instituțional','trade':'meșteșug','occupational':'ocupațional',
+    'commemorative':'comemorativ','mythology':'mitologie','infrastructure':'infrastructură',
+    'place':'loc','category':'categorie',
+  };
+
+  const select = document.getElementById('s2-judet-select');
+  const available = Object.keys(DATA_S2.by_judet || {}).sort((a, b) => {
+    const na = JUDET_NAMES[a] || a, nb = JUDET_NAMES[b] || b;
+    return na.localeCompare(nb, 'ro');
+  });
+  available.forEach(code => {
+    const opt = document.createElement('option');
+    opt.value = code;
+    opt.textContent = (JUDET_NAMES[code] || code) + ' · ' + code;
+    select.appendChild(opt);
+  });
+
+  function renderList(rows, scopeLabel) {
     const list = document.getElementById('s2-list');
-    // Remove old rows (keep header)
-    while (list.children.length > 1) list.removeChild(list.lastChild);
+    list.innerHTML = '';
+    const trimmed = rows.slice(0, LIMIT);
+    const maxCount = trimmed[0]?.street_count || 1;
 
-    const CAT_RO = {
-      'persoană':'persoană','natură':'natură','religios':'religios','dată':'dată',
-      'religious':'religios','ideological':'ideologic','abstract':'abstract',
-      'institutional':'instituțional','trade':'meșteșug','occupational':'ocupațional',
-      'commemorative':'comemorativ','mythology':'mitologie','infrastructure':'infrastructură',
-      'place':'loc','category':'categorie',
-    };
-    filtered.slice(0, 25).forEach((row, i) => {
+    trimmed.forEach((row, i) => {
       const pct = Math.round(row.street_count / maxCount * 100);
       const isPerson = row.category === 'persoană';
       const catLabel = CAT_RO[row.category] || row.category;
@@ -1253,25 +2458,27 @@ body {
       list.insertAdjacentHTML('beforeend', `
         <div class="rank-row">
           <span class="rank-num">${i + 1}</span>
-          <span class="rank-name">${row.name_normalized}${tag}</span>
+          <span class="name-cell"><span class="rank-name">${row.name_normalized}</span>${tag}</span>
           <div class="bar-wrap"><div class="${barClass}" style="width:${pct}%"></div></div>
           <span class="rank-count">${row.street_count.toLocaleString('ro-RO')}</span>
         </div>
       `);
     });
     document.getElementById('s2-footer').textContent =
-      `Afișare 1–${Math.min(25, filtered.length)} din ${filtered.length} · Strada Principală exclusă din scară`;
+      `Afișare 1–${trimmed.length} din ${rows.length} · ${scopeLabel}`;
   }
 
-  renderList(rest);
+  function render(code) {
+    if (code === 'all') {
+      renderList(DATA_S2.top_names, 'la nivel național');
+    } else {
+      const label = (JUDET_NAMES[code] || code) + ' (' + code + ')';
+      renderList(DATA_S2.by_judet[code] || [], 'județul ' + label);
+    }
+  }
 
-  document.getElementById('s2-search').addEventListener('input', function() {
-    const q = this.value.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
-    const filtered = rest.filter(r =>
-      r.name_normalized.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').includes(q)
-    );
-    renderList(filtered);
-  });
+  select.addEventListener('change', e => render(e.target.value));
+  render('all');
 })();
 </script>
 
@@ -1280,11 +2487,10 @@ body {
 (function() {
   const total = DATA_S3.total_m + DATA_S3.total_f;
   const grid = document.getElementById('s3-gap-grid');
-  // Show 100 squares representing the ratio
   const femaleSquares = Math.max(1, Math.round(DATA_S3.total_f / total * 100));
   for (let i = 0; i < 100; i++) {
     const sq = document.createElement('div');
-    sq.style.cssText = `width:16px;height:16px;border-radius:1px;background:${
+    sq.style.cssText = `width:11px;height:11px;border-radius:1px;background:${
       i >= (100 - femaleSquares) ? 'var(--accent)' : 'var(--ink)'
     }`;
     grid.appendChild(sq);
@@ -1333,13 +2539,15 @@ body {
     btn.addEventListener('click', () => updateMetric(btn.dataset.metric));
   });
 
-  // Load GeoJSON and render map
   fetch('ro-counties.geojson')
     .then(r => r.json())
     .then(geo => {
       const svg = d3.select('#s6-map');
-      const width = svg.node().parentElement.clientWidth * 1.6 / 2.6;
-      const height = width * 0.65;
+      // The map cell is 8/12 of the panel content area minus the 24px gap.
+      // Use the actual rendered width of the SVG's containing cell.
+      const cellWidth = svg.node().parentElement.clientWidth;
+      const width = cellWidth;
+      const height = width * 0.62;
       svg.attr('viewBox', `0 0 ${width} ${height}`);
 
       const projection = d3.geoMercator().fitSize([width, height], geo);
@@ -1361,7 +2569,7 @@ body {
     })
     .catch(() => {
       document.getElementById('s6-map').insertAdjacentHTML('afterend',
-        '<p style="font-family:var(--sans);font-size:13px;color:var(--muted);padding:20px 0;">Harta indisponibilă — rulați build_site.py pentru a copia ro-counties.geojson în dist/</p>'
+        '<p style="font-family:var(--sans);font-size:12px;color:var(--muted);padding:14px 0;">Harta indisponibilă — rulați build_site.py pentru a copia ro-counties.geojson în dist/</p>'
       );
     });
 
@@ -1376,43 +2584,43 @@ body {
     const genderDot = g => g === 'F' ? '<span style="color:#C05E8A;">●</span>' : '<span style="color:#4A7FA5;">●</span>';
 
     const topRows = top.map((s, i) =>
-      `<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--rule);">
-        <span style="color:var(--ink);font-weight:${i===0?'600':'400'}">${s.n}</span>
-        <span style="color:var(--muted);font-size:11px;">${s.c}</span>
+      `<div style="display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid var(--rule);">
+        <span class="street-tag small">${s.n}</span>
+        <span style="color:var(--muted);font-size:10.5px;font-variant-numeric:tabular-nums;">${s.c}</span>
       </div>`
     ).join('');
 
     const personsRows = persons.map((p, i) =>
-      `<div style="display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid var(--rule);">
+      `<div style="display:flex;justify-content:space-between;align-items:center;padding:2px 0;border-bottom:1px solid var(--rule);">
         <span style="display:flex;align-items:center;gap:5px;">
           ${genderDot(p.g)}
-          <span style="color:var(--ink);font-weight:${i===0?'600':'400'}">${p.n}</span>
+          <span style="font-family:var(--sans);color:var(--ink);font-weight:${i===0?'600':'500'};font-size:11.5px;">${p.n}</span>
         </span>
-        <span style="color:var(--muted);font-size:11px;">${p.c} ${p.s ? scopeDot(p.s) : ''}</span>
+        <span style="color:var(--muted);font-size:10.5px;font-variant-numeric:tabular-nums;">${p.c} ${p.s ? scopeDot(p.s) : ''}</span>
       </div>`
     ).join('');
 
     const rareRows = rare.map(s =>
-      `<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--rule);">
-        <span style="color:var(--ink)">${s.n}</span>
-        <span style="color:var(--muted);font-size:11px;">${s.j === 1 ? 'unic' : s.j + ' județe'}</span>
+      `<div style="display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid var(--rule);">
+        <span class="street-tag small">${s.n}</span>
+        <span style="color:var(--muted);font-size:10.5px;">${s.j === 1 ? 'unic' : s.j + ' județe'}</span>
       </div>`
     ).join('');
 
     const fp = document.getElementById('s6-fingerprint');
     fp.innerHTML = `
-      <div class="kicker">Amprenta județului · selectat</div>
-      <div style="font-family:var(--serif);font-weight:500;font-size:22px;margin:2px 0 2px;">${feature.properties?.name || code}</div>
-      <div style="font-family:var(--sans);font-size:11px;color:var(--muted);margin-bottom:18px;">${(row.total_streets || 0).toLocaleString('ro-RO')} de străzi · Sfinți ${(row.saint_pct || 0).toFixed(1)}% · Feminin ${(row.female_pct || 0).toFixed(1)}%</div>
+      <div class="kicker"><span class="emo md">🧬</span> Amprenta județului</div>
+      <div style="font-family:var(--sans);font-weight:700;font-size:20px;margin:2px 0 4px;letter-spacing:-.015em;color:var(--ink);">${feature.properties?.name || code}</div>
+      <div style="font-family:var(--sans);font-size:11px;color:var(--muted);margin-bottom:14px;font-variant-numeric:tabular-nums;font-weight:500;">${(row.total_streets || 0).toLocaleString('ro-RO')} de străzi · Sfinți ${(row.saint_pct || 0).toFixed(1)}% · Feminin ${(row.female_pct || 0).toFixed(1)}%</div>
 
-      <div class="kicker" style="margin-bottom:6px;">Cele mai frecvente</div>
-      <div style="font-family:var(--sans);font-size:12px;margin-bottom:16px;">${topRows || '<span style="color:var(--muted)">—</span>'}</div>
+      <div class="kicker" style="margin-bottom:6px;"><span class="emo md">🔝</span> Cele mai frecvente</div>
+      <div style="margin-bottom:14px;">${topRows || '<span style="color:var(--muted)">—</span>'}</div>
 
-      <div class="kicker" style="margin-bottom:6px;">Persoane omagiate</div>
-      <div style="font-family:var(--sans);font-size:12px;margin-bottom:16px;">${personsRows || '<span style="color:var(--muted)">—</span>'}</div>
+      <div class="kicker" style="margin-bottom:6px;"><span class="emo md">👤</span> Persoane omagiate</div>
+      <div style="margin-bottom:14px;">${personsRows || '<span style="color:var(--muted)">—</span>'}</div>
 
-      <div class="kicker" style="margin-bottom:6px;">Cele mai rare (unice național)</div>
-      <div style="font-family:var(--sans);font-size:12px;">${rareRows || '<span style="color:var(--muted)">—</span>'}</div>
+      <div class="kicker" style="margin-bottom:6px;"><span class="emo md">💎</span> Cele mai rare (unice național)</div>
+      <div>${rareRows || '<span style="color:var(--muted)">—</span>'}</div>
     `;
   }
 })();
