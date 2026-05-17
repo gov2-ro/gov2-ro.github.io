@@ -1,0 +1,753 @@
+
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Municipiul Buzău (BZ) — Cum ne numim străzile</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  
+  <style>
+:root {
+  --bg: #FFFFFF;
+  --surface-1: #F7F9FC;
+  --surface-2: #ECF1F8;
+  --surface-blue: #DEE8F4;
+  --warn-1: #FFF7CC;
+  --warn-2: #FBE486;
+  --ink: #0B1118;
+  --ink-2: #2A313B;
+  --muted: #5A6573;
+  --muted-2: #8B95A2;
+  --rule: #E2E6EC;
+  --rule-strong: #BFC7D2;
+  --hairline: #EEF1F5;
+  --plaque: #0E4D92;
+  --plaque-deep: #08366D;
+  --accent: #C04F35;
+  --accent-dark: #8E3320;
+  --gold: #E8AE00;
+  --gold-soft: #F7D777;
+  --olive: #5F7A4E;
+  --teal: #2F6B6B;
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --street: 'Barlow Semi Condensed', 'IBM Plex Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: var(--plaque); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Nav */
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--ink);
+  padding: 10px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  letter-spacing: .06em;
+}
+.site-nav .brand {
+  font-weight: 700; color: var(--ink);
+  letter-spacing: .14em; text-transform: uppercase;
+  text-decoration: none; font-size: 12.5px;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.site-nav .brand::before { content: '◆'; color: var(--gold); font-size: 10px; line-height: 1; }
+.site-nav nav { display: flex; gap: 22px; }
+.site-nav nav a {
+  color: var(--muted); text-decoration: none; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em; font-size: 10.5px;
+  padding-bottom: 2px; border-bottom: 2px solid transparent;
+  transition: color .12s ease, border-color .12s ease;
+}
+.site-nav nav a:hover { color: var(--ink); border-bottom-color: var(--gold); }
+.site-nav nav a.active { color: var(--ink); border-bottom-color: var(--gold); }
+
+/* Page layout */
+.detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 11px; color: var(--muted); letter-spacing: .04em;
+  padding: 14px 0 0;
+  display: flex; align-items: center; gap: 6px;
+}
+.breadcrumb a { color: var(--muted); }
+.breadcrumb a:hover { color: var(--ink); text-decoration: none; }
+.breadcrumb .sep { color: var(--rule-strong); }
+
+/* Hero block */
+.detail-hero {
+  padding: 18px 0 20px;
+  border-bottom: 3px solid var(--gold);
+  margin-bottom: 28px;
+}
+.detail-hero .kicker {
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  font-weight: 700; color: var(--muted); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.detail-hero h1 {
+  font-family: var(--street);
+  font-weight: 700; font-size: 36px; letter-spacing: .03em;
+  color: var(--ink); line-height: 1.1;
+}
+.detail-hero h1.plaque {
+  display: inline-block;
+  background: var(--plaque); color: #fff;
+  padding: 4px 18px 6px;
+  border-radius: 3px;
+  text-shadow: 0 -0.5px 0 rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 3px 5px rgba(0,0,0,.28);
+}
+.detail-hero .meta-row {
+  margin-top: 10px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  font-size: 12px; color: var(--muted);
+}
+.detail-hero .meta-row strong { color: var(--ink); font-weight: 700; }
+
+/* Section dividers */
+.detail-section {
+  margin: 28px 0 0;
+}
+.detail-section-header {
+  font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase;
+  font-weight: 700; color: var(--muted);
+  border-bottom: 1px solid var(--rule); padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+
+/* Portrait */
+.portrait {
+  width: 26px; height: 26px; border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--rule-strong);
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--muted-2); font-size: 10px; font-weight: 700; letter-spacing: .02em;
+  overflow: hidden; vertical-align: middle;
+}
+.portrait.lg { width: 52px; height: 52px; font-size: 14px; }
+.portrait.xl { width: 80px; height: 80px; font-size: 20px; }
+.portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Street plaque tag */
+.street-tag {
+  font-family: var(--street);
+  font-weight: 700; font-size: 13.5px; letter-spacing: .045em;
+  display: inline-block;
+  padding: 2.5px 10px;
+  background: var(--plaque); color: #fff;
+  border-radius: 2px;
+  text-shadow: 0 -0.5px 0 rgba(0,0,0,.3), 0 1px 1.5px rgba(0,0,0,.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 2px 3px rgba(0,0,0,.26);
+  vertical-align: middle;
+}
+.street-tag.sm { font-size: 12px; padding: 1.5px 8px; }
+.street-tag.lg { font-size: 16px; padding: 4px 14px; }
+
+/* Rank list */
+.rank-list { display: flex; flex-direction: column; }
+.rank-row {
+  display: grid; align-items: center; gap: 10px;
+  padding: 5px 4px;
+  border-bottom: 1px solid var(--hairline);
+  transition: background .1s ease;
+}
+.rank-row:hover { background: var(--surface-1); }
+.rank-row:last-child { border-bottom: none; }
+.rank-list > .rank-row:first-child {
+  background: linear-gradient(to right, var(--warn-1), rgba(255,247,204,.35) 60%, transparent);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 7px;
+}
+.rank-num {
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.rank-list > .rank-row:first-child .rank-num { color: var(--ink); font-weight: 700; }
+.rank-count {
+  font-size: 12.5px; font-weight: 700; color: var(--ink);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+
+/* Tag pills */
+.tag {
+  font-size: 10px; color: var(--ink-2); background: var(--surface-2);
+  padding: 2px 7px; border-radius: 2px; letter-spacing: .04em;
+  font-weight: 600; text-transform: lowercase;
+}
+.tag.person { background: #F8DAD0; color: var(--accent-dark); }
+.tag.ideo   { background: #FFF1C6; color: #7A5400; }
+.tag.nature { background: #E1ECDA; color: #3D5A2A; }
+
+/* Grid helpers */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+/* Delta badge */
+.delta {
+  font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.delta.pos { color: var(--accent); }
+.delta.neg { color: var(--olive); }
+
+/* Emoji */
+.emo { font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;
+       font-style: normal; font-weight: 400; line-height: 1; }
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--rule); padding: 20px 24px;
+  font-size: 11px; color: var(--muted);
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 1200px; margin: 0 auto;
+}
+.site-footer a { color: var(--muted); }
+
+/* UAT pill cluster */
+.uat-cluster { display: flex; flex-wrap: wrap; gap: 6px; }
+.uat-pill {
+  font-size: 11.5px; font-weight: 600;
+  padding: 3px 10px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  background: var(--surface-1);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background .1s ease, border-color .1s ease;
+}
+.uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+
+/* județ accordion */
+.judet-section { margin-bottom: 10px; }
+.judet-label {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  font-weight: 700; color: var(--muted);
+  margin-bottom: 6px; padding-top: 10px;
+  border-top: 1px solid var(--rule);
+}
+.judet-section:first-child .judet-label { border-top: none; padding-top: 0; }
+
+@media (max-width: 700px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+  .detail-hero h1 { font-size: 26px; }
+  .site-nav nav { gap: 12px; }
+}
+  </style>
+  
+</head>
+<body>
+
+<header class="site-nav">
+  <a href="/" class="brand">Cum ne numim străzile</a>
+  <nav>
+    <a href="/">Acasă</a>
+    <a href="/cauta/">Caută</a>
+    <a href="/persoane/">Persoane</a>
+    <a href="/teme/">Teme</a>
+    <a href="/judete/">Județe</a>
+  </nav>
+</header>
+
+
+<div class="detail-page">
+
+  <div class="breadcrumb">
+    <a href="/">Acasă</a>
+    <span class="sep">›</span>
+    <a href="/judete/">Județe</a>
+    <span class="sep">›</span>
+    <span>BZ</span>
+    <span class="sep">›</span>
+    <span>Municipiul Buzău</span>
+  </div>
+
+  <div class="detail-hero">
+    <div class="kicker"><span class="emo">🏘️</span> Localitate · BZ</div>
+    <h1>Municipiul Buzău</h1>
+    <div class="meta-row">
+      <span><strong>431</strong> stradăzi înregistrate</span>
+      <span>Județ: <strong>BZ</strong></span>
+      
+      <span>Religios: <strong>0.23%</strong>
+        
+        <span class="delta ">
+          (-0.09% față de medie)
+        </span>
+      </span>
+      
+    </div>
+  </div>
+
+  <div class="grid-2" style="align-items:start;">
+
+    <div class="detail-section">
+      <div class="detail-section-header">Tematică</div>
+      <div class="rank-list">
+        
+        <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
+          <div>
+            <span class="emo">📍</span>
+            Alte
+          </div>
+          <div class="rank-count">240</div>
+        </div>
+        
+        <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
+          <div>
+            <span class="emo">🌿</span>
+            
+            Natura
+          </div>
+          <div class="rank-count">99</div>
+        </div>
+        
+        <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
+          <div>
+            <span class="emo">👤</span>
+            
+            Persoana
+          </div>
+          <div class="rank-count">41</div>
+        </div>
+        
+        <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
+          <div>
+            <span class="emo">📍</span>
+            Loc
+          </div>
+          <div class="rank-count">33</div>
+        </div>
+        
+        <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
+          <div>
+            <span class="emo">🚩</span>
+            
+            Ideologic
+          </div>
+          <div class="rank-count">14</div>
+        </div>
+        
+        <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
+          <div>
+            <span class="emo">📅</span>
+            
+            Data
+          </div>
+          <div class="rank-count">3</div>
+        </div>
+        
+        <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
+          <div>
+            <span class="emo">⛪</span>
+            
+            Religios
+          </div>
+          <div class="rank-count">1</div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div>
+      <div class="detail-section">
+        <div class="detail-section-header">Cele mai frecvente nume</div>
+        <div class="rank-list">
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">1</div>
+            <div>
+              <a href="/strada/1-decembrie-1918/" class="street-tag sm">1 Decembrie 1918</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">2</div>
+            <div>
+              <a href="/strada/1-mai/" class="street-tag sm">1 Mai</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">3</div>
+            <div>
+              <a href="/strada/12-aprilie-372/" class="street-tag sm">12 Aprilie 372</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">4</div>
+            <div>
+              <a href="/strada/22-decembrie/" class="street-tag sm">22 Decembrie</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">5</div>
+            <div>
+              <a href="/strada/24-ianuarie/" class="street-tag sm">24 Ianuarie</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">6</div>
+            <div>
+              <a href="/strada/acad-mihail-balanescu/" class="street-tag sm">Acad.Mihail Bălănescu</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">7</div>
+            <div>
+              <a href="/strada/academiei/" class="street-tag sm">Academiei</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">8</div>
+            <div>
+              <a href="/strada/adina-paula-moscu/" class="street-tag sm">Adina-Paula Moscu</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">9</div>
+            <div>
+              <a href="/strada/aerodromului/" class="street-tag sm">Aerodromului</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">10</div>
+            <div>
+              <a href="/strada/afinelor/" class="street-tag sm">Afinelor</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">11</div>
+            <div>
+              <a href="/strada/agriculturii/" class="street-tag sm">Agriculturii</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">12</div>
+            <div>
+              <a href="/strada/agriselor/" class="street-tag sm">Agrișelor</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">13</div>
+            <div>
+              <a href="/strada/albinelor/" class="street-tag sm">Albinelor</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">14</div>
+            <div>
+              <a href="/strada/albastrelelor/" class="street-tag sm">Albăstrelelor</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">15</div>
+            <div>
+              <a href="/strada/alecu-russo/" class="street-tag sm">Alecu Russo</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">16</div>
+            <div>
+              <a href="/strada/alexandru-averescu/" class="street-tag sm">Alexandru Averescu</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">17</div>
+            <div>
+              <a href="/strada/alexandru-golescu/" class="street-tag sm">Alexandru Golescu</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">18</div>
+            <div>
+              <a href="/strada/alexandru-marghiloman/" class="street-tag sm">Alexandru Marghiloman</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">19</div>
+            <div>
+              <a href="/strada/alexandru-sahia/" class="street-tag sm">Alexandru Sahia</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: 24px minmax(0,1fr) 44px;">
+            <div class="rank-num">20</div>
+            <div>
+              <a href="/strada/alexandru-vlahuta/" class="street-tag sm">Alexandru Vlahuță</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+        </div>
+      </div>
+
+      
+      <div class="detail-section">
+        <div class="detail-section-header">Persoane onorate</div>
+        <div class="rank-list">
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q2442975.jpg" alt="Alecu Russo"
+                     onerror="this.parentElement.textContent='AL'">
+              </span>
+              
+              <a href="/persoana/q2442975/">Alecu Russo</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q58285.jpg" alt="Alexandru Averescu"
+                     onerror="this.parentElement.textContent='AL'">
+              </span>
+              
+              <a href="/persoana/q58285/">Alexandru Averescu</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q4721217.jpg" alt="Alexandru Sahia"
+                     onerror="this.parentElement.textContent='AL'">
+              </span>
+              
+              <a href="/persoana/q4721217/">Alexandru Sahia</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q16427794.jpg" alt="Alexandru Vlahuță"
+                     onerror="this.parentElement.textContent='AL'">
+              </span>
+              
+              <a href="/persoana/q16427794/">Alexandru Vlahuță</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q2719337.jpg" alt="Alexandru cel Bun"
+                     onerror="this.parentElement.textContent='AL'">
+              </span>
+              
+              <a href="/persoana/q2719337/">Alexandru cel Bun</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q12720571.jpg" alt="Ana Ipătescu"
+                     onerror="this.parentElement.textContent='AN'">
+              </span>
+              
+              <a href="/persoana/q12720571/">Ana Ipătescu</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q592355.jpg" alt="Anton Pann"
+                     onerror="this.parentElement.textContent='AN'">
+              </span>
+              
+              <a href="/persoana/q592355/">Anton Pann</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q781514.jpg" alt="Aurel Vlaicu"
+                     onerror="this.parentElement.textContent='AU'">
+              </span>
+              
+              <a href="/persoana/q781514/">Aurel Vlaicu</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q1044174.jpg" alt="Carol Davila"
+                     onerror="this.parentElement.textContent='CA'">
+              </span>
+              
+              <a href="/persoana/q1044174/">Carol Davila</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q216023.jpg" alt="Constantin Brâncoveanu"
+                     onerror="this.parentElement.textContent='CO'">
+              </span>
+              
+              <a href="/persoana/q216023/">Constantin Brâncoveanu</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q868839.jpg" alt="Costache Negruzzi"
+                     onerror="this.parentElement.textContent='CO'">
+              </span>
+              
+              <a href="/persoana/q868839/">Costache Negruzzi</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <span class="portrait" style="margin-right:6px;">
+                <img src="/portraits/Q16427771.jpg" alt="Crișan"
+                     onerror="this.parentElement.textContent='CR'">
+              </span>
+              
+              <a href="/persoana/q16427771/">Crișan</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+
+  </div>
+
+  
+  <div class="detail-section">
+    <div class="detail-section-header">Nume distinctive (rare la nivel național)</div>
+    <div class="uat-cluster">
+      
+        <a class="uat-pill" href="/strada/12-aprilie-372/" title="prezent în 1 UAT-uri național">12 Aprilie 372</a>
+      
+        <a class="uat-pill" href="/strada/acad-mihail-balanescu/" title="prezent în 1 UAT-uri național">Acad.Mihail Bălănescu</a>
+      
+        <a class="uat-pill" href="/strada/adina-paula-moscu/" title="prezent în 1 UAT-uri național">Adina-Paula Moscu</a>
+      
+        <a class="uat-pill" href="/strada/alexandru-marghiloman/" title="prezent în 1 UAT-uri național">Alexandru Marghiloman</a>
+      
+        <a class="uat-pill" href="/strada/aviator-ioan-penes/" title="prezent în 1 UAT-uri național">Aviator Ioan Peneș</a>
+      
+        <a class="uat-pill" href="/strada/aviator-mircea-t-badulescu/" title="prezent în 1 UAT-uri național">Aviator Mircea T. Bădulescu</a>
+      
+        <a class="uat-pill" href="/strada/bazalt/" title="prezent în 1 UAT-uri național">Bazalt</a>
+      
+        <a class="uat-pill" href="/strada/bazil-iorgulescu/" title="prezent în 1 UAT-uri național">Bazil Iorgulescu</a>
+      
+        <a class="uat-pill" href="/strada/c-tin-budeanu/" title="prezent în 1 UAT-uri național">C-tin Budeanu</a>
+      
+        <a class="uat-pill" href="/strada/c-tin-c-sarateanu/" title="prezent în 1 UAT-uri național">C-tin C.Sărățeanu</a>
+      
+        <a class="uat-pill" href="/strada/c-tin-giurescu/" title="prezent în 1 UAT-uri național">C-tin Giurescu</a>
+      
+        <a class="uat-pill" href="/strada/c-tin-prezan/" title="prezent în 1 UAT-uri național">C-tin Prezan</a>
+      
+    </div>
+  </div>
+  
+
+</div>
+
+
+<footer class="site-footer">
+  <span>Date: Autoritatea Electorală Permanentă · <a href="/metodologie.html">Metodologie</a></span>
+  <span>un proiect <a href="/">Cum ne numim străzile</a></span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1499 @@
+
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bisericii — Cum ne numim străzile</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
+  
+  <style>
+:root {
+  --bg: #FFFFFF;
+  --surface-1: #F7F9FC;
+  --surface-2: #ECF1F8;
+  --surface-blue: #DEE8F4;
+  --warn-1: #FFF7CC;
+  --warn-2: #FBE486;
+  --ink: #0B1118;
+  --ink-2: #2A313B;
+  --muted: #5A6573;
+  --muted-2: #8B95A2;
+  --rule: #E2E6EC;
+  --rule-strong: #BFC7D2;
+  --hairline: #EEF1F5;
+  --plaque: #0E4D92;
+  --plaque-deep: #08366D;
+  --accent: #C04F35;
+  --accent-dark: #8E3320;
+  --gold: #E8AE00;
+  --gold-soft: #F7D777;
+  --olive: #5F7A4E;
+  --teal: #2F6B6B;
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --street: 'Barlow Semi Condensed', 'IBM Plex Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 13px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: var(--plaque); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Nav */
+.site-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--ink);
+  padding: 10px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  letter-spacing: .06em;
+}
+.site-nav .brand {
+  font-weight: 700; color: var(--ink);
+  letter-spacing: .14em; text-transform: uppercase;
+  text-decoration: none; font-size: 12.5px;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.site-nav .brand::before { content: '◆'; color: var(--gold); font-size: 10px; line-height: 1; }
+.site-nav nav { display: flex; gap: 22px; }
+.site-nav nav a {
+  color: var(--muted); text-decoration: none; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .1em; font-size: 10.5px;
+  padding-bottom: 2px; border-bottom: 2px solid transparent;
+  transition: color .12s ease, border-color .12s ease;
+}
+.site-nav nav a:hover { color: var(--ink); border-bottom-color: var(--gold); }
+.site-nav nav a.active { color: var(--ink); border-bottom-color: var(--gold); }
+
+/* Page layout */
+.detail-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 11px; color: var(--muted); letter-spacing: .04em;
+  padding: 14px 0 0;
+  display: flex; align-items: center; gap: 6px;
+}
+.breadcrumb a { color: var(--muted); }
+.breadcrumb a:hover { color: var(--ink); text-decoration: none; }
+.breadcrumb .sep { color: var(--rule-strong); }
+
+/* Hero block */
+.detail-hero {
+  padding: 18px 0 20px;
+  border-bottom: 3px solid var(--gold);
+  margin-bottom: 28px;
+}
+.detail-hero .kicker {
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  font-weight: 700; color: var(--muted); margin-bottom: 8px;
+  display: flex; align-items: center; gap: 8px;
+}
+.detail-hero h1 {
+  font-family: var(--street);
+  font-weight: 700; font-size: 36px; letter-spacing: .03em;
+  color: var(--ink); line-height: 1.1;
+}
+.detail-hero h1.plaque {
+  display: inline-block;
+  background: var(--plaque); color: #fff;
+  padding: 4px 18px 6px;
+  border-radius: 3px;
+  text-shadow: 0 -0.5px 0 rgba(0,0,0,.3), 0 1px 2px rgba(0,0,0,.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 3px 5px rgba(0,0,0,.28);
+}
+.detail-hero .meta-row {
+  margin-top: 10px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  font-size: 12px; color: var(--muted);
+}
+.detail-hero .meta-row strong { color: var(--ink); font-weight: 700; }
+
+/* Section dividers */
+.detail-section {
+  margin: 28px 0 0;
+}
+.detail-section-header {
+  font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase;
+  font-weight: 700; color: var(--muted);
+  border-bottom: 1px solid var(--rule); padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+
+/* Portrait */
+.portrait {
+  width: 26px; height: 26px; border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--rule-strong);
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--muted-2); font-size: 10px; font-weight: 700; letter-spacing: .02em;
+  overflow: hidden; vertical-align: middle;
+}
+.portrait.lg { width: 52px; height: 52px; font-size: 14px; }
+.portrait.xl { width: 80px; height: 80px; font-size: 20px; }
+.portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Street plaque tag */
+.street-tag {
+  font-family: var(--street);
+  font-weight: 700; font-size: 13.5px; letter-spacing: .045em;
+  display: inline-block;
+  padding: 2.5px 10px;
+  background: var(--plaque); color: #fff;
+  border-radius: 2px;
+  text-shadow: 0 -0.5px 0 rgba(0,0,0,.3), 0 1px 1.5px rgba(0,0,0,.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 2px 3px rgba(0,0,0,.26);
+  vertical-align: middle;
+}
+.street-tag.sm { font-size: 12px; padding: 1.5px 8px; }
+.street-tag.lg { font-size: 16px; padding: 4px 14px; }
+
+/* Rank list */
+.rank-list { display: flex; flex-direction: column; }
+.rank-row {
+  display: grid; align-items: center; gap: 10px;
+  padding: 5px 4px;
+  border-bottom: 1px solid var(--hairline);
+  transition: background .1s ease;
+}
+.rank-row:hover { background: var(--surface-1); }
+.rank-row:last-child { border-bottom: none; }
+.rank-list > .rank-row:first-child {
+  background: linear-gradient(to right, var(--warn-1), rgba(255,247,204,.35) 60%, transparent);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 7px;
+}
+.rank-num {
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.rank-list > .rank-row:first-child .rank-num { color: var(--ink); font-weight: 700; }
+.rank-count {
+  font-size: 12.5px; font-weight: 700; color: var(--ink);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+
+/* Tag pills */
+.tag {
+  font-size: 10px; color: var(--ink-2); background: var(--surface-2);
+  padding: 2px 7px; border-radius: 2px; letter-spacing: .04em;
+  font-weight: 600; text-transform: lowercase;
+}
+.tag.person { background: #F8DAD0; color: var(--accent-dark); }
+.tag.ideo   { background: #FFF1C6; color: #7A5400; }
+.tag.nature { background: #E1ECDA; color: #3D5A2A; }
+
+/* Grid helpers */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+
+/* Delta badge */
+.delta {
+  font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.delta.pos { color: var(--accent); }
+.delta.neg { color: var(--olive); }
+
+/* Emoji */
+.emo { font-family: 'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif;
+       font-style: normal; font-weight: 400; line-height: 1; }
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--rule); padding: 20px 24px;
+  font-size: 11px; color: var(--muted);
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: 1200px; margin: 0 auto;
+}
+.site-footer a { color: var(--muted); }
+
+/* UAT pill cluster */
+.uat-cluster { display: flex; flex-wrap: wrap; gap: 6px; }
+.uat-pill {
+  font-size: 11.5px; font-weight: 600;
+  padding: 3px 10px;
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  background: var(--surface-1);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background .1s ease, border-color .1s ease;
+}
+.uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+
+/* județ accordion */
+.judet-section { margin-bottom: 10px; }
+.judet-label {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  font-weight: 700; color: var(--muted);
+  margin-bottom: 6px; padding-top: 10px;
+  border-top: 1px solid var(--rule);
+}
+.judet-section:first-child .judet-label { border-top: none; padding-top: 0; }
+
+@media (max-width: 700px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr; }
+  .detail-hero h1 { font-size: 26px; }
+  .site-nav nav { gap: 12px; }
+}
+  </style>
+  
+</head>
+<body>
+
+<header class="site-nav">
+  <a href="/" class="brand">Cum ne numim străzile</a>
+  <nav>
+    <a href="/">Acasă</a>
+    <a href="/cauta/">Caută</a>
+    <a href="/persoane/">Persoane</a>
+    <a href="/teme/">Teme</a>
+    <a href="/judete/">Județe</a>
+  </nav>
+</header>
+
+
+<div class="detail-page">
+
+  <div class="breadcrumb">
+    <a href="/">Acasă</a>
+    <span class="sep">›</span>
+    <span>Stradă</span>
+    <span class="sep">›</span>
+    <span>Bisericii</span>
+  </div>
+
+  <div class="detail-hero">
+    <div class="kicker">
+      <span class="emo">🚩</span> Ideologic
+      
+    </div>
+    <h1 class="plaque">Bisericii</h1>
+    <div class="meta-row">
+      <span><strong>454</strong> localități</span>
+      <span><strong>39</strong> județe</span>
+      
+      
+      <span class="tag ideo">church</span>
+    </div>
+  </div>
+
+  
+
+  <div class="detail-section">
+    <div class="detail-section-header">Prezență geografică — 454 localități în 39 județe</div>
+
+    
+    <div class="judet-section">
+      <div class="judet-label">OT — 62 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/ot/bobicesti/">Bobicești</a>
+        
+          <a class="uat-pill" href="/oras/ot/brastavatu/">Brastavățu</a>
+        
+          <a class="uat-pill" href="/oras/ot/brancoveni/">Brâncoveni</a>
+        
+          <a class="uat-pill" href="/oras/ot/bucinisu/">Bucinișu</a>
+        
+          <a class="uat-pill" href="/oras/ot/barasti/">Bărăști</a>
+        
+          <a class="uat-pill" href="/oras/ot/colonesti/">Colonești</a>
+        
+          <a class="uat-pill" href="/oras/ot/coteana/">Coteana</a>
+        
+          <a class="uat-pill" href="/oras/ot/crampoia/">Crâmpoia</a>
+        
+          <a class="uat-pill" href="/oras/ot/cungrea/">Cungrea</a>
+        
+          <a class="uat-pill" href="/oras/ot/curtisoara/">Curtișoara</a>
+        
+          <a class="uat-pill" href="/oras/ot/carlogani/">Cârlogani</a>
+        
+          <a class="uat-pill" href="/oras/ot/dobretu/">Dobrețu</a>
+        
+          <a class="uat-pill" href="/oras/ot/dobroteasa/">Dobroteasa</a>
+        
+          <a class="uat-pill" href="/oras/ot/daneasa/">Dăneasa</a>
+        
+          <a class="uat-pill" href="/oras/ot/fagetelu/">Făgețelu</a>
+        
+          <a class="uat-pill" href="/oras/ot/farcasele/">Fărcașele</a>
+        
+          <a class="uat-pill" href="/oras/ot/giuvarasti/">Giuvărăști</a>
+        
+          <a class="uat-pill" href="/oras/ot/gostavatu/">Gostavățu</a>
+        
+          <a class="uat-pill" href="/oras/ot/gradinari/">Grădinari</a>
+        
+          <a class="uat-pill" href="/oras/ot/gradinile/">Grădinile</a>
+        
+          <a class="uat-pill" href="/oras/ot/garcov/">Gârcov</a>
+        
+          <a class="uat-pill" href="/oras/ot/ganeasa/">Găneasa</a>
+        
+          <a class="uat-pill" href="/oras/ot/gavanesti/">Găvănești</a>
+        
+          <a class="uat-pill" href="/oras/ot/ianca/">Ianca</a>
+        
+          <a class="uat-pill" href="/oras/ot/icoana/">Icoana</a>
+        
+          <a class="uat-pill" href="/oras/ot/leleasca/">Leleasca</a>
+        
+          <a class="uat-pill" href="/oras/ot/milcov/">Milcov</a>
+        
+          <a class="uat-pill" href="/oras/ot/morunglav/">Morunglav</a>
+        
+          <a class="uat-pill" href="/oras/ot/oboga/">Oboga</a>
+        
+          <a class="uat-pill" href="/oras/ot/oras-draganesti-olt/">Oraș Drăgănești-Olt</a>
+        
+          <a class="uat-pill" href="/oras/ot/oras-potcoava/">Oraș Potcoava</a>
+        
+          <a class="uat-pill" href="/oras/ot/oras-scornicesti/">Oraș Scornicești</a>
+        
+          <a class="uat-pill" href="/oras/ot/orlea/">Orlea</a>
+        
+          <a class="uat-pill" href="/oras/ot/osica-de-sus/">Osica De Sus</a>
+        
+          <a class="uat-pill" href="/oras/ot/plesoiu/">Pleșoiu</a>
+        
+          <a class="uat-pill" href="/oras/ot/poboru/">Poboru</a>
+        
+          <a class="uat-pill" href="/oras/ot/parscoveni/">Pârșcoveni</a>
+        
+          <a class="uat-pill" href="/oras/ot/radomiresti/">Radomirești</a>
+        
+          <a class="uat-pill" href="/oras/ot/redea/">Redea</a>
+        
+          <a class="uat-pill" href="/oras/ot/rotunda/">Rotunda</a>
+        
+          <a class="uat-pill" href="/oras/ot/rusanesti/">Rusănești</a>
+        
+          <a class="uat-pill" href="/oras/ot/schitu/">Schitu</a>
+        
+          <a class="uat-pill" href="/oras/ot/scarisoara/">Scărișoara</a>
+        
+          <a class="uat-pill" href="/oras/ot/seaca/">Seaca</a>
+        
+          <a class="uat-pill" href="/oras/ot/slatioara/">Slătioara</a>
+        
+          <a class="uat-pill" href="/oras/ot/sprancenata/">Sprâncenata</a>
+        
+          <a class="uat-pill" href="/oras/ot/stoicanesti/">Stoicănești</a>
+        
+          <a class="uat-pill" href="/oras/ot/strejesti/">Strejești</a>
+        
+          <a class="uat-pill" href="/oras/ot/samburesti/">Sâmburești</a>
+        
+          <a class="uat-pill" href="/oras/ot/sarbii-magura/">Sârbii - Măgura</a>
+        
+          <a class="uat-pill" href="/oras/ot/teslui/">Teslui</a>
+        
+          <a class="uat-pill" href="/oras/ot/topana/">Topana</a>
+        
+          <a class="uat-pill" href="/oras/ot/tatulesti/">Tătulești</a>
+        
+          <a class="uat-pill" href="/oras/ot/urzica/">Urzica</a>
+        
+          <a class="uat-pill" href="/oras/ot/verguleasa/">Verguleasa</a>
+        
+          <a class="uat-pill" href="/oras/ot/vitomiresti/">Vitomirești</a>
+        
+          <a class="uat-pill" href="/oras/ot/visina/">Vișina</a>
+        
+          <a class="uat-pill" href="/oras/ot/vladila/">Vlădila</a>
+        
+          <a class="uat-pill" href="/oras/ot/vulturesti/">Vulturești</a>
+        
+          <a class="uat-pill" href="/oras/ot/valcele/">Vâlcele</a>
+        
+          <a class="uat-pill" href="/oras/ot/serbanesti/">Șerbănești</a>
+        
+          <a class="uat-pill" href="/oras/ot/stefan-cel-mare/">Ștefan Cel Mare</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">GJ — 39 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/gj/albeni/">Albeni</a>
+        
+          <a class="uat-pill" href="/oras/gj/alimpesti/">Alimpești</a>
+        
+          <a class="uat-pill" href="/oras/gj/arcani/">Arcani</a>
+        
+          <a class="uat-pill" href="/oras/gj/bengesti-ciocadia/">Bengești-Ciocadia</a>
+        
+          <a class="uat-pill" href="/oras/gj/berlesti/">Berlești</a>
+        
+          <a class="uat-pill" href="/oras/gj/bolbosi/">Bolboși</a>
+        
+          <a class="uat-pill" href="/oras/gj/borascu/">Borăscu</a>
+        
+          <a class="uat-pill" href="/oras/gj/bumbesti-pitic/">Bumbești-Pițic</a>
+        
+          <a class="uat-pill" href="/oras/gj/balteni/">Bâlteni</a>
+        
+          <a class="uat-pill" href="/oras/gj/balanesti/">Bălănești</a>
+        
+          <a class="uat-pill" href="/oras/gj/ciuperceni/">Ciuperceni</a>
+        
+          <a class="uat-pill" href="/oras/gj/crasna/">Crasna</a>
+        
+          <a class="uat-pill" href="/oras/gj/cruset/">Crușeț</a>
+        
+          <a class="uat-pill" href="/oras/gj/dragutesti/">Drăguțești</a>
+        
+          <a class="uat-pill" href="/oras/gj/danciulesti/">Dănciulești</a>
+        
+          <a class="uat-pill" href="/oras/gj/glogova/">Glogova</a>
+        
+          <a class="uat-pill" href="/oras/gj/godinesti/">Godinești</a>
+        
+          <a class="uat-pill" href="/oras/gj/hurezani/">Hurezani</a>
+        
+          <a class="uat-pill" href="/oras/gj/lelesti/">Lelești</a>
+        
+          <a class="uat-pill" href="/oras/gj/licurici/">Licurici</a>
+        
+          <a class="uat-pill" href="/oras/gj/municipiul-motru/">Municipiul Motru</a>
+        
+          <a class="uat-pill" href="/oras/gj/matasari/">Mătăsari</a>
+        
+          <a class="uat-pill" href="/oras/gj/oras-bumbesti-jiu/">Oraș Bumbești-Jiu</a>
+        
+          <a class="uat-pill" href="/oras/gj/oras-tismana/">Oraș Tismana</a>
+        
+          <a class="uat-pill" href="/oras/gj/oras-turceni/">Oraș Turceni</a>
+        
+          <a class="uat-pill" href="/oras/gj/oras-targu-carbunesti/">Oraș Târgu Cărbunești</a>
+        
+          <a class="uat-pill" href="/oras/gj/pades/">Padeș</a>
+        
+          <a class="uat-pill" href="/oras/gj/pestisani/">Peștișani</a>
+        
+          <a class="uat-pill" href="/oras/gj/polovragi/">Polovragi</a>
+        
+          <a class="uat-pill" href="/oras/gj/rosia-de-amaradia/">Roșia De Amaradia</a>
+        
+          <a class="uat-pill" href="/oras/gj/scoarta/">Scoarța</a>
+        
+          <a class="uat-pill" href="/oras/gj/slivilesti/">Slivilești</a>
+        
+          <a class="uat-pill" href="/oras/gj/stejari/">Stejari</a>
+        
+          <a class="uat-pill" href="/oras/gj/stoina/">Stoina</a>
+        
+          <a class="uat-pill" href="/oras/gj/stanesti/">Stănești</a>
+        
+          <a class="uat-pill" href="/oras/gj/sacelu/">Săcelu</a>
+        
+          <a class="uat-pill" href="/oras/gj/turburea/">Turburea</a>
+        
+          <a class="uat-pill" href="/oras/gj/turcinesti/">Turcinești</a>
+        
+          <a class="uat-pill" href="/oras/gj/urdari/">Urdari</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">VL — 34 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/vl/alunu/">Alunu</a>
+        
+          <a class="uat-pill" href="/oras/vl/budesti/">Budești</a>
+        
+          <a class="uat-pill" href="/oras/vl/bujoreni/">Bujoreni</a>
+        
+          <a class="uat-pill" href="/oras/vl/barbatesti/">Bărbătești</a>
+        
+          <a class="uat-pill" href="/oras/vl/caineni/">Câineni</a>
+        
+          <a class="uat-pill" href="/oras/vl/diculesti/">Diculești</a>
+        
+          <a class="uat-pill" href="/oras/vl/fauresti/">Făurești</a>
+        
+          <a class="uat-pill" href="/oras/vl/galicea/">Galicea</a>
+        
+          <a class="uat-pill" href="/oras/vl/ghioroiu/">Ghioroiu</a>
+        
+          <a class="uat-pill" href="/oras/vl/golesti/">Golești</a>
+        
+          <a class="uat-pill" href="/oras/vl/lungesti/">Lungești</a>
+        
+          <a class="uat-pill" href="/oras/vl/lacusteni/">Lăcusteni</a>
+        
+          <a class="uat-pill" href="/oras/vl/ladesti/">Lădești</a>
+        
+          <a class="uat-pill" href="/oras/vl/lapusata/">Lăpușata</a>
+        
+          <a class="uat-pill" href="/oras/vl/mihaesti/">Mihăești</a>
+        
+          <a class="uat-pill" href="/oras/vl/milcoiu/">Milcoiu</a>
+        
+          <a class="uat-pill" href="/oras/vl/muereasca/">Muereasca</a>
+        
+          <a class="uat-pill" href="/oras/vl/municipiul-dragasani/">Municipiul Drăgășani</a>
+        
+          <a class="uat-pill" href="/oras/vl/nicolae-balcescu/">Nicolae Bălcescu</a>
+        
+          <a class="uat-pill" href="/oras/vl/olanu/">Olanu</a>
+        
+          <a class="uat-pill" href="/oras/vl/oras-brezoi/">Oraș Brezoi</a>
+        
+          <a class="uat-pill" href="/oras/vl/oras-baile-govora/">Oraș Băile Govora</a>
+        
+          <a class="uat-pill" href="/oras/vl/oras-horezu/">Oraș Horezu</a>
+        
+          <a class="uat-pill" href="/oras/vl/perisani/">Perișani</a>
+        
+          <a class="uat-pill" href="/oras/vl/prundeni/">Prundeni</a>
+        
+          <a class="uat-pill" href="/oras/vl/pausesti/">Păușești</a>
+        
+          <a class="uat-pill" href="/oras/vl/pausesti-maglasi/">Păușești-Măglași</a>
+        
+          <a class="uat-pill" href="/oras/vl/roesti/">Roești</a>
+        
+          <a class="uat-pill" href="/oras/vl/rosiile/">Roșiile</a>
+        
+          <a class="uat-pill" href="/oras/vl/stroesti/">Stroești</a>
+        
+          <a class="uat-pill" href="/oras/vl/titesti/">Titești</a>
+        
+          <a class="uat-pill" href="/oras/vl/tomsani/">Tomșani</a>
+        
+          <a class="uat-pill" href="/oras/vl/vaideeni/">Vaideeni</a>
+        
+          <a class="uat-pill" href="/oras/vl/susani/">Șușani</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">DB — 31 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/db/branesti/">Brănești</a>
+        
+          <a class="uat-pill" href="/oras/db/baleni/">Băleni</a>
+        
+          <a class="uat-pill" href="/oras/db/comisani/">Comișani</a>
+        
+          <a class="uat-pill" href="/oras/db/contesti/">Conțești</a>
+        
+          <a class="uat-pill" href="/oras/db/corbii-mari/">Corbii Mari</a>
+        
+          <a class="uat-pill" href="/oras/db/crevedia/">Crevedia</a>
+        
+          <a class="uat-pill" href="/oras/db/candesti/">Cândești</a>
+        
+          <a class="uat-pill" href="/oras/db/dragodana/">Dragodana</a>
+        
+          <a class="uat-pill" href="/oras/db/dragomiresti/">Dragomirești</a>
+        
+          <a class="uat-pill" href="/oras/db/finta/">Finta</a>
+        
+          <a class="uat-pill" href="/oras/db/glodeni/">Glodeni</a>
+        
+          <a class="uat-pill" href="/oras/db/gura-ocnitei/">Gura Ocniței</a>
+        
+          <a class="uat-pill" href="/oras/db/i-l-caragiale/">I. L. Caragiale</a>
+        
+          <a class="uat-pill" href="/oras/db/ludesti/">Ludești</a>
+        
+          <a class="uat-pill" href="/oras/db/lunguletu/">Lungulețu</a>
+        
+          <a class="uat-pill" href="/oras/db/moroeni/">Moroeni</a>
+        
+          <a class="uat-pill" href="/oras/db/persinari/">Perșinari</a>
+        
+          <a class="uat-pill" href="/oras/db/petresti/">Petrești</a>
+        
+          <a class="uat-pill" href="/oras/db/pietrari/">Pietrari</a>
+        
+          <a class="uat-pill" href="/oras/db/pietrosita/">Pietroșița</a>
+        
+          <a class="uat-pill" href="/oras/db/potlogi/">Potlogi</a>
+        
+          <a class="uat-pill" href="/oras/db/produlesti/">Produlești</a>
+        
+          <a class="uat-pill" href="/oras/db/rascaeti/">Răscăeți</a>
+        
+          <a class="uat-pill" href="/oras/db/salcioara/">Sălcioara</a>
+        
+          <a class="uat-pill" href="/oras/db/tartasesti/">Tărtășești</a>
+        
+          <a class="uat-pill" href="/oras/db/tatarani/">Tătărani</a>
+        
+          <a class="uat-pill" href="/oras/db/vladeni/">Vlădeni</a>
+        
+          <a class="uat-pill" href="/oras/db/voinesti/">Voinești</a>
+        
+          <a class="uat-pill" href="/oras/db/vulcana-pandele/">Vulcana-Pandele</a>
+        
+          <a class="uat-pill" href="/oras/db/vacaresti/">Văcărești</a>
+        
+          <a class="uat-pill" href="/oras/db/sotanga/">Șotânga</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">PH — 23 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/ph/aricestii-rahtivani/">Ariceștii Rahtivani</a>
+        
+          <a class="uat-pill" href="/oras/ph/berceni/">Berceni</a>
+        
+          <a class="uat-pill" href="/oras/ph/brebu/">Brebu</a>
+        
+          <a class="uat-pill" href="/oras/ph/drajna/">Drajna</a>
+        
+          <a class="uat-pill" href="/oras/ph/draganesti/">Drăgănești</a>
+        
+          <a class="uat-pill" href="/oras/ph/dumbrava/">Dumbrava</a>
+        
+          <a class="uat-pill" href="/oras/ph/filipestii-de-targ/">Filipeștii De Târg</a>
+        
+          <a class="uat-pill" href="/oras/ph/gura-vadului/">Gura Vadului</a>
+        
+          <a class="uat-pill" href="/oras/ph/magureni/">Măgureni</a>
+        
+          <a class="uat-pill" href="/oras/ph/oras-slanic/">Oraș Slănic</a>
+        
+          <a class="uat-pill" href="/oras/ph/oras-valenii-de-munte/">Oraș Vălenii De Munte</a>
+        
+          <a class="uat-pill" href="/oras/ph/plopu/">Plopu</a>
+        
+          <a class="uat-pill" href="/oras/ph/poiana-campina/">Poiana Câmpina</a>
+        
+          <a class="uat-pill" href="/oras/ph/poienarii-burchii/">Poienarii Burchii</a>
+        
+          <a class="uat-pill" href="/oras/ph/pacureti/">Păcureți</a>
+        
+          <a class="uat-pill" href="/oras/ph/paulesti/">Păulești</a>
+        
+          <a class="uat-pill" href="/oras/ph/secaria/">Secăria</a>
+        
+          <a class="uat-pill" href="/oras/ph/starchiojd/">Starchiojd</a>
+        
+          <a class="uat-pill" href="/oras/ph/sangeru/">Sângeru</a>
+        
+          <a class="uat-pill" href="/oras/ph/telega/">Telega</a>
+        
+          <a class="uat-pill" href="/oras/ph/tinosu/">Tinosu</a>
+        
+          <a class="uat-pill" href="/oras/ph/targsoru-vechi/">Târgșoru Vechi</a>
+        
+          <a class="uat-pill" href="/oras/ph/valea-calugareasca/">Valea Călugărească</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">SV — 19 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/sv/calafindesti/">Calafindești</a>
+        
+          <a class="uat-pill" href="/oras/sv/comanesti/">Comănești</a>
+        
+          <a class="uat-pill" href="/oras/sv/dorna-arini/">Dorna-Arini</a>
+        
+          <a class="uat-pill" href="/oras/sv/dragoiesti/">Drăgoiești</a>
+        
+          <a class="uat-pill" href="/oras/sv/fratautii-noi/">Frătăuții Noi</a>
+        
+          <a class="uat-pill" href="/oras/sv/hantesti/">Hănțești</a>
+        
+          <a class="uat-pill" href="/oras/sv/iaslovat/">Iaslovăț</a>
+        
+          <a class="uat-pill" href="/oras/sv/ipotesti/">Ipotești</a>
+        
+          <a class="uat-pill" href="/oras/sv/oras-brosteni/">Oraș Broșteni</a>
+        
+          <a class="uat-pill" href="/oras/sv/oras-frasin/">Oraș Frasin</a>
+        
+          <a class="uat-pill" href="/oras/sv/oras-salcea/">Oraș Salcea</a>
+        
+          <a class="uat-pill" href="/oras/sv/oras-siret/">Oraș Siret</a>
+        
+          <a class="uat-pill" href="/oras/sv/oras-vicovu-de-sus/">Oraș Vicovu De Sus</a>
+        
+          <a class="uat-pill" href="/oras/sv/rasca/">Râșca</a>
+        
+          <a class="uat-pill" href="/oras/sv/satu-mare/">Satu Mare</a>
+        
+          <a class="uat-pill" href="/oras/sv/siminicea/">Siminicea</a>
+        
+          <a class="uat-pill" href="/oras/sv/vama/">Vama</a>
+        
+          <a class="uat-pill" href="/oras/sv/vatra-moldovitei/">Vatra Moldoviței</a>
+        
+          <a class="uat-pill" href="/oras/sv/scheia/">Șcheia</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">DJ — 14 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/dj/argetoaia/">Argetoaia</a>
+        
+          <a class="uat-pill" href="/oras/dj/calarasi/">Călărași</a>
+        
+          <a class="uat-pill" href="/oras/dj/galicea-mare/">Galicea Mare</a>
+        
+          <a class="uat-pill" href="/oras/dj/isalnita/">Ișalnița</a>
+        
+          <a class="uat-pill" href="/oras/dj/mischii/">Mischii</a>
+        
+          <a class="uat-pill" href="/oras/dj/motatei/">Moțăței</a>
+        
+          <a class="uat-pill" href="/oras/dj/marsani/">Mârșani</a>
+        
+          <a class="uat-pill" href="/oras/dj/ostroveni/">Ostroveni</a>
+        
+          <a class="uat-pill" href="/oras/dj/plenita/">Plenița</a>
+        
+          <a class="uat-pill" href="/oras/dj/podari/">Podari</a>
+        
+          <a class="uat-pill" href="/oras/dj/poiana-mare/">Poiana Mare</a>
+        
+          <a class="uat-pill" href="/oras/dj/sadova/">Sadova</a>
+        
+          <a class="uat-pill" href="/oras/dj/valea-stanciului/">Valea Stanciului</a>
+        
+          <a class="uat-pill" href="/oras/dj/tuglui/">Țuglui</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">NT — 14 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/nt/borca/">Borca</a>
+        
+          <a class="uat-pill" href="/oras/nt/bargauani/">Bârgăuani</a>
+        
+          <a class="uat-pill" href="/oras/nt/dumbrava-rosie/">Dumbrava Roșie</a>
+        
+          <a class="uat-pill" href="/oras/nt/grumazesti/">Grumăzești</a>
+        
+          <a class="uat-pill" href="/oras/nt/gadinti/">Gâdinți</a>
+        
+          <a class="uat-pill" href="/oras/nt/margineni/">Mărgineni</a>
+        
+          <a class="uat-pill" href="/oras/nt/piatra-soimului/">Piatra Șoimului</a>
+        
+          <a class="uat-pill" href="/oras/nt/pipirig/">Pipirig</a>
+        
+          <a class="uat-pill" href="/oras/nt/podoleni/">Podoleni</a>
+        
+          <a class="uat-pill" href="/oras/nt/pastraveni/">Păstrăveni</a>
+        
+          <a class="uat-pill" href="/oras/nt/raucesti/">Răucești</a>
+        
+          <a class="uat-pill" href="/oras/nt/trifesti/">Trifești</a>
+        
+          <a class="uat-pill" href="/oras/nt/urecheni/">Urecheni</a>
+        
+          <a class="uat-pill" href="/oras/nt/zanesti/">Zănești</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">TR — 14 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/tr/blejesti/">Blejești</a>
+        
+          <a class="uat-pill" href="/oras/tr/bragadiru/">Bragadiru</a>
+        
+          <a class="uat-pill" href="/oras/tr/cervenia/">Cervenia</a>
+        
+          <a class="uat-pill" href="/oras/tr/ciolanesti/">Ciolănești</a>
+        
+          <a class="uat-pill" href="/oras/tr/frumoasa/">Frumoasa</a>
+        
+          <a class="uat-pill" href="/oras/tr/lita/">Lița</a>
+        
+          <a class="uat-pill" href="/oras/tr/nenciulesti/">Nenciulești</a>
+        
+          <a class="uat-pill" href="/oras/tr/oras-videle/">Oraș Videle</a>
+        
+          <a class="uat-pill" href="/oras/tr/orbeasca/">Orbeasca</a>
+        
+          <a class="uat-pill" href="/oras/tr/peretu/">Peretu</a>
+        
+          <a class="uat-pill" href="/oras/tr/piatra/">Piatra</a>
+        
+          <a class="uat-pill" href="/oras/tr/stejaru/">Stejaru</a>
+        
+          <a class="uat-pill" href="/oras/tr/traian/">Traian</a>
+        
+          <a class="uat-pill" href="/oras/tr/zambreasca/">Zâmbreasca</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">AR — 13 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/ar/buteni/">Buteni</a>
+        
+          <a class="uat-pill" href="/oras/ar/covasint/">Covăsinț</a>
+        
+          <a class="uat-pill" href="/oras/ar/dezna/">Dezna</a>
+        
+          <a class="uat-pill" href="/oras/ar/halmagiu/">Hălmagiu</a>
+        
+          <a class="uat-pill" href="/oras/ar/municipiul-arad/">Municipiul Arad</a>
+        
+          <a class="uat-pill" href="/oras/ar/olari/">Olari</a>
+        
+          <a class="uat-pill" href="/oras/ar/oras-curtici/">Oraș Curtici</a>
+        
+          <a class="uat-pill" href="/oras/ar/oras-lipova/">Oraș Lipova</a>
+        
+          <a class="uat-pill" href="/oras/ar/paulis/">Păuliș</a>
+        
+          <a class="uat-pill" href="/oras/ar/semlac/">Semlac</a>
+        
+          <a class="uat-pill" href="/oras/ar/vinga/">Vinga</a>
+        
+          <a class="uat-pill" href="/oras/ar/vladimirescu/">Vladimirescu</a>
+        
+          <a class="uat-pill" href="/oras/ar/zadareni/">Zădăreni</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">GR — 12 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/gr/adunatii-copaceni/">Adunații-Copăceni</a>
+        
+          <a class="uat-pill" href="/oras/gr/baneasa/">Băneasa</a>
+        
+          <a class="uat-pill" href="/oras/gr/colibasi/">Colibași</a>
+        
+          <a class="uat-pill" href="/oras/gr/crevedia-mare/">Crevedia Mare</a>
+        
+          <a class="uat-pill" href="/oras/gr/ghimpati/">Ghimpați</a>
+        
+          <a class="uat-pill" href="/oras/gr/hotarele/">Hotarele</a>
+        
+          <a class="uat-pill" href="/oras/gr/marsa/">Mârșa</a>
+        
+          <a class="uat-pill" href="/oras/gr/ogrezeni/">Ogrezeni</a>
+        
+          <a class="uat-pill" href="/oras/gr/oras-bolintin-vale/">Oraș Bolintin-Vale</a>
+        
+          <a class="uat-pill" href="/oras/gr/rasuceni/">Răsuceni</a>
+        
+          <a class="uat-pill" href="/oras/gr/valea-dragului/">Valea Dragului</a>
+        
+          <a class="uat-pill" href="/oras/gr/varasti/">Vărăști</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">IF — 12 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/if/1-decembrie/">1 Decembrie</a>
+        
+          <a class="uat-pill" href="/oras/if/cernica/">Cernica</a>
+        
+          <a class="uat-pill" href="/oras/if/chiajna/">Chiajna</a>
+        
+          <a class="uat-pill" href="/oras/if/copaceni/">Copăceni</a>
+        
+          <a class="uat-pill" href="/oras/if/corbeanca/">Corbeanca</a>
+        
+          <a class="uat-pill" href="/oras/if/glina/">Glina</a>
+        
+          <a class="uat-pill" href="/oras/if/oras-otopeni/">Oraș Otopeni</a>
+        
+          <a class="uat-pill" href="/oras/if/oras-voluntari/">Oraș Voluntari</a>
+        
+          <a class="uat-pill" href="/oras/if/peris/">Periș</a>
+        
+          <a class="uat-pill" href="/oras/if/snagov/">Snagov</a>
+        
+          <a class="uat-pill" href="/oras/if/vidra/">Vidra</a>
+        
+          <a class="uat-pill" href="/oras/if/stefanestii-de-jos/">Ștefăneștii De Jos</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">SB — 12 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/sb/mosna/">Moșna</a>
+        
+          <a class="uat-pill" href="/oras/sb/municipiul-medias/">Municipiul Mediaș</a>
+        
+          <a class="uat-pill" href="/oras/sb/nocrich/">Nocrich</a>
+        
+          <a class="uat-pill" href="/oras/sb/oras-agnita/">Oraș Agnita</a>
+        
+          <a class="uat-pill" href="/oras/sb/oras-avrig/">Oraș Avrig</a>
+        
+          <a class="uat-pill" href="/oras/sb/oras-miercurea-sibiului/">Oraș Miercurea Sibiului</a>
+        
+          <a class="uat-pill" href="/oras/sb/oras-saliste/">Oraș Săliște</a>
+        
+          <a class="uat-pill" href="/oras/sb/racovita/">Racovița</a>
+        
+          <a class="uat-pill" href="/oras/sb/rasinari/">Rășinari</a>
+        
+          <a class="uat-pill" href="/oras/sb/sadu/">Sadu</a>
+        
+          <a class="uat-pill" href="/oras/sb/vurpar/">Vurpăr</a>
+        
+          <a class="uat-pill" href="/oras/sb/sura-mica/">Șura Mică</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">CJ — 11 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/cj/caianu/">Căianu</a>
+        
+          <a class="uat-pill" href="/oras/cj/camarasu/">Cămărașu</a>
+        
+          <a class="uat-pill" href="/oras/cj/geaca/">Geaca</a>
+        
+          <a class="uat-pill" href="/oras/cj/gilau/">Gilău</a>
+        
+          <a class="uat-pill" href="/oras/cj/jucu/">Jucu</a>
+        
+          <a class="uat-pill" href="/oras/cj/luna/">Luna</a>
+        
+          <a class="uat-pill" href="/oras/cj/mihai-viteazu/">Mihai Viteazu</a>
+        
+          <a class="uat-pill" href="/oras/cj/mociu/">Mociu</a>
+        
+          <a class="uat-pill" href="/oras/cj/recea-cristur/">Recea-Cristur</a>
+        
+          <a class="uat-pill" href="/oras/cj/unguras/">Unguraș</a>
+        
+          <a class="uat-pill" href="/oras/cj/viisoara/">Viișoara</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">BC — 10 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/bc/berzunti/">Berzunți</a>
+        
+          <a class="uat-pill" href="/oras/bc/faraoani/">Faraoani</a>
+        
+          <a class="uat-pill" href="/oras/bc/garleni/">Gârleni</a>
+        
+          <a class="uat-pill" href="/oras/bc/helegiu/">Helegiu</a>
+        
+          <a class="uat-pill" href="/oras/bc/hemeius/">Hemeiuș</a>
+        
+          <a class="uat-pill" href="/oras/bc/oras-slanic-moldova/">Oraș Slănic-Moldova</a>
+        
+          <a class="uat-pill" href="/oras/bc/orbeni/">Orbeni</a>
+        
+          <a class="uat-pill" href="/oras/bc/racova/">Racova</a>
+        
+          <a class="uat-pill" href="/oras/bc/sascut/">Sascut</a>
+        
+          <a class="uat-pill" href="/oras/bc/valea-seaca/">Valea Seacă</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">IS — 10 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/is/ciurea/">Ciurea</a>
+        
+          <a class="uat-pill" href="/oras/is/cristesti/">Cristești</a>
+        
+          <a class="uat-pill" href="/oras/is/fantanele/">Fântânele</a>
+        
+          <a class="uat-pill" href="/oras/is/grajduri/">Grajduri</a>
+        
+          <a class="uat-pill" href="/oras/is/miroslava/">Miroslava</a>
+        
+          <a class="uat-pill" href="/oras/is/municipiul-pascani/">Municipiul Pașcani</a>
+        
+          <a class="uat-pill" href="/oras/is/todiresti/">Todirești</a>
+        
+          <a class="uat-pill" href="/oras/is/valea-lupului/">Valea Lupului</a>
+        
+          <a class="uat-pill" href="/oras/is/sipote/">Șipote</a>
+        
+          <a class="uat-pill" href="/oras/is/tibana/">Țibana</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">BT — 9 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/bt/albesti/">Albești</a>
+        
+          <a class="uat-pill" href="/oras/bt/dersca/">Dersca</a>
+        
+          <a class="uat-pill" href="/oras/bt/draguseni/">Drăgușeni</a>
+        
+          <a class="uat-pill" href="/oras/bt/hanesti/">Hănești</a>
+        
+          <a class="uat-pill" href="/oras/bt/lunca/">Lunca</a>
+        
+          <a class="uat-pill" href="/oras/bt/pomarla/">Pomârla</a>
+        
+          <a class="uat-pill" href="/oras/bt/todireni/">Todireni</a>
+        
+          <a class="uat-pill" href="/oras/bt/vorniceni/">Vorniceni</a>
+        
+          <a class="uat-pill" href="/oras/bt/sendriceni/">Șendriceni</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">CL — 9 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/cl/borcea/">Borcea</a>
+        
+          <a class="uat-pill" href="/oras/cl/chirnogi/">Chirnogi</a>
+        
+          <a class="uat-pill" href="/oras/cl/chiselet/">Chiselet</a>
+        
+          <a class="uat-pill" href="/oras/cl/curcani/">Curcani</a>
+        
+          <a class="uat-pill" href="/oras/cl/dor-marunt/">Dor Mărunt</a>
+        
+          <a class="uat-pill" href="/oras/cl/dragalina/">Dragalina</a>
+        
+          <a class="uat-pill" href="/oras/cl/modelu/">Modelu</a>
+        
+          <a class="uat-pill" href="/oras/cl/radovanu/">Radovanu</a>
+        
+          <a class="uat-pill" href="/oras/cl/valea-argovei/">Valea Argovei</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">CV — 9 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/cv/barcani/">Barcani</a>
+        
+          <a class="uat-pill" href="/oras/cv/cernat/">Cernat</a>
+        
+          <a class="uat-pill" href="/oras/cv/lemnia/">Lemnia</a>
+        
+          <a class="uat-pill" href="/oras/cv/moacsa/">Moacșa</a>
+        
+          <a class="uat-pill" href="/oras/cv/municipiul-sfantu-gheorghe/">Municipiul Sfântu Gheorghe</a>
+        
+          <a class="uat-pill" href="/oras/cv/oras-antorsura-buzaului/">Oraș Întorsura Buzăului</a>
+        
+          <a class="uat-pill" href="/oras/cv/ozun/">Ozun</a>
+        
+          <a class="uat-pill" href="/oras/cv/sanzieni/">Sânzieni</a>
+        
+          <a class="uat-pill" href="/oras/cv/zagon/">Zagon</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">AG — 8 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/ag/bascov/">Bascov</a>
+        
+          <a class="uat-pill" href="/oras/ag/bughea-de-jos/">Bughea De Jos</a>
+        
+          <a class="uat-pill" href="/oras/ag/dragoslavele/">Dragoslavele</a>
+        
+          <a class="uat-pill" href="/oras/ag/izvoru/">Izvoru</a>
+        
+          <a class="uat-pill" href="/oras/ag/mosoaia/">Moșoaia</a>
+        
+          <a class="uat-pill" href="/oras/ag/municipiul-campulung/">Municipiul Câmpulung</a>
+        
+          <a class="uat-pill" href="/oras/ag/oras-mioveni/">Oraș Mioveni</a>
+        
+          <a class="uat-pill" href="/oras/ag/rucar/">Rucăr</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">GL — 8 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/gl/barcea/">Barcea</a>
+        
+          <a class="uat-pill" href="/oras/gl/grivita/">Grivița</a>
+        
+          <a class="uat-pill" href="/oras/gl/movileni/">Movileni</a>
+        
+          <a class="uat-pill" href="/oras/gl/munteni/">Munteni</a>
+        
+          <a class="uat-pill" href="/oras/gl/piscu/">Piscu</a>
+        
+          <a class="uat-pill" href="/oras/gl/tulucesti/">Tulucești</a>
+        
+          <a class="uat-pill" href="/oras/gl/umbraresti/">Umbrărești</a>
+        
+          <a class="uat-pill" href="/oras/gl/sendreni/">Șendreni</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">MS — 8 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/ms/bahnea/">Bahnea</a>
+        
+          <a class="uat-pill" href="/oras/ms/corunca/">Corunca</a>
+        
+          <a class="uat-pill" href="/oras/ms/danes/">Daneș</a>
+        
+          <a class="uat-pill" href="/oras/ms/livezeni/">Livezeni</a>
+        
+          <a class="uat-pill" href="/oras/ms/oras-ludus/">Oraș Luduș</a>
+        
+          <a class="uat-pill" href="/oras/ms/oras-miercurea-nirajului/">Oraș Miercurea Nirajului</a>
+        
+          <a class="uat-pill" href="/oras/ms/oras-sovata/">Oraș Sovata</a>
+        
+          <a class="uat-pill" href="/oras/ms/sangeorgiu-de-mures/">Sângeorgiu De Mureș</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">BN — 7 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/bn/caianu-mic/">Căianu Mic</a>
+        
+          <a class="uat-pill" href="/oras/bn/dumitra/">Dumitra</a>
+        
+          <a class="uat-pill" href="/oras/bn/feldru/">Feldru</a>
+        
+          <a class="uat-pill" href="/oras/bn/municipiul-bistrita/">Municipiul Bistrița</a>
+        
+          <a class="uat-pill" href="/oras/bn/mariselu/">Mărișelu</a>
+        
+          <a class="uat-pill" href="/oras/bn/prundu-bargaului/">Prundu Bârgăului</a>
+        
+          <a class="uat-pill" href="/oras/bn/teaca/">Teaca</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">AB — 6 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/ab/bucerdea-granoasa/">Bucerdea Grânoasă</a>
+        
+          <a class="uat-pill" href="/oras/ab/cenade/">Cenade</a>
+        
+          <a class="uat-pill" href="/oras/ab/municipiul-sebes/">Municipiul Sebeș</a>
+        
+          <a class="uat-pill" href="/oras/ab/oras-teius/">Oraș Teiuș</a>
+        
+          <a class="uat-pill" href="/oras/ab/unirea/">Unirea</a>
+        
+          <a class="uat-pill" href="/oras/ab/vintu-de-jos/">Vințu De Jos</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">BV — 6 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/bv/bran/">Bran</a>
+        
+          <a class="uat-pill" href="/oras/bv/dumbravita/">Dumbrăvița</a>
+        
+          <a class="uat-pill" href="/oras/bv/prejmer/">Prejmer</a>
+        
+          <a class="uat-pill" href="/oras/bv/racos/">Racoș</a>
+        
+          <a class="uat-pill" href="/oras/bv/teliu/">Teliu</a>
+        
+          <a class="uat-pill" href="/oras/bv/vulcan/">Vulcan</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">CT — 6 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/ct/aliman/">Aliman</a>
+        
+          <a class="uat-pill" href="/oras/ct/corbu/">Corbu</a>
+        
+          <a class="uat-pill" href="/oras/ct/limanu/">Limanu</a>
+        
+          <a class="uat-pill" href="/oras/ct/mircea-voda/">Mircea Vodă</a>
+        
+          <a class="uat-pill" href="/oras/ct/poarta-alba/">Poarta Albă</a>
+        
+          <a class="uat-pill" href="/oras/ct/valu-lui-traian/">Valu Lui Traian</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">MH — 6 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/mh/breznita-motru/">Breznița-Motru</a>
+        
+          <a class="uat-pill" href="/oras/mh/gruia/">Gruia</a>
+        
+          <a class="uat-pill" href="/oras/mh/malovat/">Malovăț</a>
+        
+          <a class="uat-pill" href="/oras/mh/oras-strehaia/">Oraș Strehaia</a>
+        
+          <a class="uat-pill" href="/oras/mh/simian/">Șimian</a>
+        
+          <a class="uat-pill" href="/oras/mh/sisesti/">Șișești</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">TM — 6 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/tm/ghiroda/">Ghiroda</a>
+        
+          <a class="uat-pill" href="/oras/tm/mosnita-noua/">Moșnița Nouă</a>
+        
+          <a class="uat-pill" href="/oras/tm/municipiul-timisoara/">Municipiul Timișoara</a>
+        
+          <a class="uat-pill" href="/oras/tm/oras-buzias/">Oraș Buziaș</a>
+        
+          <a class="uat-pill" href="/oras/tm/saravale/">Saravale</a>
+        
+          <a class="uat-pill" href="/oras/tm/sanandrei/">Sânandrei</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">BZ — 5 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/bz/berca/">Berca</a>
+        
+          <a class="uat-pill" href="/oras/bz/oras-nehoiu/">Oraș Nehoiu</a>
+        
+          <a class="uat-pill" href="/oras/bz/ramnicelu/">Râmnicelu</a>
+        
+          <a class="uat-pill" href="/oras/bz/smeeni/">Smeeni</a>
+        
+          <a class="uat-pill" href="/oras/bz/vadu-pasii/">Vadu Pașii</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">HR — 5 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/hr/galautas/">Gălăuțaș</a>
+        
+          <a class="uat-pill" href="/oras/hr/municipiul-odorheiu-secuiesc/">Municipiul Odorheiu Secuiesc</a>
+        
+          <a class="uat-pill" href="/oras/hr/praid/">Praid</a>
+        
+          <a class="uat-pill" href="/oras/hr/tulghes/">Tulgheș</a>
+        
+          <a class="uat-pill" href="/oras/hr/zetea/">Zetea</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">SM — 5 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/sm/certeze/">Certeze</a>
+        
+          <a class="uat-pill" href="/oras/sm/calinesti-oas/">Călinești-Oaș</a>
+        
+          <a class="uat-pill" href="/oras/sm/gherta-mica/">Gherța Mică</a>
+        
+          <a class="uat-pill" href="/oras/sm/mediesu-aurit/">Medieșu Aurit</a>
+        
+          <a class="uat-pill" href="/oras/sm/viile-satu-mare/">Viile Satu Mare</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">BH — 4 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/bh/girisu-de-cris/">Girișu De Criș</a>
+        
+          <a class="uat-pill" href="/oras/bh/oras-stei/">Oraș Ștei</a>
+        
+          <a class="uat-pill" href="/oras/bh/paleu/">Paleu</a>
+        
+          <a class="uat-pill" href="/oras/bh/sanmartin/">Sânmartin</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">IL — 4 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/il/ciulnita/">Ciulnița</a>
+        
+          <a class="uat-pill" href="/oras/il/cosereni/">Coșereni</a>
+        
+          <a class="uat-pill" href="/oras/il/facaeni/">Făcăeni</a>
+        
+          <a class="uat-pill" href="/oras/il/perieti/">Perieți</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">MM — 3 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/mm/grosi/">Groși</a>
+        
+          <a class="uat-pill" href="/oras/mm/recea/">Recea</a>
+        
+          <a class="uat-pill" href="/oras/mm/valea-chioarului/">Valea Chioarului</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">VN — 3 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/vn/mera/">Mera</a>
+        
+          <a class="uat-pill" href="/oras/vn/straoane/">Străoane</a>
+        
+          <a class="uat-pill" href="/oras/vn/tamboesti/">Tâmboești</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">VS — 3 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/vs/berezeni/">Berezeni</a>
+        
+          <a class="uat-pill" href="/oras/vs/falciu/">Fălciu</a>
+        
+          <a class="uat-pill" href="/oras/vs/muntenii-de-sus/">Muntenii De Sus</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">SJ — 2 stradăzi</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/sj/letca/">Letca</a>
+        
+          <a class="uat-pill" href="/oras/sj/sarmasag/">Șărmășag</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">CS — 1 stradă</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/cs/oras-moldova-noua/">Oraș Moldova Nouă</a>
+        
+      </div>
+    </div>
+    
+    <div class="judet-section">
+      <div class="judet-label">HD — 1 stradă</div>
+      <div class="uat-cluster">
+        
+          <a class="uat-pill" href="/oras/hd/municipiul-lupeni/">Municipiul Lupeni</a>
+        
+      </div>
+    </div>
+    
+  </div>
+
+</div>
+
+
+<footer class="site-footer">
+  <span>Date: Autoritatea Electorală Permanentă · <a href="/metodologie.html">Metodologie</a></span>
+  <span>un proiect <a href="/">Cum ne numim străzile</a></span>
+</footer>
+
+</body>
+</html>
