@@ -239,6 +239,20 @@ a:hover { text-decoration: underline; }
   transition: background .1s ease, border-color .1s ease;
 }
 .uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+.uat-pill.is-capital {
+  background: var(--bg);
+  border-color: var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 12px;
+}
+.uat-pill.is-capital::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  margin-right: 4px;
+  line-height: 1;
+  vertical-align: 1px;
+}
 
 /* județ accordion */
 .judet-section { margin-bottom: 10px; }
@@ -313,7 +327,7 @@ a:hover { text-decoration: underline; }
             <span class="emo">📍</span>
             Alte
           </div>
-          <div class="rank-count">63</div>
+          <div class="rank-count">60</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -322,7 +336,7 @@ a:hover { text-decoration: underline; }
             
             Persoana
           </div>
-          <div class="rank-count">17</div>
+          <div class="rank-count">19</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -357,7 +371,7 @@ a:hover { text-decoration: underline; }
             <span class="emo">📍</span>
             Loc
           </div>
-          <div class="rank-count">1</div>
+          <div class="rank-count">2</div>
         </div>
         
       </div>
@@ -664,12 +678,7 @@ a:hover { text-decoration: underline; }
           <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
             <div>
               
-              <span class="portrait" style="margin-right:6px;">
-                <img src="/portraits/Q184935.jpg" alt="Mihai Eminescu"
-                     onerror="this.parentElement.textContent='MI'">
-              </span>
-              
-              <a href="/persoana/q184935/">Mihai Eminescu</a>
+              <a href="/persoana/ion-irimescu/">Ion Irimescu</a>
             </div>
             <div class="rank-count">1</div>
           </div>
@@ -677,12 +686,7 @@ a:hover { text-decoration: underline; }
           <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
             <div>
               
-              <span class="portrait" style="margin-right:6px;">
-                <img src="/portraits/Q217048.jpg" alt="Mihail Sadoveanu"
-                     onerror="this.parentElement.textContent='MI'">
-              </span>
-              
-              <a href="/persoana/q217048/">Mihail Sadoveanu</a>
+              <a href="/persoana/matei-millo/">Matei Millo</a>
             </div>
             <div class="rank-count">1</div>
           </div>

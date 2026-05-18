@@ -239,6 +239,20 @@ a:hover { text-decoration: underline; }
   transition: background .1s ease, border-color .1s ease;
 }
 .uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+.uat-pill.is-capital {
+  background: var(--bg);
+  border-color: var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 12px;
+}
+.uat-pill.is-capital::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  margin-right: 4px;
+  line-height: 1;
+  vertical-align: 1px;
+}
 
 /* județ accordion */
 .judet-section { margin-bottom: 10px; }
@@ -283,7 +297,7 @@ a:hover { text-decoration: underline; }
 
   <div class="detail-hero">
     <div class="kicker"><span class="emo">🏷️</span> Teme</div>
-    <h1 style="font-size:28px; font-weight:700; font-family:var(--street);">72 categorii tematice</h1>
+    <h1 style="font-size:28px; font-weight:700; font-family:var(--street);">130 categorii tematice</h1>
   </div>
 
   
@@ -300,7 +314,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🌿</span>
           <a href="/tema/natura/" style="font-weight:600; color:var(--ink); margin-left:6px;">Natură</a>
         </div>
-        <div class="rank-count">27485</div>
+        <div class="rank-count">29733</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -308,7 +322,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">👤</span>
           <a href="/tema/persoana/" style="font-weight:600; color:var(--ink); margin-left:6px;">Persoană</a>
         </div>
-        <div class="rank-count">11255</div>
+        <div class="rank-count">12468</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -316,7 +330,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">📍</span>
           <a href="/tema/loc/" style="font-weight:600; color:var(--ink); margin-left:6px;">Loc / topografic</a>
         </div>
-        <div class="rank-count">4348</div>
+        <div class="rank-count">6052</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -324,7 +338,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🚩</span>
           <a href="/tema/ideologic/" style="font-weight:600; color:var(--ink); margin-left:6px;">Ideologic</a>
         </div>
-        <div class="rank-count">2819</div>
+        <div class="rank-count">2829</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -358,7 +372,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🎓</span>
           <a href="/tema/profesie-writer/" style="font-weight:600; color:var(--ink); margin-left:6px;">Scriitor</a>
         </div>
-        <div class="rank-count">2177</div>
+        <div class="rank-count">2325</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -366,7 +380,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🎓</span>
           <a href="/tema/profesie-revolutionary/" style="font-weight:600; color:var(--ink); margin-left:6px;">Revoluționar</a>
         </div>
-        <div class="rank-count">1812</div>
+        <div class="rank-count">1824</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -374,7 +388,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🎓</span>
           <a href="/tema/profesie-poet/" style="font-weight:600; color:var(--ink); margin-left:6px;">Poet</a>
         </div>
-        <div class="rank-count">1576</div>
+        <div class="rank-count">1645</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -390,7 +404,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🎓</span>
           <a href="/tema/profesie-politician/" style="font-weight:600; color:var(--ink); margin-left:6px;">Politician</a>
         </div>
-        <div class="rank-count">947</div>
+        <div class="rank-count">1035</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -414,7 +428,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🎓</span>
           <a href="/tema/profesie-composer/" style="font-weight:600; color:var(--ink); margin-left:6px;">Compozitor</a>
         </div>
-        <div class="rank-count">285</div>
+        <div class="rank-count">318</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -428,17 +442,9 @@ a:hover { text-decoration: underline; }
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
         <div>
           <span class="emo">🎓</span>
-          <a href="/tema/profesie-king/" style="font-weight:600; color:var(--ink); margin-left:6px;">Rege</a>
-        </div>
-        <div class="rank-count">251</div>
-      </div>
-      
-      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
-        <div>
-          <span class="emo">🎓</span>
           <a href="/tema/profesie-painter/" style="font-weight:600; color:var(--ink); margin-left:6px;">Pictor</a>
         </div>
-        <div class="rank-count">249</div>
+        <div class="rank-count">270</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -446,7 +452,15 @@ a:hover { text-decoration: underline; }
           <span class="emo">🎓</span>
           <a href="/tema/profesie-military/" style="font-weight:600; color:var(--ink); margin-left:6px;">Militar</a>
         </div>
-        <div class="rank-count">242</div>
+        <div class="rank-count">261</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-king/" style="font-weight:600; color:var(--ink); margin-left:6px;">Rege</a>
+        </div>
+        <div class="rank-count">251</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -500,9 +514,33 @@ a:hover { text-decoration: underline; }
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
         <div>
           <span class="emo">🎓</span>
+          <a href="/tema/profesie-ruler/" style="font-weight:600; color:var(--ink); margin-left:6px;">Ruler</a>
+        </div>
+        <div class="rank-count">61</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
           <a href="/tema/profesie-artist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Artist</a>
         </div>
         <div class="rank-count">57</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-general/" style="font-weight:600; color:var(--ink); margin-left:6px;">General</a>
+        </div>
+        <div class="rank-count">55</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-military-officer/" style="font-weight:600; color:var(--ink); margin-left:6px;">Military Officer</a>
+        </div>
+        <div class="rank-count">53</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -524,9 +562,433 @@ a:hover { text-decoration: underline; }
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
         <div>
           <span class="emo">🎓</span>
+          <a href="/tema/profesie-actor/" style="font-weight:600; color:var(--ink); margin-left:6px;">Actor</a>
+        </div>
+        <div class="rank-count">37</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-cleric/" style="font-weight:600; color:var(--ink); margin-left:6px;">Cleric</a>
+        </div>
+        <div class="rank-count">35</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-voivode/" style="font-weight:600; color:var(--ink); margin-left:6px;">Voivode</a>
+        </div>
+        <div class="rank-count">33</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-mathematician/" style="font-weight:600; color:var(--ink); margin-left:6px;">Mathematician</a>
+        </div>
+        <div class="rank-count">31</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-soldier/" style="font-weight:600; color:var(--ink); margin-left:6px;">Soldier</a>
+        </div>
+        <div class="rank-count">22</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-chemist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Chemist</a>
+        </div>
+        <div class="rank-count">22</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-architect/" style="font-weight:600; color:var(--ink); margin-left:6px;">Architect</a>
+        </div>
+        <div class="rank-count">20</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-neurologist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Neurologist</a>
+        </div>
+        <div class="rank-count">18</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-writer-linguist-historian/" style="font-weight:600; color:var(--ink); margin-left:6px;">Writer, Linguist, Historian</a>
+        </div>
+        <div class="rank-count">17</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-boyar-soldier/" style="font-weight:600; color:var(--ink); margin-left:6px;">Boyar, Soldier</a>
+        </div>
+        <div class="rank-count">15</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
           <a href="/tema/profesie-legendary/" style="font-weight:600; color:var(--ink); margin-left:6px;">Personaj legendar</a>
         </div>
         <div class="rank-count">14</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-general-politician/" style="font-weight:600; color:var(--ink); margin-left:6px;">General, Politician</a>
+        </div>
+        <div class="rank-count">14</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-writer-linguist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Writer, Linguist</a>
+        </div>
+        <div class="rank-count">12</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-politician-writer/" style="font-weight:600; color:var(--ink); margin-left:6px;">Politician/Writer</a>
+        </div>
+        <div class="rank-count">12</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-military-officer-politician/" style="font-weight:600; color:var(--ink); margin-left:6px;">Military Officer, Politician</a>
+        </div>
+        <div class="rank-count">12</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-domnitor/" style="font-weight:600; color:var(--ink); margin-left:6px;">Domnitor</a>
+        </div>
+        <div class="rank-count">12</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-dirijor/" style="font-weight:600; color:var(--ink); margin-left:6px;">Dirijor</a>
+        </div>
+        <div class="rank-count">12</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-opera-singer/" style="font-weight:600; color:var(--ink); margin-left:6px;">Opera Singer</a>
+        </div>
+        <div class="rank-count">11</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-military-commander/" style="font-weight:600; color:var(--ink); margin-left:6px;">Military Commander</a>
+        </div>
+        <div class="rank-count">11</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-scriitor-etnograf/" style="font-weight:600; color:var(--ink); margin-left:6px;">Scriitor, Etnograf</a>
+        </div>
+        <div class="rank-count">10</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-politician-historian-jurist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Politician, Historian, Jurist</a>
+        </div>
+        <div class="rank-count">10</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-politician-historian/" style="font-weight:600; color:var(--ink); margin-left:6px;">Politician, Historian</a>
+        </div>
+        <div class="rank-count">10</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-monarch/" style="font-weight:600; color:var(--ink); margin-left:6px;">Monarch</a>
+        </div>
+        <div class="rank-count">10</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-militar/" style="font-weight:600; color:var(--ink); margin-left:6px;">Militar</a>
+        </div>
+        <div class="rank-count">10</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-metropolitan-bishop-writer/" style="font-weight:600; color:var(--ink); margin-left:6px;">Metropolitan Bishop, Writer</a>
+        </div>
+        <div class="rank-count">10</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-literary-critic/" style="font-weight:600; color:var(--ink); margin-left:6px;">Literary Critic</a>
+        </div>
+        <div class="rank-count">10</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-linguist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Linguist</a>
+        </div>
+        <div class="rank-count">10</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-lawyer-philanthropist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Lawyer, Philanthropist</a>
+        </div>
+        <div class="rank-count">10</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-fabulist-poet/" style="font-weight:600; color:var(--ink); margin-left:6px;">Fabulist, Poet</a>
+        </div>
+        <div class="rank-count">10</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-theologian-historian/" style="font-weight:600; color:var(--ink); margin-left:6px;">Theologian/Historian</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-sculptor/" style="font-weight:600; color:var(--ink); margin-left:6px;">Sculptor</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-politicians/" style="font-weight:600; color:var(--ink); margin-left:6px;">Politicians</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-politician-philologist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Politician/Philologist</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-politician-journalist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Politician, Journalist</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-pedagog/" style="font-weight:600; color:var(--ink); margin-left:6px;">Pedagog</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-mythological-figure/" style="font-weight:600; color:var(--ink); margin-left:6px;">Mythological Figure</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-diplomat-writer/" style="font-weight:600; color:var(--ink); margin-left:6px;">Diplomat/Writer</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-conductor-composer/" style="font-weight:600; color:var(--ink); margin-left:6px;">Conductor/Composer</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-biologist-chemist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Biologist/Chemist</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-biologist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Biologist</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-aviator/" style="font-weight:600; color:var(--ink); margin-left:6px;">Aviator</a>
+        </div>
+        <div class="rank-count">9</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-writer-journalist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Writer/Journalist</a>
+        </div>
+        <div class="rank-count">8</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-polymath/" style="font-weight:600; color:var(--ink); margin-left:6px;">Polymath</a>
+        </div>
+        <div class="rank-count">8</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-playwright/" style="font-weight:600; color:var(--ink); margin-left:6px;">Playwright</a>
+        </div>
+        <div class="rank-count">8</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-outlaw-folk-hero/" style="font-weight:600; color:var(--ink); margin-left:6px;">Outlaw/Folk Hero</a>
+        </div>
+        <div class="rank-count">8</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-noble/" style="font-weight:600; color:var(--ink); margin-left:6px;">Noble</a>
+        </div>
+        <div class="rank-count">8</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-logofat/" style="font-weight:600; color:var(--ink); margin-left:6px;">Logofăt</a>
+        </div>
+        <div class="rank-count">8</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-journalist-writer/" style="font-weight:600; color:var(--ink); margin-left:6px;">Journalist/Writer</a>
+        </div>
+        <div class="rank-count">8</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-compozitor/" style="font-weight:600; color:var(--ink); margin-left:6px;">Compozitor</a>
+        </div>
+        <div class="rank-count">8</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-boyar/" style="font-weight:600; color:var(--ink); margin-left:6px;">Boyar</a>
+        </div>
+        <div class="rank-count">8</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-physicist/" style="font-weight:600; color:var(--ink); margin-left:6px;">Physicist</a>
+        </div>
+        <div class="rank-count">7</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-physician/" style="font-weight:600; color:var(--ink); margin-left:6px;">Physician</a>
+        </div>
+        <div class="rank-count">7</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-linguist-folklorist-literary-historian/" style="font-weight:600; color:var(--ink); margin-left:6px;">Linguist, Folklorist, Literary Historian</a>
+        </div>
+        <div class="rank-count">7</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🎓</span>
+          <a href="/tema/profesie-composer-conductor/" style="font-weight:600; color:var(--ink); margin-left:6px;">Composer, Conductor</a>
+        </div>
+        <div class="rank-count">7</div>
       </div>
       
     </div>
@@ -544,7 +1006,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🌿</span>
           <a href="/tema/natura-flower/" style="font-weight:600; color:var(--ink); margin-left:6px;">Flori</a>
         </div>
-        <div class="rank-count">8371</div>
+        <div class="rank-count">8549</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -552,7 +1014,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🌿</span>
           <a href="/tema/natura-tree/" style="font-weight:600; color:var(--ink); margin-left:6px;">Copaci</a>
         </div>
-        <div class="rank-count">8246</div>
+        <div class="rank-count">8333</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -560,7 +1022,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🌿</span>
           <a href="/tema/natura-water/" style="font-weight:600; color:var(--ink); margin-left:6px;">Apă</a>
         </div>
-        <div class="rank-count">1641</div>
+        <div class="rank-count">1749</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -568,7 +1030,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🌿</span>
           <a href="/tema/natura-plant/" style="font-weight:600; color:var(--ink); margin-left:6px;">Plante</a>
         </div>
-        <div class="rank-count">1460</div>
+        <div class="rank-count">1635</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -576,7 +1038,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🌿</span>
           <a href="/tema/natura-bird/" style="font-weight:600; color:var(--ink); margin-left:6px;">Păsări</a>
         </div>
-        <div class="rank-count">1386</div>
+        <div class="rank-count">1527</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -584,7 +1046,15 @@ a:hover { text-decoration: underline; }
           <span class="emo">🌿</span>
           <a href="/tema/natura-sky/" style="font-weight:600; color:var(--ink); margin-left:6px;">Cer / vreme</a>
         </div>
-        <div class="rank-count">1103</div>
+        <div class="rank-count">1242</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🌿</span>
+          <a href="/tema/natura-geography/" style="font-weight:600; color:var(--ink); margin-left:6px;">Geografie</a>
+        </div>
+        <div class="rank-count">1134</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -592,15 +1062,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🌿</span>
           <a href="/tema/natura-forest/" style="font-weight:600; color:var(--ink); margin-left:6px;">Pădure</a>
         </div>
-        <div class="rank-count">944</div>
-      </div>
-      
-      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
-        <div>
-          <span class="emo">🌿</span>
-          <a href="/tema/natura-season/" style="font-weight:600; color:var(--ink); margin-left:6px;">Anotimpuri</a>
-        </div>
-        <div class="rank-count">743</div>
+        <div class="rank-count">1099</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -608,7 +1070,15 @@ a:hover { text-decoration: underline; }
           <span class="emo">🌿</span>
           <a href="/tema/natura-meadow/" style="font-weight:600; color:var(--ink); margin-left:6px;">Pajiști</a>
         </div>
-        <div class="rank-count">732</div>
+        <div class="rank-count">864</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🌿</span>
+          <a href="/tema/natura-season/" style="font-weight:600; color:var(--ink); margin-left:6px;">Anotimpuri</a>
+        </div>
+        <div class="rank-count">783</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -616,7 +1086,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🌿</span>
           <a href="/tema/natura-animal/" style="font-weight:600; color:var(--ink); margin-left:6px;">Animale</a>
         </div>
-        <div class="rank-count">626</div>
+        <div class="rank-count">698</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -624,7 +1094,7 @@ a:hover { text-decoration: underline; }
           <span class="emo">🌿</span>
           <a href="/tema/natura-weather/" style="font-weight:600; color:var(--ink); margin-left:6px;">Vreme</a>
         </div>
-        <div class="rank-count">485</div>
+        <div class="rank-count">524</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -633,6 +1103,14 @@ a:hover { text-decoration: underline; }
           <a href="/tema/natura-field/" style="font-weight:600; color:var(--ink); margin-left:6px;">Câmp</a>
         </div>
         <div class="rank-count">410</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🌿</span>
+          <a href="/tema/natura-fruit/" style="font-weight:600; color:var(--ink); margin-left:6px;">Fructe</a>
+        </div>
+        <div class="rank-count">358</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -649,22 +1127,6 @@ a:hover { text-decoration: underline; }
           <a href="/tema/natura-orchard/" style="font-weight:600; color:var(--ink); margin-left:6px;">Livezi</a>
         </div>
         <div class="rank-count">322</div>
-      </div>
-      
-      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
-        <div>
-          <span class="emo">🌿</span>
-          <a href="/tema/natura-fruit/" style="font-weight:600; color:var(--ink); margin-left:6px;">Fructe</a>
-        </div>
-        <div class="rank-count">292</div>
-      </div>
-      
-      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
-        <div>
-          <span class="emo">🌿</span>
-          <a href="/tema/natura-geography/" style="font-weight:600; color:var(--ink); margin-left:6px;">Geografie</a>
-        </div>
-        <div class="rank-count">241</div>
       </div>
       
       <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
@@ -687,6 +1149,14 @@ a:hover { text-decoration: underline; }
         <div>
           <span class="emo">🌿</span>
           <a href="/tema/natura-mountain/" style="font-weight:600; color:var(--ink); margin-left:6px;">Munți</a>
+        </div>
+        <div class="rank-count">23</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🌿</span>
+          <a href="/tema/natura-mountain-peak/" style="font-weight:600; color:var(--ink); margin-left:6px;">Mountain_Peak</a>
         </div>
         <div class="rank-count">15</div>
       </div>
@@ -899,6 +1369,14 @@ a:hover { text-decoration: underline; }
           <a href="/tema/ideologic-cooperative/" style="font-weight:600; color:var(--ink); margin-left:6px;">Cooperație</a>
         </div>
         <div class="rank-count">13</div>
+      </div>
+      
+      <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 70px;">
+        <div>
+          <span class="emo">🚩</span>
+          <a href="/tema/ideologic-commemorative/" style="font-weight:600; color:var(--ink); margin-left:6px;">Commemorative</a>
+        </div>
+        <div class="rank-count">10</div>
       </div>
       
     </div>

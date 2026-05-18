@@ -239,6 +239,20 @@ a:hover { text-decoration: underline; }
   transition: background .1s ease, border-color .1s ease;
 }
 .uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+.uat-pill.is-capital {
+  background: var(--bg);
+  border-color: var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 12px;
+}
+.uat-pill.is-capital::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  margin-right: 4px;
+  line-height: 1;
+  vertical-align: 1px;
+}
 
 /* județ accordion */
 .judet-section { margin-bottom: 10px; }
@@ -313,7 +327,7 @@ a:hover { text-decoration: underline; }
             <span class="emo">📍</span>
             Alte
           </div>
-          <div class="rank-count">86</div>
+          <div class="rank-count">73</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -322,7 +336,7 @@ a:hover { text-decoration: underline; }
             
             Persoana
           </div>
-          <div class="rank-count">57</div>
+          <div class="rank-count">67</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -331,7 +345,7 @@ a:hover { text-decoration: underline; }
             
             Natura
           </div>
-          <div class="rank-count">38</div>
+          <div class="rank-count">41</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -539,6 +553,14 @@ a:hover { text-decoration: underline; }
           <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
             <div>
               
+              <a href="/persoana/alexandru-donici/">Alexandru Donici</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
               <span class="portrait" style="margin-right:6px;">
                 <img src="/portraits/Q208518.jpg" alt="Alexandru Ioan Cuza"
                      onerror="this.parentElement.textContent='AL'">
@@ -675,19 +697,6 @@ a:hover { text-decoration: underline; }
               </span>
               
               <a href="/persoana/q445032/">Badea Cârțan</a>
-            </div>
-            <div class="rank-count">1</div>
-          </div>
-          
-          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
-            <div>
-              
-              <span class="portrait" style="margin-right:6px;">
-                <img src="/portraits/Q18537706.jpg" alt="Barbu Lăutaru"
-                     onerror="this.parentElement.textContent='BA'">
-              </span>
-              
-              <a href="/persoana/q18537706/">Barbu Lăutaru</a>
             </div>
             <div class="rank-count">1</div>
           </div>

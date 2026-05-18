@@ -239,6 +239,20 @@ a:hover { text-decoration: underline; }
   transition: background .1s ease, border-color .1s ease;
 }
 .uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+.uat-pill.is-capital {
+  background: var(--bg);
+  border-color: var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 12px;
+}
+.uat-pill.is-capital::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  margin-right: 4px;
+  line-height: 1;
+  vertical-align: 1px;
+}
 
 /* județ accordion */
 .judet-section { margin-bottom: 10px; }
@@ -287,8 +301,8 @@ a:hover { text-decoration: underline; }
     <div class="kicker"><span class="emo">🚩</span> Macro</div>
     <h1>Ideologic</h1>
     <div class="meta-row">
-      <span><strong>2819</strong> stradăzi în această categorie</span>
-      <span>30 nume distincte</span>
+      <span><strong>2829</strong> stradăzi în această categorie</span>
+      <span>31 nume distincte</span>
     </div>
   </div>
 
@@ -553,6 +567,15 @@ a:hover { text-decoration: underline; }
         <div class="rank-row" style="grid-template-columns: 26px minmax(0,1fr) 50px 50px;">
           <div class="rank-num">29</div>
           <div>
+            <a href="/strada/poporului/" class="street-tag sm">Poporului</a>
+          </div>
+          <div class="rank-count" title="10 localități">10</div>
+          <div style="font-size:10.5px; color:var(--muted); text-align:right; font-variant-numeric:tabular-nums;">10 loc.</div>
+        </div>
+        
+        <div class="rank-row" style="grid-template-columns: 26px minmax(0,1fr) 50px 50px;">
+          <div class="rank-num">30</div>
+          <div>
             <a href="/strada/revolutiei/" class="street-tag sm">Revoluției</a>
           </div>
           <div class="rank-count" title="1 localități">1</div>
@@ -560,7 +583,7 @@ a:hover { text-decoration: underline; }
         </div>
         
         <div class="rank-row" style="grid-template-columns: 26px minmax(0,1fr) 50px 50px;">
-          <div class="rank-num">30</div>
+          <div class="rank-num">31</div>
           <div>
             <a href="/strada/muncii/" class="street-tag sm">Muncii</a>
           </div>
@@ -579,9 +602,18 @@ a:hover { text-decoration: underline; }
           <div style="font-size:11px; font-weight:700; color:var(--muted);">PH</div>
           <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
             
-            <div style="position:absolute; left:0; top:0; height:100%; width:5.5%; background:var(--plaque); border-radius:1px;"></div>
+            <div style="position:absolute; left:0; top:0; height:100%; width:5.4%; background:var(--plaque); border-radius:1px;"></div>
           </div>
           <div class="rank-count">154</div>
+        </div>
+        
+        <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
+          <div style="font-size:11px; font-weight:700; color:var(--muted);">OT</div>
+          <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
+            
+            <div style="position:absolute; left:0; top:0; height:100%; width:5.0%; background:var(--plaque); border-radius:1px;"></div>
+          </div>
+          <div class="rank-count">142</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
@@ -591,15 +623,6 @@ a:hover { text-decoration: underline; }
             <div style="position:absolute; left:0; top:0; height:100%; width:5.0%; background:var(--plaque); border-radius:1px;"></div>
           </div>
           <div class="rank-count">142</div>
-        </div>
-        
-        <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
-          <div style="font-size:11px; font-weight:700; color:var(--muted);">OT</div>
-          <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
-            
-            <div style="position:absolute; left:0; top:0; height:100%; width:5.0%; background:var(--plaque); border-radius:1px;"></div>
-          </div>
-          <div class="rank-count">141</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
@@ -624,18 +647,18 @@ a:hover { text-decoration: underline; }
           <div style="font-size:11px; font-weight:700; color:var(--muted);">DJ</div>
           <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
             
-            <div style="position:absolute; left:0; top:0; height:100%; width:3.5%; background:var(--plaque); border-radius:1px;"></div>
+            <div style="position:absolute; left:0; top:0; height:100%; width:3.6%; background:var(--plaque); border-radius:1px;"></div>
           </div>
-          <div class="rank-count">100</div>
+          <div class="rank-count">102</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
           <div style="font-size:11px; font-weight:700; color:var(--muted);">CT</div>
           <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
             
-            <div style="position:absolute; left:0; top:0; height:100%; width:3.4%; background:var(--plaque); border-radius:1px;"></div>
+            <div style="position:absolute; left:0; top:0; height:100%; width:3.5%; background:var(--plaque); border-radius:1px;"></div>
           </div>
-          <div class="rank-count">95</div>
+          <div class="rank-count">99</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
@@ -648,19 +671,19 @@ a:hover { text-decoration: underline; }
         </div>
         
         <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
-          <div style="font-size:11px; font-weight:700; color:var(--muted);">TM</div>
-          <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
-            
-            <div style="position:absolute; left:0; top:0; height:100%; width:3.1%; background:var(--plaque); border-radius:1px;"></div>
-          </div>
-          <div class="rank-count">86</div>
-        </div>
-        
-        <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
           <div style="font-size:11px; font-weight:700; color:var(--muted);">HD</div>
           <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
             
             <div style="position:absolute; left:0; top:0; height:100%; width:3.1%; background:var(--plaque); border-radius:1px;"></div>
+          </div>
+          <div class="rank-count">87</div>
+        </div>
+        
+        <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
+          <div style="font-size:11px; font-weight:700; color:var(--muted);">TM</div>
+          <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
+            
+            <div style="position:absolute; left:0; top:0; height:100%; width:3.0%; background:var(--plaque); border-radius:1px;"></div>
           </div>
           <div class="rank-count">86</div>
         </div>
@@ -696,7 +719,7 @@ a:hover { text-decoration: underline; }
           <div style="font-size:11px; font-weight:700; color:var(--muted);">MS</div>
           <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
             
-            <div style="position:absolute; left:0; top:0; height:100%; width:2.6%; background:var(--plaque); border-radius:1px;"></div>
+            <div style="position:absolute; left:0; top:0; height:100%; width:2.5%; background:var(--plaque); border-radius:1px;"></div>
           </div>
           <div class="rank-count">72</div>
         </div>
@@ -705,7 +728,7 @@ a:hover { text-decoration: underline; }
           <div style="font-size:11px; font-weight:700; color:var(--muted);">AR</div>
           <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
             
-            <div style="position:absolute; left:0; top:0; height:100%; width:2.6%; background:var(--plaque); border-radius:1px;"></div>
+            <div style="position:absolute; left:0; top:0; height:100%; width:2.5%; background:var(--plaque); border-radius:1px;"></div>
           </div>
           <div class="rank-count">72</div>
         </div>
@@ -786,7 +809,7 @@ a:hover { text-decoration: underline; }
           <div style="font-size:11px; font-weight:700; color:var(--muted);">VN</div>
           <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
             
-            <div style="position:absolute; left:0; top:0; height:100%; width:2.0%; background:var(--plaque); border-radius:1px;"></div>
+            <div style="position:absolute; left:0; top:0; height:100%; width:1.9%; background:var(--plaque); border-radius:1px;"></div>
           </div>
           <div class="rank-count">55</div>
         </div>
@@ -795,7 +818,7 @@ a:hover { text-decoration: underline; }
           <div style="font-size:11px; font-weight:700; color:var(--muted);">IL</div>
           <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
             
-            <div style="position:absolute; left:0; top:0; height:100%; width:2.0%; background:var(--plaque); border-radius:1px;"></div>
+            <div style="position:absolute; left:0; top:0; height:100%; width:1.9%; background:var(--plaque); border-radius:1px;"></div>
           </div>
           <div class="rank-count">55</div>
         </div>
@@ -837,6 +860,15 @@ a:hover { text-decoration: underline; }
         </div>
         
         <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
+          <div style="font-size:11px; font-weight:700; color:var(--muted);">BT</div>
+          <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
+            
+            <div style="position:absolute; left:0; top:0; height:100%; width:1.7%; background:var(--plaque); border-radius:1px;"></div>
+          </div>
+          <div class="rank-count">47</div>
+        </div>
+        
+        <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
           <div style="font-size:11px; font-weight:700; color:var(--muted);">VL</div>
           <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
             
@@ -846,7 +878,7 @@ a:hover { text-decoration: underline; }
         </div>
         
         <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
-          <div style="font-size:11px; font-weight:700; color:var(--muted);">BT</div>
+          <div style="font-size:11px; font-weight:700; color:var(--muted);">BR</div>
           <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
             
             <div style="position:absolute; left:0; top:0; height:100%; width:1.6%; background:var(--plaque); border-radius:1px;"></div>
@@ -865,15 +897,6 @@ a:hover { text-decoration: underline; }
         
         <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
           <div style="font-size:11px; font-weight:700; color:var(--muted);">CS</div>
-          <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
-            
-            <div style="position:absolute; left:0; top:0; height:100%; width:1.6%; background:var(--plaque); border-radius:1px;"></div>
-          </div>
-          <div class="rank-count">45</div>
-        </div>
-        
-        <div class="rank-row" style="grid-template-columns: 32px minmax(0,1fr) 50px;">
-          <div style="font-size:11px; font-weight:700; color:var(--muted);">BR</div>
           <div style="position:relative; height:6px; background:var(--surface-2); border-radius:1px;">
             
             <div style="position:absolute; left:0; top:0; height:100%; width:1.6%; background:var(--plaque); border-radius:1px;"></div>

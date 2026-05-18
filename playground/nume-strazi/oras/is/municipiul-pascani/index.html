@@ -239,6 +239,20 @@ a:hover { text-decoration: underline; }
   transition: background .1s ease, border-color .1s ease;
 }
 .uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+.uat-pill.is-capital {
+  background: var(--bg);
+  border-color: var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 12px;
+}
+.uat-pill.is-capital::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  margin-right: 4px;
+  line-height: 1;
+  vertical-align: 1px;
+}
 
 /* județ accordion */
 .judet-section { margin-bottom: 10px; }
@@ -313,7 +327,7 @@ a:hover { text-decoration: underline; }
             <span class="emo">📍</span>
             Alte
           </div>
-          <div class="rank-count">77</div>
+          <div class="rank-count">65</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -322,7 +336,7 @@ a:hover { text-decoration: underline; }
             
             Persoana
           </div>
-          <div class="rank-count">57</div>
+          <div class="rank-count">63</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -331,7 +345,7 @@ a:hover { text-decoration: underline; }
             
             Natura
           </div>
-          <div class="rank-count">32</div>
+          <div class="rank-count">35</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -339,7 +353,7 @@ a:hover { text-decoration: underline; }
             <span class="emo">📍</span>
             Loc
           </div>
-          <div class="rank-count">9</div>
+          <div class="rank-count">12</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -617,6 +631,14 @@ a:hover { text-decoration: underline; }
           <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
             <div>
               
+              <a href="/persoana/aprodul-purice/">Aprodul Purice</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
               <span class="portrait" style="margin-right:6px;">
                 <img src="/portraits/Q781514.jpg" alt="Aurel Vlaicu"
                      onerror="this.parentElement.textContent='AU'">
@@ -675,19 +697,6 @@ a:hover { text-decoration: underline; }
               </span>
               
               <a href="/persoana/q857714/">Camil Petrescu</a>
-            </div>
-            <div class="rank-count">1</div>
-          </div>
-          
-          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
-            <div>
-              
-              <span class="portrait" style="margin-right:6px;">
-                <img src="/portraits/Q381100.jpg" alt="Ciprian Porumbescu"
-                     onerror="this.parentElement.textContent='CI'">
-              </span>
-              
-              <a href="/persoana/q381100/">Ciprian Porumbescu</a>
             </div>
             <div class="rank-count">1</div>
           </div>

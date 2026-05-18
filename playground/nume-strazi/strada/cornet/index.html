@@ -239,6 +239,20 @@ a:hover { text-decoration: underline; }
   transition: background .1s ease, border-color .1s ease;
 }
 .uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+.uat-pill.is-capital {
+  background: var(--bg);
+  border-color: var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 12px;
+}
+.uat-pill.is-capital::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  margin-right: 4px;
+  line-height: 1;
+  vertical-align: 1px;
+}
 
 /* județ accordion */
 .judet-section { margin-bottom: 10px; }
@@ -285,7 +299,7 @@ a:hover { text-decoration: underline; }
 
   <div class="detail-hero">
     <div class="kicker">
-      <span class="emo">📍</span> Stradă
+      <span class="emo">🌿</span> Natură
       
     </div>
     <h1 class="plaque">Cornet</h1>
@@ -293,7 +307,7 @@ a:hover { text-decoration: underline; }
       <span><strong>9</strong> localități</span>
       <span><strong>5</strong> județe</span>
       
-      
+      <span class="tag nature">geography</span>
       
     </div>
   </div>

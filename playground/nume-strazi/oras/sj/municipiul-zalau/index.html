@@ -239,6 +239,20 @@ a:hover { text-decoration: underline; }
   transition: background .1s ease, border-color .1s ease;
 }
 .uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+.uat-pill.is-capital {
+  background: var(--bg);
+  border-color: var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 12px;
+}
+.uat-pill.is-capital::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  margin-right: 4px;
+  line-height: 1;
+  vertical-align: 1px;
+}
 
 /* județ accordion */
 .judet-section { margin-bottom: 10px; }
@@ -313,7 +327,7 @@ a:hover { text-decoration: underline; }
             <span class="emo">📍</span>
             Alte
           </div>
-          <div class="rank-count">120</div>
+          <div class="rank-count">100</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -322,7 +336,7 @@ a:hover { text-decoration: underline; }
             
             Natura
           </div>
-          <div class="rank-count">80</div>
+          <div class="rank-count">85</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -331,7 +345,7 @@ a:hover { text-decoration: underline; }
             
             Persoana
           </div>
-          <div class="rank-count">65</div>
+          <div class="rank-count">73</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -339,7 +353,7 @@ a:hover { text-decoration: underline; }
             <span class="emo">📍</span>
             Loc
           </div>
-          <div class="rank-count">24</div>
+          <div class="rank-count">31</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -678,12 +692,7 @@ a:hover { text-decoration: underline; }
           <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
             <div>
               
-              <span class="portrait" style="margin-right:6px;">
-                <img src="/portraits/Q720450.jpg" alt="Avram Iancu"
-                     onerror="this.parentElement.textContent='AV'">
-              </span>
-              
-              <a href="/persoana/q720450/">Avram Iancu</a>
+              <a href="/persoana/armand-calinescu/">Armand Călinescu</a>
             </div>
             <div class="rank-count">1</div>
           </div>
@@ -692,11 +701,11 @@ a:hover { text-decoration: underline; }
             <div>
               
               <span class="portrait" style="margin-right:6px;">
-                <img src="/portraits/Q2389145.jpg" alt="Bogdan Petriceicu Hașdeu"
-                     onerror="this.parentElement.textContent='BO'">
+                <img src="/portraits/Q720450.jpg" alt="Avram Iancu"
+                     onerror="this.parentElement.textContent='AV'">
               </span>
               
-              <a href="/persoana/q2389145/">Bogdan Petriceicu Hașdeu</a>
+              <a href="/persoana/q720450/">Avram Iancu</a>
             </div>
             <div class="rank-count">1</div>
           </div>

@@ -239,6 +239,20 @@ a:hover { text-decoration: underline; }
   transition: background .1s ease, border-color .1s ease;
 }
 .uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+.uat-pill.is-capital {
+  background: var(--bg);
+  border-color: var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 12px;
+}
+.uat-pill.is-capital::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  margin-right: 4px;
+  line-height: 1;
+  vertical-align: 1px;
+}
 
 /* județ accordion */
 .judet-section { margin-bottom: 10px; }
@@ -313,7 +327,7 @@ a:hover { text-decoration: underline; }
             <span class="emo">📍</span>
             Alte
           </div>
-          <div class="rank-count">848</div>
+          <div class="rank-count">806</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -322,7 +336,7 @@ a:hover { text-decoration: underline; }
             
             Natura
           </div>
-          <div class="rank-count">33</div>
+          <div class="rank-count">48</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -331,7 +345,7 @@ a:hover { text-decoration: underline; }
             
             Persoana
           </div>
-          <div class="rank-count">28</div>
+          <div class="rank-count">41</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -339,7 +353,7 @@ a:hover { text-decoration: underline; }
             <span class="emo">📍</span>
             Loc
           </div>
-          <div class="rank-count">14</div>
+          <div class="rank-count">28</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -552,12 +566,36 @@ a:hover { text-decoration: underline; }
           <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
             <div>
               
+              <a href="/persoana/alexandru-donici/">Alexandru Donici</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
               <span class="portrait" style="margin-right:6px;">
                 <img src="/portraits/Q2719337.jpg" alt="Alexandru cel Bun"
                      onerror="this.parentElement.textContent='AL'">
               </span>
               
               <a href="/persoana/q2719337/">Alexandru cel Bun</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <a href="/persoana/aprodul-purice/">Aprodul Purice</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <a href="/persoana/armand-calinescu/">Armand Călinescu</a>
             </div>
             <div class="rank-count">1</div>
           </div>
@@ -584,6 +622,14 @@ a:hover { text-decoration: underline; }
               </span>
               
               <a href="/persoana/q720450/">Avram Iancu</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
+              <a href="/persoana/avram-iancu/">Avram Iancu</a>
             </div>
             <div class="rank-count">1</div>
           </div>
@@ -636,58 +682,6 @@ a:hover { text-decoration: underline; }
               </span>
               
               <a href="/persoana/q12726447/">David Praporgescu</a>
-            </div>
-            <div class="rank-count">1</div>
-          </div>
-          
-          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
-            <div>
-              
-              <span class="portrait" style="margin-right:6px;">
-                <img src="/portraits/Q355898.jpg" alt="Dinu Lipatti"
-                     onerror="this.parentElement.textContent='DI'">
-              </span>
-              
-              <a href="/persoana/q355898/">Dinu Lipatti</a>
-            </div>
-            <div class="rank-count">1</div>
-          </div>
-          
-          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
-            <div>
-              
-              <span class="portrait" style="margin-right:6px;">
-                <img src="/portraits/Q2537456.jpg" alt="Dragoș Vodă"
-                     onerror="this.parentElement.textContent='DR'">
-              </span>
-              
-              <a href="/persoana/q2537456/">Dragoș Vodă</a>
-            </div>
-            <div class="rank-count">1</div>
-          </div>
-          
-          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
-            <div>
-              
-              <span class="portrait" style="margin-right:6px;">
-                <img src="/portraits/Q1398494.jpg" alt="Ion Andreescu"
-                     onerror="this.parentElement.textContent='IO'">
-              </span>
-              
-              <a href="/persoana/q1398494/">Ion Andreescu</a>
-            </div>
-            <div class="rank-count">1</div>
-          </div>
-          
-          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
-            <div>
-              
-              <span class="portrait" style="margin-right:6px;">
-                <img src="/portraits/Q2071370.jpg" alt="Ion Heliade Rădulescu"
-                     onerror="this.parentElement.textContent='IO'">
-              </span>
-              
-              <a href="/persoana/q2071370/">Ion Heliade Rădulescu</a>
             </div>
             <div class="rank-count">1</div>
           </div>

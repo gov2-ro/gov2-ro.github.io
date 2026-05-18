@@ -239,6 +239,20 @@ a:hover { text-decoration: underline; }
   transition: background .1s ease, border-color .1s ease;
 }
 .uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+.uat-pill.is-capital {
+  background: var(--bg);
+  border-color: var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 12px;
+}
+.uat-pill.is-capital::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  margin-right: 4px;
+  line-height: 1;
+  vertical-align: 1px;
+}
 
 /* județ accordion */
 .judet-section { margin-bottom: 10px; }
@@ -283,7 +297,7 @@ a:hover { text-decoration: underline; }
 
   <div class="detail-hero">
     <div class="kicker"><span class="emo">👤</span> Persoane</div>
-    <h1 style="font-size:28px; font-weight:700; font-family:var(--street);">211 personalități onorate pe străzi</h1>
+    <h1 style="font-size:28px; font-weight:700; font-family:var(--street);">336 personalități onorate pe străzi</h1>
     <div class="meta-row">Ordonate după numărul de localități</div>
   </div>
 
@@ -1942,6 +1956,20 @@ a:hover { text-decoration: underline; }
       <div class="rank-num">111</div>
       <div class="portrait">
         
+        ER
+        
+      </div>
+      <div>
+        <a href="/persoana/eremia-grigorescu/" style="font-weight:600; color:var(--ink);">Eremia Grigorescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">eremia-grigorescu</div>
+      <div class="rank-count">28</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">112</div>
+      <div class="portrait">
+        
         <img src="/portraits/Q242688.jpg" alt="Iancu de Hunedoara"
              onerror="this.parentElement.textContent='IA'">
         
@@ -1954,7 +1982,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">112</div>
+      <div class="rank-num">113</div>
       <div class="portrait">
         
         <img src="/portraits/Q559382.jpg" alt="Neagoe Basarab"
@@ -1969,7 +1997,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">113</div>
+      <div class="rank-num">114</div>
       <div class="portrait">
         
         <img src="/portraits/Q7198.jpg" alt="Publius Ovidius Naso"
@@ -1984,7 +2012,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">114</div>
+      <div class="rank-num">115</div>
       <div class="portrait">
         
         <img src="/portraits/Q2071370.jpg" alt="Ion Heliade Rădulescu"
@@ -1999,7 +2027,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">115</div>
+      <div class="rank-num">116</div>
       <div class="portrait">
         
         <img src="/portraits/Q5114661.jpg" alt="Ion Neculce"
@@ -2014,7 +2042,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">116</div>
+      <div class="rank-num">117</div>
       <div class="portrait">
         
         <img src="/portraits/Q647431.jpg" alt="Eftimie Murgu"
@@ -2029,7 +2057,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">117</div>
+      <div class="rank-num">118</div>
       <div class="portrait">
         
         <img src="/portraits/Q868839.jpg" alt="Costache Negruzzi"
@@ -2044,7 +2072,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">118</div>
+      <div class="rank-num">119</div>
       <div class="portrait">
         
         <img src="/portraits/Q580935.jpg" alt="Ecaterina Varga"
@@ -2059,7 +2087,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">119</div>
+      <div class="rank-num">120</div>
       <div class="portrait">
         
         <img src="/portraits/Q1028044.jpg" alt="Nicolae Tonitza"
@@ -2074,7 +2102,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">120</div>
+      <div class="rank-num">121</div>
       <div class="portrait">
         
         <img src="/portraits/Q4721217.jpg" alt="Alexandru Sahia"
@@ -2089,7 +2117,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">121</div>
+      <div class="rank-num">122</div>
       <div class="portrait">
         
         <img src="/portraits/Q2524023.jpg" alt="Vasile Conta"
@@ -2104,7 +2132,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">122</div>
+      <div class="rank-num">123</div>
       <div class="portrait">
         
         <img src="/portraits/Q2468239.jpg" alt="Zaharia Stancu"
@@ -2119,7 +2147,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">123</div>
+      <div class="rank-num">124</div>
       <div class="portrait">
         
         <img src="/portraits/Q1044174.jpg" alt="Carol Davila"
@@ -2134,7 +2162,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">124</div>
+      <div class="rank-num">125</div>
       <div class="portrait">
         
         <img src="/portraits/Q153047.jpg" alt="Ion C. Brătianu"
@@ -2149,7 +2177,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">125</div>
+      <div class="rank-num">126</div>
       <div class="portrait">
         
         <img src="/portraits/Q208494.jpg" alt="Mircea cel Bătrân"
@@ -2164,7 +2192,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">126</div>
+      <div class="rank-num">127</div>
       <div class="portrait">
         
         <img src="/portraits/Q3657061.jpg" alt="Panait Cerna"
@@ -2179,7 +2207,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">127</div>
+      <div class="rank-num">128</div>
       <div class="portrait">
         
         <img src="/portraits/Q13533673.jpg" alt="Calistrat Hogaș"
@@ -2194,7 +2222,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">128</div>
+      <div class="rank-num">129</div>
       <div class="portrait">
         
         EL
@@ -2208,7 +2236,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">129</div>
+      <div class="rank-num">130</div>
       <div class="portrait">
         
         <img src="/portraits/Q46951076.jpg" alt="Frații Buzești"
@@ -2223,7 +2251,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">130</div>
+      <div class="rank-num">131</div>
       <div class="portrait">
         
         <img src="/portraits/Q647429.jpg" alt="Ion C. Brătianu"
@@ -2238,7 +2266,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">131</div>
+      <div class="rank-num">132</div>
       <div class="portrait">
         
         <img src="/portraits/Q647963.jpg" alt="Ionel Teodoreanu"
@@ -2253,7 +2281,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">132</div>
+      <div class="rank-num">133</div>
       <div class="portrait">
         
         <img src="/portraits/Q156605.jpg" alt="Mihai Viteazul"
@@ -2268,7 +2296,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">133</div>
+      <div class="rank-num">134</div>
       <div class="portrait">
         
         <img src="/portraits/Q897286.jpg" alt="Timotei Cipariu"
@@ -2283,7 +2311,21 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">134</div>
+      <div class="rank-num">135</div>
+      <div class="portrait">
+        
+        WA
+        
+      </div>
+      <div>
+        <a href="/persoana/walter-maracineanu/" style="font-weight:600; color:var(--ink);">Walter Mărăcineanu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">walter-maracineanu</div>
+      <div class="rank-count">22</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">136</div>
       <div class="portrait">
         
         <img src="/portraits/Q58285.jpg" alt="Alexandru Averescu"
@@ -2298,7 +2340,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">135</div>
+      <div class="rank-num">137</div>
       <div class="portrait">
         
         <img src="/portraits/Q717751.jpg" alt="Aron Pumnul"
@@ -2313,7 +2355,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">136</div>
+      <div class="rank-num">138</div>
       <div class="portrait">
         
         <img src="/portraits/Q952971.jpg" alt="Gheorghe Lazăr"
@@ -2328,7 +2370,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">137</div>
+      <div class="rank-num">139</div>
       <div class="portrait">
         
         <img src="/portraits/Q12730779.jpg" alt="Ion Agârbiceanu"
@@ -2343,7 +2385,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">138</div>
+      <div class="rank-num">140</div>
       <div class="portrait">
         
         <img src="/portraits/Q1398494.jpg" alt="Ion Andreescu"
@@ -2358,7 +2400,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">139</div>
+      <div class="rank-num">141</div>
       <div class="portrait">
         
         <img src="/portraits/Q647476.jpg" alt="Ion Ghica"
@@ -2373,7 +2415,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">140</div>
+      <div class="rank-num">142</div>
       <div class="portrait">
         
         <img src="/portraits/Q4968865.jpg" alt="Baba Novac"
@@ -2388,7 +2430,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">141</div>
+      <div class="rank-num">143</div>
       <div class="portrait">
         
         <img src="/portraits/Q647380.jpg" alt="Duiliu Zamfirescu"
@@ -2403,7 +2445,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">142</div>
+      <div class="rank-num">144</div>
       <div class="portrait">
         
         <img src="/portraits/Q83359.jpg" alt="Bartók Béla"
@@ -2418,7 +2460,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">143</div>
+      <div class="rank-num">145</div>
       <div class="portrait">
         
         <img src="/portraits/Q12737733.jpg" alt="Peneș Curcanul"
@@ -2433,7 +2475,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">144</div>
+      <div class="rank-num">146</div>
       <div class="portrait">
         
         <img src="/portraits/Q381161.jpg" alt="Adrian Păunescu"
@@ -2448,7 +2490,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">145</div>
+      <div class="rank-num">147</div>
       <div class="portrait">
         
         <img src="/portraits/Q152690.jpg" alt="Arany János"
@@ -2463,7 +2505,35 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">146</div>
+      <div class="rank-num">148</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ion-dragalina/" style="font-weight:600; color:var(--ink);">Ion Dragalina</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ion-dragalina</div>
+      <div class="rank-count">18</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">149</div>
+      <div class="portrait">
+        
+        NI
+        
+      </div>
+      <div>
+        <a href="/persoana/nicolae-filimon/" style="font-weight:600; color:var(--ink);">Nicolae Filimon</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">nicolae-filimon</div>
+      <div class="rank-count">18</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">150</div>
       <div class="portrait">
         
         <img src="/portraits/Q3068361.jpg" alt="Octav Băncilă"
@@ -2478,7 +2548,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">147</div>
+      <div class="rank-num">151</div>
       <div class="portrait">
         
         <img src="/portraits/Q2268352.jpg" alt="Patriarh Miron Cristea"
@@ -2493,7 +2563,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">148</div>
+      <div class="rank-num">152</div>
       <div class="portrait">
         
         <img src="/portraits/Q7916602.jpg" alt="Vasile Cârlova"
@@ -2508,7 +2578,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">149</div>
+      <div class="rank-num">153</div>
       <div class="portrait">
         
         <img src="/portraits/Q437004.jpg" alt="Ana Aslan"
@@ -2523,7 +2593,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">150</div>
+      <div class="rank-num">154</div>
       <div class="portrait">
         
         <img src="/portraits/Q779030.jpg" alt="Axente Sever"
@@ -2538,7 +2608,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">151</div>
+      <div class="rank-num">155</div>
       <div class="portrait">
         
         <img src="/portraits/Q445032.jpg" alt="Badea Cârțan"
@@ -2553,7 +2623,21 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">152</div>
+      <div class="rank-num">156</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ioan-budai-deleanu/" style="font-weight:600; color:var(--ink);">Ioan Budai-Deleanu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ioan-budai-deleanu</div>
+      <div class="rank-count">17</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">157</div>
       <div class="portrait">
         
         <img src="/portraits/Q2540525.jpg" alt="Ion Roată"
@@ -2568,7 +2652,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">153</div>
+      <div class="rank-num">158</div>
       <div class="portrait">
         
         <img src="/portraits/Q568275.jpg" alt="Iosif Vulcan"
@@ -2583,7 +2667,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">154</div>
+      <div class="rank-num">159</div>
       <div class="portrait">
         
         <img src="/portraits/Q344179.jpg" alt="Panait Istrati"
@@ -2598,7 +2682,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">155</div>
+      <div class="rank-num">160</div>
       <div class="portrait">
         
         <img src="/portraits/Q8273058.jpg" alt="Tudor Vianu"
@@ -2613,7 +2697,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">156</div>
+      <div class="rank-num">161</div>
       <div class="portrait">
         
         <img src="/portraits/Q44611.jpg" alt="Vlad Țepeș"
@@ -2628,7 +2712,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">157</div>
+      <div class="rank-num">162</div>
       <div class="portrait">
         
         <img src="/portraits/Q2428037.jpg" alt="Cezar Petrescu"
@@ -2643,7 +2727,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">158</div>
+      <div class="rank-num">163</div>
       <div class="portrait">
         
         <img src="/portraits/Q3493179.jpg" alt="Eugen Lovinescu"
@@ -2658,7 +2742,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">159</div>
+      <div class="rank-num">164</div>
       <div class="portrait">
         
         <img src="/portraits/Q6063392.jpg" alt="Ion Vidu"
@@ -2673,7 +2757,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">160</div>
+      <div class="rank-num">165</div>
       <div class="portrait">
         
         MO
@@ -2687,7 +2771,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">161</div>
+      <div class="rank-num">166</div>
       <div class="portrait">
         
         <img src="/portraits/Q289962.jpg" alt="Márton Áron"
@@ -2702,7 +2786,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">162</div>
+      <div class="rank-num">167</div>
       <div class="portrait">
         
         <img src="/portraits/Q57165.jpg" alt="Regele Ferdinand I"
@@ -2717,7 +2801,21 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">163</div>
+      <div class="rank-num">168</div>
+      <div class="portrait">
+        
+        AP
+        
+      </div>
+      <div>
+        <a href="/persoana/aprodul-purice/" style="font-weight:600; color:var(--ink);">Aprodul Purice</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">aprodul-purice</div>
+      <div class="rank-count">15</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">169</div>
       <div class="portrait">
         
         <img src="/portraits/Q125375.jpg" alt="Bethlen Gábor"
@@ -2732,7 +2830,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">164</div>
+      <div class="rank-num">170</div>
       <div class="portrait">
         
         <img src="/portraits/Q12723504.jpg" alt="Budai Nagy Antal"
@@ -2747,7 +2845,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">165</div>
+      <div class="rank-num">171</div>
       <div class="portrait">
         
         <img src="/portraits/Q12726447.jpg" alt="David Praporgescu"
@@ -2762,7 +2860,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">166</div>
+      <div class="rank-num">172</div>
       <div class="portrait">
         
         <img src="/portraits/Q847345.jpg" alt="Geo Bogza"
@@ -2777,7 +2875,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">167</div>
+      <div class="rank-num">173</div>
       <div class="portrait">
         
         <img src="/portraits/Q545724.jpg" alt="Ion Barbu"
@@ -2792,7 +2890,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">168</div>
+      <div class="rank-num">174</div>
       <div class="portrait">
         
         <img src="/portraits/Q6063106.jpg" alt="Ion Ionescu de la Brad"
@@ -2807,7 +2905,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">169</div>
+      <div class="rank-num">175</div>
       <div class="portrait">
         
         <img src="/portraits/Q647489.jpg" alt="Ion Neculce"
@@ -2822,7 +2920,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">170</div>
+      <div class="rank-num">176</div>
       <div class="portrait">
         
         <img src="/portraits/Q168717.jpg" alt="Jókai Mór"
@@ -2837,7 +2935,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">171</div>
+      <div class="rank-num">177</div>
       <div class="portrait">
         
         <img src="/portraits/Q130786.jpg" alt="József Attila"
@@ -2852,7 +2950,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">172</div>
+      <div class="rank-num">178</div>
       <div class="portrait">
         
         <img src="/portraits/Q12737301.jpg" alt="Otilia Cazimir"
@@ -2867,7 +2965,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">173</div>
+      <div class="rank-num">179</div>
       <div class="portrait">
         
         <img src="/portraits/Q57629.jpg" alt="Regina Elisabeta"
@@ -2882,7 +2980,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">174</div>
+      <div class="rank-num">180</div>
       <div class="portrait">
         
         <img src="/portraits/Q570225.jpg" alt="Samuil Vulcan"
@@ -2897,7 +2995,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">175</div>
+      <div class="rank-num">181</div>
       <div class="portrait">
         
         <img src="/portraits/Q208518.jpg" alt="Alexandru Ioan Cuza"
@@ -2912,7 +3010,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">176</div>
+      <div class="rank-num">182</div>
       <div class="portrait">
         
         BA
@@ -2926,7 +3024,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">177</div>
+      <div class="rank-num">183</div>
       <div class="portrait">
         
         <img src="/portraits/Q285520.jpg" alt="Barbu Știrbei"
@@ -2941,7 +3039,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">178</div>
+      <div class="rank-num">184</div>
       <div class="portrait">
         
         <img src="/portraits/Q4975558.jpg" alt="Elena Cuza"
@@ -2956,7 +3054,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">179</div>
+      <div class="rank-num">185</div>
       <div class="portrait">
         
         <img src="/portraits/Q3052223.jpg" alt="Emil Gârleanu"
@@ -2971,7 +3069,21 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">180</div>
+      <div class="rank-num">186</div>
+      <div class="portrait">
+        
+        GH
+        
+      </div>
+      <div>
+        <a href="/persoana/gheorghe-magheru/" style="font-weight:600; color:var(--ink);">Gheorghe Magheru</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">gheorghe-magheru</div>
+      <div class="rank-count">14</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">187</div>
       <div class="portrait">
         
         <img src="/portraits/Q3109807.jpg" alt="Grigore Antipa"
@@ -2986,7 +3098,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">181</div>
+      <div class="rank-num">188</div>
       <div class="portrait">
         
         <img src="/portraits/Q240299.jpg" alt="Gábor Áron"
@@ -3001,7 +3113,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">182</div>
+      <div class="rank-num">189</div>
       <div class="portrait">
         
         <img src="/portraits/Q1656593.jpg" alt="Horia, Cloșca și Crișan"
@@ -3016,7 +3128,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">183</div>
+      <div class="rank-num">190</div>
       <div class="portrait">
         
         <img src="/portraits/Q48592.jpg" alt="Kossuth Lajos"
@@ -3031,7 +3143,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">184</div>
+      <div class="rank-num">191</div>
       <div class="portrait">
         
         <img src="/portraits/Q956913.jpg" alt="Petre Țuțea"
@@ -3046,7 +3158,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">185</div>
+      <div class="rank-num">192</div>
       <div class="portrait">
         
         <img src="/portraits/Q647428.jpg" alt="Constantin Dobrogeanu-Gherea"
@@ -3061,7 +3173,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">186</div>
+      <div class="rank-num">193</div>
       <div class="portrait">
         
         <img src="/portraits/Q336614.jpg" alt="Constantin Noica"
@@ -3076,7 +3188,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">187</div>
+      <div class="rank-num">194</div>
       <div class="portrait">
         
         <img src="/portraits/Q647434.jpg" alt="Dinicu Golescu"
@@ -3091,7 +3203,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">188</div>
+      <div class="rank-num">195</div>
       <div class="portrait">
         
         <img src="/portraits/Q355898.jpg" alt="Dinu Lipatti"
@@ -3106,7 +3218,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">189</div>
+      <div class="rank-num">196</div>
       <div class="portrait">
         
         <img src="/portraits/Q12726871.jpg" alt="Doamna Stanca"
@@ -3121,7 +3233,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">190</div>
+      <div class="rank-num">197</div>
       <div class="portrait">
         
         <img src="/portraits/Q1372003.jpg" alt="Eremia Grigorescu"
@@ -3136,7 +3248,21 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">191</div>
+      <div class="rank-num">198</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ioan-ratiu/" style="font-weight:600; color:var(--ink);">Ioan Rațiu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ioan-ratiu</div>
+      <div class="rank-count">13</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">199</div>
       <div class="portrait">
         
         <img src="/portraits/Q217022.jpg" alt="Ion Luca Caragiale"
@@ -3151,7 +3277,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">192</div>
+      <div class="rank-num">200</div>
       <div class="portrait">
         
         <img src="/portraits/Q2779508.jpg" alt="Ion Mihalache"
@@ -3166,7 +3292,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">193</div>
+      <div class="rank-num">201</div>
       <div class="portrait">
         
         <img src="/portraits/Q6063226.jpg" alt="Ion Nistor"
@@ -3181,7 +3307,21 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">194</div>
+      <div class="rank-num">202</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ion-paun-pincio/" style="font-weight:600; color:var(--ink);">Ion Păun Pincio</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ion-paun-pincio</div>
+      <div class="rank-count">13</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">203</div>
       <div class="portrait">
         
         <img src="/portraits/Q647536.jpg" alt="Petrache Poenaru"
@@ -3196,7 +3336,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">195</div>
+      <div class="rank-num">204</div>
       <div class="portrait">
         
         <img src="/portraits/Q1093958.jpg" alt="Radu Negru"
@@ -3211,7 +3351,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">196</div>
+      <div class="rank-num">205</div>
       <div class="portrait">
         
         <img src="/portraits/Q2005820.jpg" alt="Alexandru Macedonski"
@@ -3226,7 +3366,147 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">197</div>
+      <div class="rank-num">206</div>
+      <div class="portrait">
+        
+        AV
+        
+      </div>
+      <div>
+        <a href="/persoana/avram-iancu/" style="font-weight:600; color:var(--ink);">Avram Iancu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">avram-iancu</div>
+      <div class="rank-count">12</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">207</div>
+      <div class="portrait">
+        
+        CO
+        
+      </div>
+      <div>
+        <a href="/persoana/constantin-stere/" style="font-weight:600; color:var(--ink);">Constantin Stere</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">constantin-stere</div>
+      <div class="rank-count">12</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">208</div>
+      <div class="portrait">
+        
+        GH
+        
+      </div>
+      <div>
+        <a href="/persoana/gheorghe-dima/" style="font-weight:600; color:var(--ink);">Gheorghe Dima</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">gheorghe-dima</div>
+      <div class="rank-count">12</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">209</div>
+      <div class="portrait">
+        
+        GH
+        
+      </div>
+      <div>
+        <a href="/persoana/gheorghe-titeica/" style="font-weight:600; color:var(--ink);">Gheorghe Țițeica</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">gheorghe-titeica</div>
+      <div class="rank-count">12</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">210</div>
+      <div class="portrait">
+        
+        GR
+        
+      </div>
+      <div>
+        <a href="/persoana/grigore-vieru/" style="font-weight:600; color:var(--ink);">Grigore Vieru</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">grigore-vieru</div>
+      <div class="rank-count">12</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">211</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ion-antonescu/" style="font-weight:600; color:var(--ink);">Ion Antonescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ion-antonescu</div>
+      <div class="rank-count">12</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">212</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ion-budai-deleanu/" style="font-weight:600; color:var(--ink);">Ion Budai-Deleanu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ion-budai-deleanu</div>
+      <div class="rank-count">12</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">213</div>
+      <div class="portrait">
+        
+        RA
+        
+      </div>
+      <div>
+        <a href="/persoana/radu-de-la-afumati/" style="font-weight:600; color:var(--ink);">Radu de la Afumați</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">radu-de-la-afumati</div>
+      <div class="rank-count">12</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">214</div>
+      <div class="portrait">
+        
+        SE
+        
+      </div>
+      <div>
+        <a href="/persoana/sergiu-celibidache/" style="font-weight:600; color:var(--ink);">Sergiu Celibidache</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">sergiu-celibidache</div>
+      <div class="rank-count">12</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">215</div>
+      <div class="portrait">
+        
+        TI
+        
+      </div>
+      <div>
+        <a href="/persoana/tiberiu-brediceanu/" style="font-weight:600; color:var(--ink);">Tiberiu Brediceanu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">tiberiu-brediceanu</div>
+      <div class="rank-count">12</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">216</div>
       <div class="portrait">
         
         <img src="/portraits/Q926472.jpg" alt="Camil Ressu"
@@ -3241,7 +3521,1491 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">198</div>
+      <div class="rank-num">217</div>
+      <div class="portrait">
+        
+        GH
+        
+      </div>
+      <div>
+        <a href="/persoana/gheorghe-magheru/" style="font-weight:600; color:var(--ink);">Gheorghe Magheru</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">gheorghe-magheru</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">218</div>
+      <div class="portrait">
+        
+        GH
+        
+      </div>
+      <div>
+        <a href="/persoana/gheorghe-marinescu/" style="font-weight:600; color:var(--ink);">Gheorghe Marinescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">gheorghe-marinescu</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">219</div>
+      <div class="portrait">
+        
+        GH
+        
+      </div>
+      <div>
+        <a href="/persoana/gheorghe-pop-de-basesti/" style="font-weight:600; color:var(--ink);">Gheorghe Pop de Băsești</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">gheorghe-pop-de-basesti</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">220</div>
+      <div class="portrait">
+        
+        GR
+        
+      </div>
+      <div>
+        <a href="/persoana/grigore-moisil/" style="font-weight:600; color:var(--ink);">Grigore Moisil</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">grigore-moisil</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">221</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ion-g-duca/" style="font-weight:600; color:var(--ink);">Ion G. Duca</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ion-g-duca</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">222</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ion-slavici/" style="font-weight:600; color:var(--ink);">Ion Slavici</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ion-slavici</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">223</div>
+      <div class="portrait">
+        
+        MA
+        
+      </div>
+      <div>
+        <a href="/persoana/matei-millo/" style="font-weight:600; color:var(--ink);">Matei Millo</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">matei-millo</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">224</div>
+      <div class="portrait">
+        
+        PE
+        
+      </div>
+      <div>
+        <a href="/persoana/petru-cercel/" style="font-weight:600; color:var(--ink);">Petru Cercel</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">petru-cercel</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">225</div>
+      <div class="portrait">
+        
+        PR
+        
+      </div>
+      <div>
+        <a href="/persoana/preda-buzescu/" style="font-weight:600; color:var(--ink);">Preda Buzescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">preda-buzescu</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">226</div>
+      <div class="portrait">
+        
+        TH
+        
+      </div>
+      <div>
+        <a href="/persoana/theodor-neculuta/" style="font-weight:600; color:var(--ink);">Theodor Neculuță</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">theodor-neculuta</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">227</div>
+      <div class="portrait">
+        
+        TH
+        
+      </div>
+      <div>
+        <a href="/persoana/theodor-pallady/" style="font-weight:600; color:var(--ink);">Theodor Pallady</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">theodor-pallady</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">228</div>
+      <div class="portrait">
+        
+        TO
+        
+      </div>
+      <div>
+        <a href="/persoana/toma-caragiu/" style="font-weight:600; color:var(--ink);">Toma Caragiu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">toma-caragiu</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">229</div>
+      <div class="portrait">
+        
+        TR
+        
+      </div>
+      <div>
+        <a href="/persoana/traian-grozavescu/" style="font-weight:600; color:var(--ink);">Traian Grozăvescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">traian-grozavescu</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">230</div>
+      <div class="portrait">
+        
+        VA
+        
+      </div>
+      <div>
+        <a href="/persoana/valter-maracineanu/" style="font-weight:600; color:var(--ink);">Valter Mărăcineanu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">valter-maracineanu</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">231</div>
+      <div class="portrait">
+        
+        VE
+        
+      </div>
+      <div>
+        <a href="/persoana/veniamin-costache/" style="font-weight:600; color:var(--ink);">Veniamin Costache</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">veniamin-costache</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">232</div>
+      <div class="portrait">
+        
+        ȘT
+        
+      </div>
+      <div>
+        <a href="/persoana/stefan-cel-mare/" style="font-weight:600; color:var(--ink);">Ștefan cel Mare</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">stefan-cel-mare</div>
+      <div class="rank-count">11</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">233</div>
+      <div class="portrait">
+        
+        AL
+        
+      </div>
+      <div>
+        <a href="/persoana/alexandru-donici/" style="font-weight:600; color:var(--ink);">Alexandru Donici</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">alexandru-donici</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">234</div>
+      <div class="portrait">
+        
+        AL
+        
+      </div>
+      <div>
+        <a href="/persoana/alexandru-papiu-ilarian/" style="font-weight:600; color:var(--ink);">Alexandru Papiu Ilarian</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">alexandru-papiu-ilarian</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">235</div>
+      <div class="portrait">
+        
+        AR
+        
+      </div>
+      <div>
+        <a href="/persoana/armand-calinescu/" style="font-weight:600; color:var(--ink);">Armand Călinescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">armand-calinescu</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">236</div>
+      <div class="portrait">
+        
+        CO
+        
+      </div>
+      <div>
+        <a href="/persoana/constantin-turcanu/" style="font-weight:600; color:var(--ink);">Constantin Țurcanu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">constantin-turcanu</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">237</div>
+      <div class="portrait">
+        
+        CO
+        
+      </div>
+      <div>
+        <a href="/persoana/corneliu-baba/" style="font-weight:600; color:var(--ink);">Corneliu Baba</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">corneliu-baba</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">238</div>
+      <div class="portrait">
+        
+        DO
+        
+      </div>
+      <div>
+        <a href="/persoana/dosoftei/" style="font-weight:600; color:var(--ink);">Dosoftei</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">dosoftei</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">239</div>
+      <div class="portrait">
+        
+        EM
+        
+      </div>
+      <div>
+        <a href="/persoana/emanoil-gojdu/" style="font-weight:600; color:var(--ink);">Emanoil Gojdu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">emanoil-gojdu</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">240</div>
+      <div class="portrait">
+        
+        EU
+        
+      </div>
+      <div>
+        <a href="/persoana/eugen-barbu/" style="font-weight:600; color:var(--ink);">Eugen Barbu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">eugen-barbu</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">241</div>
+      <div class="portrait">
+        
+        GA
+        
+      </div>
+      <div>
+        <a href="/persoana/garabet-ibraileanu/" style="font-weight:600; color:var(--ink);">Garabet Ibrăileanu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">garabet-ibraileanu</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">242</div>
+      <div class="portrait">
+        
+        GE
+        
+      </div>
+      <div>
+        <a href="/persoana/gelu/" style="font-weight:600; color:var(--ink);">Gelu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">gelu</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">243</div>
+      <div class="portrait">
+        
+        GE
+        
+      </div>
+      <div>
+        <a href="/persoana/george-baritiu/" style="font-weight:600; color:var(--ink);">George Barițiu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">george-baritiu</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">244</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ion-mincu/" style="font-weight:600; color:var(--ink);">Ion Mincu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ion-mincu</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">245</div>
+      <div class="portrait">
+        
+        KÓ
+        
+      </div>
+      <div>
+        <a href="/persoana/kos-karoly/" style="font-weight:600; color:var(--ink);">Kós Károly</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">kos-karoly</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">246</div>
+      <div class="portrait">
+        
+        KŐ
+        
+      </div>
+      <div>
+        <a href="/persoana/korosi-csoma-sandor/" style="font-weight:600; color:var(--ink);">Kőrösi Csoma Sándor</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">korosi-csoma-sandor</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">247</div>
+      <div class="portrait">
+        
+        MI
+        
+      </div>
+      <div>
+        <a href="/persoana/mihai-i-al-romaniei/" style="font-weight:600; color:var(--ink);">Mihai I al României</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">mihai-i-al-romaniei</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">248</div>
+      <div class="portrait">
+        
+        MI
+        
+      </div>
+      <div>
+        <a href="/persoana/mihail-sebastian/" style="font-weight:600; color:var(--ink);">Mihail Sebastian</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">mihail-sebastian</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">249</div>
+      <div class="portrait">
+        
+        NI
+        
+      </div>
+      <div>
+        <a href="/persoana/nicolae-filipescu/" style="font-weight:600; color:var(--ink);">Nicolae Filipescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">nicolae-filipescu</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">250</div>
+      <div class="portrait">
+        
+        OR
+        
+      </div>
+      <div>
+        <a href="/persoana/orban-balazs/" style="font-weight:600; color:var(--ink);">Orbán Balázs</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">orban-balazs</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">251</div>
+      <div class="portrait">
+        
+        TR
+        
+      </div>
+      <div>
+        <a href="/persoana/traian-mosoiu/" style="font-weight:600; color:var(--ink);">Traian Moșoiu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">traian-mosoiu</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">252</div>
+      <div class="portrait">
+        
+        VA
+        
+      </div>
+      <div>
+        <a href="/persoana/vasile-milea/" style="font-weight:600; color:var(--ink);">Vasile Milea</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">vasile-milea</div>
+      <div class="rank-count">10</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">253</div>
+      <div class="portrait">
+        
+        AL
+        
+      </div>
+      <div>
+        <a href="/persoana/alexandru-ioan-cuza/" style="font-weight:600; color:var(--ink);">Alexandru Ioan Cuza</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">alexandru-ioan-cuza</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">254</div>
+      <div class="portrait">
+        
+        AN
+        
+      </div>
+      <div>
+        <a href="/persoana/antim-ivireanu/" style="font-weight:600; color:var(--ink);">Antim Ivireanu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">antim-ivireanu</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">255</div>
+      <div class="portrait">
+        
+        BÉ
+        
+      </div>
+      <div>
+        <a href="/persoana/bela-bartok/" style="font-weight:600; color:var(--ink);">Béla Bartók</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">bela-bartok</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">256</div>
+      <div class="portrait">
+        
+        DI
+        
+      </div>
+      <div>
+        <a href="/persoana/dimitrie-anghel/" style="font-weight:600; color:var(--ink);">Dimitrie Anghel</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">dimitrie-anghel</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">257</div>
+      <div class="portrait">
+        
+        FR
+        
+      </div>
+      <div>
+        <a href="/persoana/fratii-golesti/" style="font-weight:600; color:var(--ink);">Frații Golești</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">fratii-golesti</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">258</div>
+      <div class="portrait">
+        
+        GE
+        
+      </div>
+      <div>
+        <a href="/persoana/george-emil-palade/" style="font-weight:600; color:var(--ink);">George Emil Palade</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">george-emil-palade</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">259</div>
+      <div class="portrait">
+        
+        GR
+        
+      </div>
+      <div>
+        <a href="/persoana/grigore-ghica/" style="font-weight:600; color:var(--ink);">Grigore Ghica</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">grigore-ghica</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">260</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ion-irimescu/" style="font-weight:600; color:var(--ink);">Ion Irimescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ion-irimescu</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">261</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ion-maiorescu/" style="font-weight:600; color:var(--ink);">Ion Maiorescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ion-maiorescu</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">262</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ion-voda-cel-cumplit/" style="font-weight:600; color:var(--ink);">Ion Vodă cel Cumplit</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ion-voda-cel-cumplit</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">263</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ionel-perlea/" style="font-weight:600; color:var(--ink);">Ionel Perlea</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ionel-perlea</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">264</div>
+      <div class="portrait">
+        
+        LO
+        
+      </div>
+      <div>
+        <a href="/persoana/louis-pasteur/" style="font-weight:600; color:var(--ink);">Louis Pasteur</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">louis-pasteur</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">265</div>
+      <div class="portrait">
+        
+        NI
+        
+      </div>
+      <div>
+        <a href="/persoana/nicolae-milescu/" style="font-weight:600; color:var(--ink);">Nicolae Milescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">nicolae-milescu</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">266</div>
+      <div class="portrait">
+        
+        ON
+        
+      </div>
+      <div>
+        <a href="/persoana/onisifor-ghibu/" style="font-weight:600; color:var(--ink);">Onisifor Ghibu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">onisifor-ghibu</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">267</div>
+      <div class="portrait">
+        
+        RE
+        
+      </div>
+      <div>
+        <a href="/persoana/remus/" style="font-weight:600; color:var(--ink);">Remus</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">remus</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">268</div>
+      <div class="portrait">
+        
+        SA
+        
+      </div>
+      <div>
+        <a href="/persoana/samuel-micu-klein/" style="font-weight:600; color:var(--ink);">Samuel Micu Klein</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">samuel-micu-klein</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">269</div>
+      <div class="portrait">
+        
+        SM
+        
+      </div>
+      <div>
+        <a href="/persoana/smaranda-braescu/" style="font-weight:600; color:var(--ink);">Smaranda Brăescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">smaranda-braescu</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">270</div>
+      <div class="portrait">
+        
+        TA
+        
+      </div>
+      <div>
+        <a href="/persoana/tache-ionescu/" style="font-weight:600; color:var(--ink);">Tache Ionescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">tache-ionescu</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">271</div>
+      <div class="portrait">
+        
+        TR
+        
+      </div>
+      <div>
+        <a href="/persoana/traian-demetrescu/" style="font-weight:600; color:var(--ink);">Traian Demetrescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">traian-demetrescu</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">272</div>
+      <div class="portrait">
+        
+        VA
+        
+      </div>
+      <div>
+        <a href="/persoana/valeriu-braniste/" style="font-weight:600; color:var(--ink);">Valeriu Braniște</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">valeriu-braniste</div>
+      <div class="rank-count">9</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">273</div>
+      <div class="portrait">
+        
+        AL
+        
+      </div>
+      <div>
+        <a href="/persoana/alexandru-averescu/" style="font-weight:600; color:var(--ink);">Alexandru Averescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">alexandru-averescu</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">274</div>
+      <div class="portrait">
+        
+        AM
+        
+      </div>
+      <div>
+        <a href="/persoana/amza-pellea/" style="font-weight:600; color:var(--ink);">Amza Pellea</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">amza-pellea</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">275</div>
+      <div class="portrait">
+        
+        BA
+        
+      </div>
+      <div>
+        <a href="/persoana/barbu-delavrancea/" style="font-weight:600; color:var(--ink);">Barbu Delavrancea</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">barbu-delavrancea</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">276</div>
+      <div class="portrait">
+        
+        CO
+        
+      </div>
+      <div>
+        <a href="/persoana/constantin-mille/" style="font-weight:600; color:var(--ink);">Constantin Mille</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">constantin-mille</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">277</div>
+      <div class="portrait">
+        
+        CO
+        
+      </div>
+      <div>
+        <a href="/persoana/constantin-prezan/" style="font-weight:600; color:var(--ink);">Constantin Prezan</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">constantin-prezan</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">278</div>
+      <div class="portrait">
+        
+        DO
+        
+      </div>
+      <div>
+        <a href="/persoana/domnita-balasa/" style="font-weight:600; color:var(--ink);">Domnița Bălașa</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">domnita-balasa</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">279</div>
+      <div class="portrait">
+        
+        EN
+        
+      </div>
+      <div>
+        <a href="/persoana/enachita-vacarescu/" style="font-weight:600; color:var(--ink);">Enăchiță Văcărescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">enachita-vacarescu</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">280</div>
+      <div class="portrait">
+        
+        EU
+        
+      </div>
+      <div>
+        <a href="/persoana/eugen-ionescu/" style="font-weight:600; color:var(--ink);">Eugen Ionescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">eugen-ionescu</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">281</div>
+      <div class="portrait">
+        
+        GH
+        
+      </div>
+      <div>
+        <a href="/persoana/gheorghe-magheru/" style="font-weight:600; color:var(--ink);">Gheorghe Magheru</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">gheorghe-magheru</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">282</div>
+      <div class="portrait">
+        
+        GH
+        
+      </div>
+      <div>
+        <a href="/persoana/gheorghe-sontu/" style="font-weight:600; color:var(--ink);">Gheorghe Șonțu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">gheorghe-sontu</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">283</div>
+      <div class="portrait">
+        
+        IL
+        
+      </div>
+      <div>
+        <a href="/persoana/ilarie-chendi/" style="font-weight:600; color:var(--ink);">Ilarie Chendi</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ilarie-chendi</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">284</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ioan-suciu/" style="font-weight:600; color:var(--ink);">Ioan Suciu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ioan-suciu</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">285</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ioan-tautu/" style="font-weight:600; color:var(--ink);">Ioan Tăutu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ioan-tautu</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">286</div>
+      <div class="portrait">
+        
+        LA
+        
+      </div>
+      <div>
+        <a href="/persoana/lascar-catargiu/" style="font-weight:600; color:var(--ink);">Lascăr Catargiu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">lascar-catargiu</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">287</div>
+      <div class="portrait">
+        
+        LE
+        
+      </div>
+      <div>
+        <a href="/persoana/leonardo-da-vinci/" style="font-weight:600; color:var(--ink);">Leonardo da Vinci</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">leonardo-da-vinci</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">288</div>
+      <div class="portrait">
+        
+        LU
+        
+      </div>
+      <div>
+        <a href="/persoana/luca-arbore/" style="font-weight:600; color:var(--ink);">Luca Arbore</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">luca-arbore</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">289</div>
+      <div class="portrait">
+        
+        MA
+        
+      </div>
+      <div>
+        <a href="/persoana/maxim-gorki/" style="font-weight:600; color:var(--ink);">Maxim Gorki</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">maxim-gorki</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">290</div>
+      <div class="portrait">
+        
+        MI
+        
+      </div>
+      <div>
+        <a href="/persoana/mikes-kelemen/" style="font-weight:600; color:var(--ink);">Mikes Kelemen</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">mikes-kelemen</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">291</div>
+      <div class="portrait">
+        
+        NI
+        
+      </div>
+      <div>
+        <a href="/persoana/nicolae-d-cocea/" style="font-weight:600; color:var(--ink);">Nicolae D. Cocea</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">nicolae-d-cocea</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">292</div>
+      <div class="portrait">
+        
+        NI
+        
+      </div>
+      <div>
+        <a href="/persoana/nicolae-teclu/" style="font-weight:600; color:var(--ink);">Nicolae Teclu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">nicolae-teclu</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">293</div>
+      <div class="portrait">
+        
+        PE
+        
+      </div>
+      <div>
+        <a href="/persoana/petru-i-musat/" style="font-weight:600; color:var(--ink);">Petru I Mușat</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">petru-i-musat</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">294</div>
+      <div class="portrait">
+        
+        PI
+        
+      </div>
+      <div>
+        <a href="/persoana/pintea-viteazul/" style="font-weight:600; color:var(--ink);">Pintea Viteazul</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">pintea-viteazul</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">295</div>
+      <div class="portrait">
+        
+        RA
+        
+      </div>
+      <div>
+        <a href="/persoana/radu-voda-radu-cel-frumos/" style="font-weight:600; color:var(--ink);">Radu Vodă (Radu cel Frumos)</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">radu-voda-radu-cel-frumos</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">296</div>
+      <div class="portrait">
+        
+        SA
+        
+      </div>
+      <div>
+        <a href="/persoana/sabin-dragoi/" style="font-weight:600; color:var(--ink);">Sabin Drăgoi</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">sabin-dragoi</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">297</div>
+      <div class="portrait">
+        
+        TR
+        
+      </div>
+      <div>
+        <a href="/persoana/traian-lalescu/" style="font-weight:600; color:var(--ink);">Traian Lalescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">traian-lalescu</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">298</div>
+      <div class="portrait">
+        
+        TU
+        
+      </div>
+      <div>
+        <a href="/persoana/tudor-musatescu/" style="font-weight:600; color:var(--ink);">Tudor Mușatescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">tudor-musatescu</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">299</div>
+      <div class="portrait">
+        
+        VA
+        
+      </div>
+      <div>
+        <a href="/persoana/vasile-voiculescu/" style="font-weight:600; color:var(--ink);">Vasile Voiculescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">vasile-voiculescu</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">300</div>
+      <div class="portrait">
+        
+        VI
+        
+      </div>
+      <div>
+        <a href="/persoana/victor-hugo/" style="font-weight:600; color:var(--ink);">Victor Hugo</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">victor-hugo</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">301</div>
+      <div class="portrait">
+        
+        ȘT
+        
+      </div>
+      <div>
+        <a href="/persoana/stefan-octavian-iosif/" style="font-weight:600; color:var(--ink);">Ștefan Octavian Iosif</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">stefan-octavian-iosif</div>
+      <div class="rank-count">8</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">302</div>
+      <div class="portrait">
+        
+        CO
+        
+      </div>
+      <div>
+        <a href="/persoana/constantin-i-istrate/" style="font-weight:600; color:var(--ink);">Constantin I. Istrate</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">constantin-i-istrate</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">303</div>
+      <div class="portrait">
+        
+        GH
+        
+      </div>
+      <div>
+        <a href="/persoana/gheorghe-marinescu/" style="font-weight:600; color:var(--ink);">Gheorghe Marinescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">gheorghe-marinescu</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">304</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ioan-slavici/" style="font-weight:600; color:var(--ink);">Ioan Slavici</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ioan-slavici</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">305</div>
+      <div class="portrait">
+        
+        IO
+        
+      </div>
+      <div>
+        <a href="/persoana/ioan-slavici/" style="font-weight:600; color:var(--ink);">Ioan Slavici</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ioan-slavici</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">306</div>
+      <div class="portrait">
+        
+        IU
+        
+      </div>
+      <div>
+        <a href="/persoana/iulia-hasdeu/" style="font-weight:600; color:var(--ink);">Iulia Hașdeu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">iulia-hasdeu</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">307</div>
+      <div class="portrait">
+        
+        ME
+        
+      </div>
+      <div>
+        <a href="/persoana/menumorut/" style="font-weight:600; color:var(--ink);">Menumorut</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">menumorut</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">308</div>
+      <div class="portrait">
+        
+        MI
+        
+      </div>
+      <div>
+        <a href="/persoana/mihai-eminescu/" style="font-weight:600; color:var(--ink);">Mihai Eminescu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">mihai-eminescu</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">309</div>
+      <div class="portrait">
+        
+        MI
+        
+      </div>
+      <div>
+        <a href="/persoana/mihail-jora/" style="font-weight:600; color:var(--ink);">Mihail Jora</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">mihail-jora</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">310</div>
+      <div class="portrait">
+        
+        OV
+        
+      </div>
+      <div>
+        <a href="/persoana/ovid-densusianu/" style="font-weight:600; color:var(--ink);">Ovid Densușianu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">ovid-densusianu</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">311</div>
+      <div class="portrait">
+        
+        PE
+        
+      </div>
+      <div>
+        <a href="/persoana/petre-liciu/" style="font-weight:600; color:var(--ink);">Petre Liciu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">petre-liciu</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">312</div>
+      <div class="portrait">
+        
+        PE
+        
+      </div>
+      <div>
+        <a href="/persoana/petru-poni/" style="font-weight:600; color:var(--ink);">Petru Poni</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">petru-poni</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">313</div>
+      <div class="portrait">
+        
+        ST
+        
+      </div>
+      <div>
+        <a href="/persoana/stephan-ludwig-roth/" style="font-weight:600; color:var(--ink);">Stephan Ludwig Roth</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">stephan-ludwig-roth</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">314</div>
+      <div class="portrait">
+        
+        VA
+        
+      </div>
+      <div>
+        <a href="/persoana/varlaam-motoc/" style="font-weight:600; color:var(--ink);">Varlaam Moțoc</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">varlaam-motoc</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">315</div>
+      <div class="portrait">
+        
+        VA
+        
+      </div>
+      <div>
+        <a href="/persoana/vasile-milea/" style="font-weight:600; color:var(--ink);">Vasile Milea</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">vasile-milea</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">316</div>
+      <div class="portrait">
+        
+        VI
+        
+      </div>
+      <div>
+        <a href="/persoana/victor-ion-popa/" style="font-weight:600; color:var(--ink);">Victor Ion Popa</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">victor-ion-popa</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">317</div>
+      <div class="portrait">
+        
+        VL
+        
+      </div>
+      <div>
+        <a href="/persoana/vlaicu-voda/" style="font-weight:600; color:var(--ink);">Vlaicu Vodă</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">vlaicu-voda</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">318</div>
+      <div class="portrait">
+        
+        ȘE
+        
+      </div>
+      <div>
+        <a href="/persoana/serban-cantacuzino/" style="font-weight:600; color:var(--ink);">Șerban Cantacuzino</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">serban-cantacuzino</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">319</div>
+      <div class="portrait">
+        
+        ȘT
+        
+      </div>
+      <div>
+        <a href="/persoana/stefan-augustin-doinas/" style="font-weight:600; color:var(--ink);">Ștefan Augustin Doinaș</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">stefan-augustin-doinas</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">320</div>
+      <div class="portrait">
+        
+        ȘT
+        
+      </div>
+      <div>
+        <a href="/persoana/stefan-odobleja/" style="font-weight:600; color:var(--ink);">Ștefan Odobleja</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">stefan-odobleja</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">321</div>
+      <div class="portrait">
+        
+        ȘT
+        
+      </div>
+      <div>
+        <a href="/persoana/stefan-procopiu/" style="font-weight:600; color:var(--ink);">Ștefan Procopiu</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">stefan-procopiu</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">322</div>
+      <div class="portrait">
+        
+        ȘT
+        
+      </div>
+      <div>
+        <a href="/persoana/stefanita-voda/" style="font-weight:600; color:var(--ink);">Ștefăniță Vodă</a>
+      </div>
+      <div style="font-size:11px; color:var(--muted);">stefanita-voda</div>
+      <div class="rank-count">7</div>
+    </div>
+    
+    <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
+      <div class="rank-num">323</div>
       <div class="portrait">
         
         <img src="/portraits/Q292539.jpg" alt="Elena Văcărescu"
@@ -3256,7 +5020,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">199</div>
+      <div class="rank-num">324</div>
       <div class="portrait">
         
         <img src="/portraits/Q208494.jpg" alt="Mircea cel Bătrân"
@@ -3271,7 +5035,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">200</div>
+      <div class="rank-num">325</div>
       <div class="portrait">
         
         <img src="/portraits/Q7832693.jpg" alt="Traian Moșoiu"
@@ -3286,7 +5050,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">201</div>
+      <div class="rank-num">326</div>
       <div class="portrait">
         
         <img src="/portraits/Q6862713.jpg" alt="Mina Minovici"
@@ -3301,7 +5065,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">202</div>
+      <div class="rank-num">327</div>
       <div class="portrait">
         
         <img src="/portraits/Q359170.jpg" alt="Pintea Haiducul"
@@ -3316,7 +5080,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">203</div>
+      <div class="rank-num">328</div>
       <div class="portrait">
         
         <img src="/portraits/Q5163771.jpg" alt="Titel Petrescu"
@@ -3331,7 +5095,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">204</div>
+      <div class="rank-num">329</div>
       <div class="portrait">
         
         <img src="/portraits/Q612177.jpg" alt="C.I. Parhon"
@@ -3346,7 +5110,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">205</div>
+      <div class="rank-num">330</div>
       <div class="portrait">
         
         <img src="/portraits/Q1386190.jpg" alt="N.D. Paulescu"
@@ -3361,7 +5125,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">206</div>
+      <div class="rank-num">331</div>
       <div class="portrait">
         
         <img src="/portraits/Q21681150.jpg" alt="Aprodul Purice"
@@ -3376,7 +5140,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">207</div>
+      <div class="rank-num">332</div>
       <div class="portrait">
         
         <img src="/portraits/Q1372003.jpg" alt="Eremia Grigorescu"
@@ -3391,7 +5155,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">208</div>
+      <div class="rank-num">333</div>
       <div class="portrait">
         
         <img src="/portraits/Q647447.jpg" alt="Gheorghe Magheru"
@@ -3406,7 +5170,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">209</div>
+      <div class="rank-num">334</div>
       <div class="portrait">
         
         <img src="/portraits/Q840643.jpg" alt="Ioan Budai-Deleanu"
@@ -3421,7 +5185,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">210</div>
+      <div class="rank-num">335</div>
       <div class="portrait">
         
         <img src="/portraits/Q2918453.jpg" alt="Ion Drăgălina"
@@ -3436,7 +5200,7 @@ a:hover { text-decoration: underline; }
     </div>
     
     <div class="rank-row" style="grid-template-columns: 30px 32px minmax(0,1fr) 70px 60px;">
-      <div class="rank-num">211</div>
+      <div class="rank-num">336</div>
       <div class="portrait">
         
         PO

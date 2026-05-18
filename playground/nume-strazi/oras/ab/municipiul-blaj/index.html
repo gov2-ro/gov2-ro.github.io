@@ -239,6 +239,20 @@ a:hover { text-decoration: underline; }
   transition: background .1s ease, border-color .1s ease;
 }
 .uat-pill:hover { background: var(--surface-blue); border-color: var(--plaque); text-decoration: none; }
+.uat-pill.is-capital {
+  background: var(--bg);
+  border-color: var(--gold);
+  box-shadow: inset 3px 0 0 var(--gold);
+  padding-left: 12px;
+}
+.uat-pill.is-capital::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 9px;
+  margin-right: 4px;
+  line-height: 1;
+  vertical-align: 1px;
+}
 
 /* județ accordion */
 .judet-section { margin-bottom: 10px; }
@@ -310,19 +324,19 @@ a:hover { text-decoration: underline; }
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
           <div>
-            <span class="emo">📍</span>
-            Alte
-          </div>
-          <div class="rank-count">33</div>
-        </div>
-        
-        <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
-          <div>
             <span class="emo">👤</span>
             
             Persoana
           </div>
-          <div class="rank-count">32</div>
+          <div class="rank-count">36</div>
+        </div>
+        
+        <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
+          <div>
+            <span class="emo">📍</span>
+            Alte
+          </div>
+          <div class="rank-count">29</div>
         </div>
         
         <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 50px;">
@@ -551,6 +565,14 @@ a:hover { text-decoration: underline; }
           <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
             <div>
               
+              <a href="/persoana/alexandru-papiu-ilarian/">Alexandru Papiu Ilarian</a>
+            </div>
+            <div class="rank-count">1</div>
+          </div>
+          
+          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
+            <div>
+              
               <span class="portrait" style="margin-right:6px;">
                 <img src="/portraits/Q502292.jpg" alt="Andrei Mureșanu"
                      onerror="this.parentElement.textContent='AN'">
@@ -669,19 +691,6 @@ a:hover { text-decoration: underline; }
               </span>
               
               <a href="/persoana/q5112591/">Costache Negri</a>
-            </div>
-            <div class="rank-count">1</div>
-          </div>
-          
-          <div class="rank-row" style="grid-template-columns: minmax(0,1fr) 44px;">
-            <div>
-              
-              <span class="portrait" style="margin-right:6px;">
-                <img src="/portraits/Q16427771.jpg" alt="Crișan"
-                     onerror="this.parentElement.textContent='CR'">
-              </span>
-              
-              <a href="/persoana/q16427771/">Crișan</a>
             </div>
             <div class="rank-count">1</div>
           </div>
