@@ -1,0 +1,1 @@
+moved to [strazi.gov2.ro](https://strazi.gov2.ro/)
